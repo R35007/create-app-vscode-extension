@@ -1,0 +1,81 @@
+{
+  "name": "create-app",
+  "displayName": "Create App",
+  "description": "Easily Create any UI App with Official Starter Templates or Boilerplates using CLI",
+  "version": "1.0.0",
+  "publisher": "Thinker",
+  "license": "MIT",
+  "icon": "media/images/ca-logo.png",
+  "author": {
+    "name": "Sivaraman",
+    "email": "sendmsg2siva@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/R35007/create-app-support"
+  },
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "Create App",
+    "Create React App",
+    "Create UI App",
+    "Create Angular App",
+    "Create Vue App",
+    "Create Express App",
+    "Create Node App",
+    "Create Ionic App",
+    "Create React Native App",
+    "Create Vs Code Extension App"
+  ],
+  "activationEvents": [
+    "onCommand:create.app",
+    "onWebviewPanel:create.app"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "create.app",
+        "title": "App",
+        "category": "Create"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p -w . --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.50.0",
+    "@types/glob": "^7.1.4",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "14.x",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
+    "glob": "^7.1.7",
+    "mocha": "^9.1.1",
+    "typescript": "^4.4.3",
+    "ts-loader": "^9.2.5",
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "@vscode/test-electron": "^1.6.2"
+  },
+  "dependencies": {
+    "@vscode/webview-ui-toolkit": "^0.8.2",
+    "bootstrap": "^5.1.3"
+  }
+}
