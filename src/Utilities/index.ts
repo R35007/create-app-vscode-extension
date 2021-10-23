@@ -24,24 +24,19 @@ export const getNonce = () => {
   return text;
 }
 
-export const getAppCards = (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: AppProps[], selectedAppName?: string): string => {
+export const getAppList = (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: AppProps[], selectedAppName?: string): string => {
   return appsList.map(app => {
     const logoUri = getUriFromPath(extensionUri, webview, ...app.logoPath);
     return `
-      <div id="${app.id}" class="row g-0 app-card rounded ${app.appName === selectedAppName ? 'selected' : ''}">
-        <div class="col-3 text-center thumbnail p-2">
+      <li id="${app.id}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
+        <div class="col-3 text-center thumbnail p-2 d-none d-md-block">
           <img
               src="${logoUri}"
               alt="${app.appName}"
-              class="img-fluid"
             />
         </div>
-        <div class="col app-title p-2">
-          <h5 class="mb-1">
-            ${app.appName}
-          </h5>
-        </div>
-      </div>
+        <div class="col app-title p-2">${app.appName}</div>
+      </li>
     `
   }).join('')
 }

@@ -14,6 +14,7 @@ body {
   font-family: var(--vscode-font-family);
   background-color: var(--vscode-editor-background);
   --input-height: 30 !important;
+  height: 100vh;
 }
 
 ol,
@@ -27,16 +28,18 @@ form > * {
   margin-block-end: var(--input-margin-vertical);
 }
 
-.app-cards-wrapper {
-  grid-gap: 1rem;
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
-.app-card {
-  background: var(--vscode-list-dropBackground);
-  cursor: pointer;
-  min-width: 16rem;
+.app-list {
+  height: calc(100% - 5rem);
 }
-.app-card:hover,
+
+.app-card:hover {
+  background: var(--vscode-list-dropBackground);
+}
+
 .app-card.selected {
   background: var(--vscode-button-background);
   color: var(--vscode-button-foreground);
@@ -47,8 +50,8 @@ form > * {
   background: #00000042;
 }
 
-.app-card img {
-  height: 25px;
+.app-card .thumbnail img {
+  width: 20px;
 }
 
 .flex-1 {
@@ -76,4 +79,13 @@ form > * {
 .tag:hover {
   background-color: var(--vscode-button-background);
   border-color: var(--vscode-button-background);
+}
+
+.command-container .action-container {
+  bottom: 5px;
+  right: 0;
+}
+
+.configuration-container {
+  height: calc(100% - 15rem);
 }
