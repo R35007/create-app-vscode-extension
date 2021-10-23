@@ -2,7 +2,7 @@
 import * as vscode from 'vscode';
 import { AppProps, Commands } from '../modal';
 import { getWebviewOptions } from '../Utilities';
-import getAppsList from '../Utilities/Apps-List';
+import AppsList from '../Utilities/Apps-List';
 import { Command } from './Command';
 import getHtmlForWebview from './Html-For-Webview';
 
@@ -20,7 +20,7 @@ export default class CreateApp {
   private readonly _extensionUri: vscode.Uri;
   private _disposables: vscode.Disposable[] = [];
 
-  private _appsList: AppProps[] = getAppsList();
+  private _appsList: AppProps[] = AppsList;
   private _selectedApp: AppProps = this._appsList[0];
 
   public static createOrShow(extensionUri: vscode.Uri) {
@@ -78,7 +78,7 @@ export default class CreateApp {
   onDidReceiveMessage = (message: any) => {
     switch (message.action) {
       case 'switch-app': {
-        this._switchApp(message.id)
+        this._switchApp(message.appName)
         return;
       }
       case 'get-location': {
@@ -116,9 +116,9 @@ export default class CreateApp {
     vscode.window.showInformationMessage('Copied command to the clipboard 📋');
   }
 
-  private _switchApp = (id: number) => {
+  private _switchApp = (appName: string) => {
     this._appsList.forEach(app => {
-      if (app.id === id) {
+      if (app.appName === appName) {
         app.isSelected = true;
         this._selectedApp = app;
       }

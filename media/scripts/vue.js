@@ -1,23 +1,26 @@
 let installPrerequisites = "";
 let initialCommand = "vue create"
 let appId = 'hello-world';
-let defaultPreset = '--default';
 let customPresetLocation = '';
 let gitInit = '';
 let packageManager = '';
+let openInVscode = '';
 
 const $installPrerequisites = document.getElementById('install-prerequisites');
 const $appId = document.getElementById('app-id');
-const $defaultPreset = document.getElementById('default-preset');
 const $customPresetLocationTextbox = document.getElementById('custom-preset-location-textbox');
 const $customPresetLocationButton = document.getElementById('custom-preset-location-button');
 const $packageManager = document.getElementById('package-manager');
 const $gitInit = document.getElementById('git-init');
+const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${defaultPreset} ${customPresetLocation} ${gitInit} ${packageManager} ${extras}`;
-  const cleanCommand = value.replace(/\s{2,}/g, ' '); // replace all multiple spaces with single space
-  $command.value = cleanCommand.trim();
+  const value = `${installPrerequisites} ${initialCommand} ${appId} ${customPresetLocation || '--default'} ${gitInit} ${packageManager} ${extras}; ${openInVscode}`;
+  const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
+    .trim().split(';')
+    .map(c => c.trim())
+    .join(';\n');
+  $command.value = cleanCommand;
 }
 
 // Set Initial Command
@@ -29,8 +32,6 @@ window.addEventListener('message', event => {
   switch (message.action) {
     case 'set-location':
       if (message.id === 'custom-preset-location') {
-        defaultPreset = '';
-        $defaultPreset.value = 'no';
         customPresetLocation = `--preset="${message.value}"`;
         $customPresetLocationTextbox.value = message.value;
         setCommand();
@@ -48,18 +49,7 @@ $installPrerequisites.addEventListener("change", function () {
 // Set App Id
 $appId.addEventListener("input", function () {
   appId = this.value;
-  setCommand();
-})
-
-// Set Default Preset
-$defaultPreset.addEventListener("change", function () {
-  if (this.value === 'yes') {
-    defaultPreset = '--default';
-    customPresetLocation = '';
-    $customPresetLocationTextbox.value = '';
-  } else {
-    defaultPreset = '';
-  }
+  openInVscode = $openInVscode.value === 'yes' ? `cd ${appId}; code .;` : '';
   setCommand();
 })
 
@@ -76,15 +66,7 @@ $customPresetLocationButton.addEventListener("click", function () {
   });
 })
 $customPresetLocationTextbox.addEventListener("input", function () {
-  if (this.value) {
-    defaultPreset = '';
-    $defaultPreset.value = 'no';
-    customPresetLocation = `--preset="${this.value}"`;
-  } else {
-    defaultPreset = '--default';
-    $defaultPreset.value = 'yes';
-    customPresetLocation = ''
-  }
+  customPresetLocation = this.value?.trim() ? `--preset="${this.value}"` : '--default';
   setCommand();
 })
 
@@ -97,6 +79,12 @@ $packageManager.addEventListener("change", function () {
 // Set Git Init
 $gitInit.addEventListener("change", function () {
   gitInit = this.value !== 'yes' ? `--no-git` : '';
+  setCommand();
+})
+
+// Set Open In VSCode
+$openInVscode.addEventListener("change", function () {
+  openInVscode = this.value === 'yes' ? `cd ${appId}; code .;` : '';
   setCommand();
 })
 

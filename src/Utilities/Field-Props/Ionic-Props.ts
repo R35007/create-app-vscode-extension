@@ -4,7 +4,7 @@ import { FieldProps, FieldType } from '../../modal';
 const ionicAngularProps: FieldProps[] = [
   {
     id: "app-name",
-    label: "App Display Name",
+    label: "App Name",
     type: FieldType.TEXTBOX,
     value: "Hello World",
     isRequired: true
@@ -65,7 +65,7 @@ const ionicAngularProps: FieldProps[] = [
   },
   {
     id: "git-init",
-    label: "Initialize a git repository ?",
+    label: "Initialize Git Repository ?",
     type: FieldType.RADIO_GROUP,
     value: "yes",
     options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
@@ -79,6 +79,13 @@ const ionicAngularProps: FieldProps[] = [
       { label: "Yes", value: "yes" },
       { label: "No", value: "no" }
     ]
+  },
+  {
+    id: "open-in-vscode",
+    label: "Open in Vs Code ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {
     id: "extras",

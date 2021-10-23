@@ -16,23 +16,23 @@ const angularProps: FieldProps[] = [
     type: FieldType.TEXTBOX
   },
   {
-    id: "routing",
-    label: "Routing",
-    type: FieldType.RADIO_GROUP,
-    value: "no",
-    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
-  },
-  {
     id: "stylesheet-format",
     label: "Stylesheet Format",
     type: FieldType.DROPDOWN,
     value: "css",
     options: [
       { label: "CSS", value: "css" },
-      { label: "SCSS  [ https://sass-lang.com/documentation/syntax#scss                ]", value: "scss" },
-      { label: "SASS  [ https://sass-lang.com/documentation/syntax#the-indented-syntax ]", value: "sass" },
-      { label: "LESS  [ http://lesscss.org                                             ]", value: "less" },
+      { label: "SCSS", value: "scss" },
+      { label: "SASS", value: "sass" },
+      { label: "LESS", value: "less" },
     ]
+  },
+  {
+    id: "routing",
+    label: "Include Routing ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {
     id: "include-inline-styles",
@@ -77,7 +77,7 @@ const angularProps: FieldProps[] = [
   },
   {
     id: "git-init",
-    label: "Initialize a git repository ?",
+    label: "Initialize Git Repository ?",
     type: FieldType.RADIO_GROUP,
     value: "yes",
     options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
@@ -91,6 +91,13 @@ const angularProps: FieldProps[] = [
       { label: "Yes", value: "yes" },
       { label: "No", value: "no" }
     ]
+  },
+  {
+    id: "open-in-vscode",
+    label: "Open in Vs Code ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {
     id: "extras",

@@ -1,5 +1,5 @@
 let installPrerequisites = "";
-let initialCommand = "express --force"
+let initialCommand = "express"
 let appId = 'hello-world';
 let viewType = '';
 let stylesheetFormat = '';
@@ -8,6 +8,7 @@ let addHandlebar = '';
 let addPug = '';
 let addHogan = '';
 let noViews = '';
+let openInVscode = '';
 
 const $installPrerequisites = document.getElementById('install-prerequisites');
 const $appId = document.getElementById('app-id');
@@ -18,11 +19,16 @@ const $addHandlebar = document.getElementById('add-handlebar');
 const $addPug = document.getElementById('add-pug');
 const $addHogan = document.getElementById('add-hogan');
 const $noViews = document.getElementById('no-views');
+const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${viewType} ${stylesheetFormat} ${addEjs} ${addHandlebar} ${addPug} ${addHogan} ${noViews} ${extras}`;
-  const cleanCommand = value.replace(/\s{2,}/g, ' '); // replace all multiple spaces with single space
-  $command.value = cleanCommand.trim();
+  const value = `${installPrerequisites} ${initialCommand} ${appId} ${viewType} ${stylesheetFormat} ${addEjs}` +
+    ` ${addHandlebar} ${addPug} ${addHogan} ${noViews} --force ${extras}; ${openInVscode}`;
+  const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
+    .trim().split(';')
+    .map(c => c.trim())
+    .join(';\n');
+  $command.value = cleanCommand;
 }
 
 // Set Initial Command
@@ -37,6 +43,7 @@ $installPrerequisites.addEventListener("change", function () {
 // Set App Id
 $appId.addEventListener("input", function () {
   appId = this.value;
+  openInVscode = $openInVscode.value === 'yes' ? `cd ${appId}; code .;` : '';
   setCommand();
 })
 
@@ -88,6 +95,12 @@ $noViews.addEventListener("change", function () {
     const viewTypeValue = $viewType.value;
     viewType = viewTypeValue !== 'jade' ? `--view=${viewTypeValue}` : '';
   }
+  setCommand();
+})
+
+// Set Open In VSCode
+$openInVscode.addEventListener("change", function () {
+  openInVscode = this.value === 'yes' ? `cd ${appId}; code .;` : '';
   setCommand();
 })
 

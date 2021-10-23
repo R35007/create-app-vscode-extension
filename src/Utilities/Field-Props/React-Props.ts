@@ -36,6 +36,13 @@ const reactProps: FieldProps[] = [
     ]
   },
   {
+    id: "open-in-vscode",
+    label: "Open in Vs Code ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
+  },
+  {
     id: "extras",
     label: "Additional Configuration",
     type: FieldType.TEXTBOX,

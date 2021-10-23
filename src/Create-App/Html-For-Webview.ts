@@ -75,7 +75,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         </style>
         <title>Create App</title>
       </head>
-      <body>
+      <body style="overflow: hidden;">
         <div id="loader" class="loader ${showLoader ? '' : 'hide-loader'}">
           <div class="loader-text">🚀Launching...</div>
         </div>
@@ -92,7 +92,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
             <section class="col h-100">
               <vscode-button class="pe-none mb-2">Create ${selectedApp.appName} App</vscode-button>
               <section class="command-container position-relative mb-3">
-                <vscode-text-area id="command" class="d-block w-100" readonly  rows="5"></vscode-text-area>
+                <vscode-text-area id="command" class="d-block w-100" rows="5"></vscode-text-area>
                 <div class="action-container d-inline-block position-absolute">
                   <vscode-button appearance="secondary" id="copy-command">Copy</vscode-button>
                   <vscode-button id="execute">Excute</vscode-button>
@@ -103,7 +103,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                   <div class="col-8 col-lg-9 app-config-container overflow-y-auto h-100">
                     ${createAppForm}
                   </div>
-                  <div class="col-4 col-lg-3 additional-details-container h-100">
+                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto">
                     <div class="prerequisites-container">
                       <h5>Prerequisites</h5>
                       <div class="prerequisites-content my-3">

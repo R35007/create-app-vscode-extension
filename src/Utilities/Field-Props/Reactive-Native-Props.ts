@@ -4,7 +4,7 @@ import { FieldProps, FieldType } from '../../modal';
 const reactNativeProps: FieldProps[] = [
   {
     id: "app-display-name",
-    label: "App Display Name",
+    label: "App Name",
     value: 'Hello World',
     isRequired: true,
     type: FieldType.TEXTBOX
@@ -49,6 +49,13 @@ const reactNativeProps: FieldProps[] = [
       { label: "Yes", value: "yes" },
       { label: "No", value: "no" }
     ]
+  },
+  {
+    id: "open-in-vscode",
+    label: "Open in Vs Code ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {
     id: "extras",

@@ -23,9 +23,12 @@ const $openInVsCode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
   const value = `${installPrerequisites} ${initialCommand} ${extensionId} ${extensionDisplayName} ${extensionDescription} ${extensionType}` +
-    ` ${packageManager} ${webpack} ${gitInit} ${skipInstall} ${openInVsCode} ${extras}`;
-  const cleanCommand = value.replace(/\s{2,}/g, ' '); // replace all multiple spaces with single space
-  $command.value = cleanCommand.trim();
+    ` ${packageManager} ${webpack} ${gitInit} ${skipInstall} ${openInVsCode} ${extras};`;
+  const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
+    .trim().split(';')
+    .map(c => c.trim())
+    .join(';\n');
+  $command.value = cleanCommand;
 }
 
 // Set Initial Command

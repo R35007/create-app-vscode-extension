@@ -1,7 +1,7 @@
 
 import { FieldProps, FieldType } from '../../modal';
 
-const nodeProps: FieldProps[] = [
+const expressJsProps: FieldProps[] = [
   {
     id: "app-id",
     label: "App Id",
@@ -89,6 +89,13 @@ const nodeProps: FieldProps[] = [
     ],
   },
   {
+    id: "open-in-vscode",
+    label: "Open in Vs Code ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
+  },
+  {
     id: "extras",
     label: "Additional Configuration",
     type: FieldType.TEXTBOX,
@@ -102,4 +109,4 @@ const nodeProps: FieldProps[] = [
   }
 ]
 
-export default nodeProps;
+export default expressJsProps;

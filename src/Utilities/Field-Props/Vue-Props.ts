@@ -11,18 +11,6 @@ const vueProps: FieldProps[] = [
     placeholder: "Can have lowercase alphabets, numbers and minus (-). No spaces or special chars are allowed."
   },
   {
-    id: "default-preset",
-    label: "Use Default Preset ?",
-    type: FieldType.RADIO_GROUP,
-    value: "yes",
-    options: [
-      { label: "Yes", value: "yes" },
-      { label: "No", value: "no" }
-    ],
-    placeholder: "Please select any file",
-    description: `If No, Please provide a Custom Preset Path to <span class="text-primary">preset.json</span> file`
-  },
-  {
     id: "custom-preset-location",
     label: "Custom Preset Location",
     type: FieldType.BROWSE,
@@ -45,6 +33,13 @@ const vueProps: FieldProps[] = [
     label: "Initialize a git repository ?",
     type: FieldType.RADIO_GROUP,
     value: "yes",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
+  },
+  {
+    id: "open-in-vscode",
+    label: "Open in Vs Code ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
     options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {

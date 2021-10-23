@@ -4,7 +4,7 @@ import { FieldProps, FieldType } from '../../modal';
 const vsCodeExtensionProps: FieldProps[] = [
   {
     id: "extension-display-name",
-    label: "Extension Display Name",
+    label: "Extension Name",
     type: FieldType.TEXTBOX,
     value: "Hello World",
     isRequired: true
@@ -19,12 +19,12 @@ const vsCodeExtensionProps: FieldProps[] = [
   },
   {
     id: "extension-description",
-    label: "Extension Description",
+    label: "Description",
     type: FieldType.TEXTBOX
   },
   {
     id: "extension-type",
-    label: "Extension Type",
+    label: "Type",
     type: FieldType.DROPDOWN,
     value: "ts",
     options: [
@@ -56,7 +56,7 @@ const vsCodeExtensionProps: FieldProps[] = [
   },
   {
     id: "git-init",
-    label: "Initialize a git repository ?",
+    label: "Initialize Git Repository ?",
     type: FieldType.RADIO_GROUP,
     value: "yes",
     options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]

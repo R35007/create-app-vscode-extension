@@ -2,7 +2,6 @@ var vscode = acquireVsCodeApi();
 
 const $command = document.getElementById('command');
 
-let folder_location = '';
 let extras = '';
 const $folder_location_textbox = document.getElementById('folder-location-textbox');
 const $folder_location_button = document.getElementById('folder-location-button');
@@ -20,7 +19,6 @@ window.addEventListener('message', event => {
   switch (message.action) {
     case 'set-location':
       if (message.id === 'folder-location') {
-        folder_location = message.value;
         $folder_location_textbox.value = message.value;
       }
       break;
@@ -49,7 +47,7 @@ $execute.addEventListener("click", function () {
   vscode.postMessage({
     action: 'execute-create-command',
     command: $command.value,
-    location: folder_location,
+    location: $folder_location_textbox.value,
   });
 })
 // #endregion
@@ -57,7 +55,7 @@ $execute.addEventListener("click", function () {
 // On App Card Select
 document.querySelectorAll('.app-card').forEach(appCard => {
   appCard.addEventListener('click', function () {
-    vscode.postMessage({ action: 'switch-app', id: parseInt(this.id) });
+    vscode.postMessage({ action: 'switch-app', appName: this.id });
   })
 })
 

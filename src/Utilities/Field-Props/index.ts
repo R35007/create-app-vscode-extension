@@ -2,7 +2,7 @@ import vsCodeExtension from './VS-Code-Extension-Props'
 import react from './React-Props'
 import angular from './Angular-Props'
 import vue from './Vue-Props'
-import node from './Node-Props'
+import expressJs from './ExpressJs-Props'
 import reactNative from './Reactive-Native-Props'
 import ionic from './Ionic-Props'
 
@@ -12,7 +12,7 @@ export default {
   react,
   angular,
   vue,
-  node,
+  expressJs,
   reactNative,
   ionic
 }

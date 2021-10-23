@@ -6,31 +6,28 @@ export enum AppName {
   ANGULAR = 'Angular',
   REACT = 'React',
   VUE = 'Vue',
-  NODE = 'Express',
+  EXPRESS_JS = 'ExpressJS',
   REACT_NATIVE = 'React Native',
   IONIC = 'Ionic',
   VS_CODE_EXTENSION = 'VS Code Extension',
 }
 
 export interface AppProps {
-  id: number;
   appName: AppName;
   fieldProps: FieldProps[];
-  logoPath: string;
   isSelected: boolean;
+  logoPath: string;
   scriptPath: string[];
   prerequisites: CliCommands[];
   additionalCommands: CliCommands[];
   resources: string[];
-  stylePath?: string[];
-  tags?: string[];
+  tags: string[];
 }
 
 export interface CliCommands {
-  id: number;
   label: string;
   command: string;
-  description?: string;
+  description: string;
 }
 
 export interface FieldProps {

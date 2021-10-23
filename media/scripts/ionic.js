@@ -3,11 +3,12 @@ let initialCommand = "ionic start"
 let appName = '"Hello World"';
 let appId = '--project-id=hello-world';
 let type = '--type=angular'
-let template = 'blank';
+let template = 'tabs';
 let includeCapacitor = '';
 let includeCordova = '';
 let gitInit = '--gitInit';
 let skipInstall = '';
+let openInVscode = '';
 
 const $installPrerequisites = document.getElementById('install-prerequisites');
 const $appName = document.getElementById('app-name');
@@ -18,11 +19,16 @@ const $includeCapacitor = document.getElementById('include-capacitor');
 const $includeCordova = document.getElementById('include-cordova');
 const $gitInit = document.getElementById('git-init');
 const $skipInstall = document.getElementById('skip-install');
+const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appName} ${appId} ${type} ${template} ${includeCapacitor} ${includeCordova} ${gitInit} ${skipInstall} ${extras}`;
-  const cleanCommand = value.replace(/\s{2,}/g, ' '); // replace all multiple spaces with single space
-  $command.value = cleanCommand.trim();
+  const value = `${installPrerequisites} ${initialCommand} ${appName} ${appId} ${type}` +
+    ` ${template} ${includeCapacitor} ${includeCordova} ${gitInit} ${skipInstall} ${extras}; ${openInVscode}`;
+  const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
+    .trim().split(';')
+    .map(c => c.trim())
+    .join(';\n');
+  $command.value = cleanCommand;
 }
 
 // Set Initial Command
@@ -48,6 +54,13 @@ $installPrerequisites.addEventListener("change", function () {
   setCommand();
 })
 
+// Set Extension Id
+$appId.addEventListener("input", function () {
+  appId = this.value ? `--project-id=${this.value}` : '';
+  openInVscode = $openInVscode.value === 'yes' ? `cd ${this.value}; code .;` : '';
+  setCommand();
+})
+
 // Set Extension Display Name
 $appName.addEventListener("input", function () {
   if (this.value) {
@@ -55,19 +68,16 @@ $appName.addEventListener("input", function () {
     const _appId = this.value.toLowerCase().replace(/\s{2,}/g, ' ').replace(/\s/g, '-');
     appId = _appId ? `--project-id=${_appId}` : '';
     $appId.value = _appId;
+    openInVscode = $openInVscode.value === 'yes' ? `cd ${_appId}; code .;` : '';
   } else {
     appName = '';
     appId = '';
+    openInVscode = '';
     $appId.value = '';
   }
   setCommand();
 })
 
-// Set Extension Id
-$appId.addEventListener("input", function () {
-  appId = this.value ? `--project-id=${this.value}` : '';
-  setCommand();
-})
 
 // Set Type
 $type.addEventListener("change", function () {
@@ -115,6 +125,12 @@ $gitInit.addEventListener("change", function () {
 // Set Open in Vs Code
 $skipInstall.addEventListener("change", function () {
   skipInstall = this.value === 'yes' ? `--no-deps` : '';
+  setCommand();
+})
+
+// Set Open In VSCode
+$openInVscode.addEventListener("change", function () {
+  openInVscode = this.value === 'yes' ? `cd ${$appId.value}; code .;` : '';
   setCommand();
 })
 
