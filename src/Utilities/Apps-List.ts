@@ -42,6 +42,11 @@ export default (): AppProps[] => {
       `<a href="https://www.npmjs.com/package/generator-code">Npm package</a>`,
       `<a href="https://github.com/microsoft/vscode-extension-samples">VS Code extension API samples</a>`,
       `<a href="https://github.com/microsoft/vscode-webview-ui-toolkit">VS Code webview ui toolkit</a> `,
+    ],
+    tags: [
+      "vscodeextension",
+      "extension",
+      "node"
     ]
   }
 
@@ -84,6 +89,11 @@ export default (): AppProps[] => {
       `<a href="https://create-react-app.dev/docs/getting-started">Getting Started</a>`,
       `<a href="https://www.npmjs.com/package/create-react-app">Npm Package</a> `,
       `<a href="https://www.npmjs.com/search?q=cra-template-*">React Templates</a> `
+    ],
+    tags: [
+      "react",
+      "ui",
+      "frontend"
     ]
   }
 
@@ -126,6 +136,11 @@ export default (): AppProps[] => {
       `<a href="https://angular.io/guide/setup-local">Getting Started</a>`,
       `<a href="https://www.npmjs.com/package/@angular/cli">Npm Package</a>`,
       `<a href="https://angular.io/tutorial">Tutorial</a>`,
+    ],
+    tags: [
+      "angular",
+      "ui",
+      "frontend"
     ]
   }
 
@@ -186,6 +201,11 @@ export default (): AppProps[] => {
       `<a href="https://cli.vuejs.org/guide/">Getting Started</a>`,
       `<a href="https://www.npmjs.com/package/@vue/cli">Vue Cli Npm Package</a>`,
       `<a href="https://www.npmjs.com/package/@vue/cli-service">Vue Cli service Npm Package</a>`,
+    ],
+    tags: [
+      "vue",
+      "ui",
+      "frontend"
     ]
   }
 
@@ -227,6 +247,12 @@ export default (): AppProps[] => {
     resources: [
       `<a href="https://expressjs.com/en/starter/generator.html">Getting Started</a>`,
       `<a href="https://www.npmjs.com/package/express-generator">Npm Package</a>`,
+    ],
+    tags: [
+      "node",
+      "express",
+      "backend",
+      "server"
     ]
   }
 
@@ -269,6 +295,14 @@ export default (): AppProps[] => {
       `<a href="https://reactnative.dev/docs/getting-started">Getting Started</a>`,
       `<a href="https://www.npmjs.com/package/expo-cli">Npm Package</a>`,
       `<a href="https://www.npmjs.com/search?q=expo-template-*">React Native Templates</a> `
+    ],
+    tags: [
+      "reactnative",
+      "react",
+      "native",
+      "ui",
+      "frontend",
+      "mobileapp",
     ]
   }
 
@@ -342,6 +376,12 @@ export default (): AppProps[] => {
       `<a href="https://www.npmjs.com/package/@ionic/cli">Npm Package</a>`,
       `<a href="https://ionicframework.com/docs/componentsl">Ionic Components</a>`,
       `<a href="https://ionic.io/ionicons">Ionic Icons</a>`,
+    ],
+    tags: [
+      "ionic",
+      "ui",
+      "frontend",
+      "hybridapp",
     ]
   }
 

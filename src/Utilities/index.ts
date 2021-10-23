@@ -34,6 +34,9 @@ export const getAppList = (appsList: AppProps[], selectedAppName?: string): stri
               alt="${app.appName}"
             />
         </div>
+        <div class="tags d-none">
+          ${app.tags?.join(',')}
+        </div>
         <div class="col app-title p-2">${app.appName}</div>
       </li>
     `

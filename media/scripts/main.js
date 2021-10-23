@@ -10,6 +10,7 @@ const $extras = document.getElementById('extras');
 
 const $copyCommand = document.getElementById("copy-command")
 const $execute = document.getElementById('execute');
+const $appFilterInput = document.getElementById('app-list-filter-input');
 
 // #region Form Manipulation
 
@@ -60,6 +61,16 @@ document.querySelectorAll('.app-card').forEach(appCard => {
   })
 })
 
+// On App Filter input
+$appFilterInput.addEventListener('input', () => {
+  const filterValue = $appFilterInput.value.toLowerCase();
+  document.querySelectorAll('#app-list .app-card').forEach(appCard => {
+    const tags = appCard.querySelector('.tags').innerText.split(',');
+    appCard.style.display = filterValue &&
+      !tags.some(tag => tag.includes(filterValue)) ? 'none' : 'flex';
+  })
+})
+
 // On Click of any Prerequisites or additional Commands
 document.querySelectorAll(".additional-details-container .tag").forEach(tag => {
   tag.addEventListener("click", function () {
@@ -69,7 +80,6 @@ document.querySelectorAll(".additional-details-container .tag").forEach(tag => {
     });
   })
 })
-
 
 // #region Form Validations
 

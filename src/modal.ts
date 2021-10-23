@@ -23,6 +23,7 @@ export interface AppProps {
   additionalCommands: CliCommands[];
   resources: string[];
   stylePath?: string[];
+  tags?: string[];
 }
 
 export interface CliCommands {

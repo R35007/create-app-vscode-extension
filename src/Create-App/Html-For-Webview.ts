@@ -83,9 +83,9 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
           <div class="row pt-4 h-100">
             <aside class="col-3 col-lg-2 d-none d-sm-block app-list-container h-100">
               <div class="searchbox-wrapper">
-                <vscode-text-field class="search-box d-block mb-2" placeholder="Search apps here"></vscode-text-field>
+                <vscode-text-field id="app-list-filter-input" class="search-box d-block mb-2" placeholder="Search apps here"></vscode-text-field>
               </div>
-              <ul class="list-group app-list overflow-y-auto mb-3">
+              <ul id="app-list" class="list-group app-list overflow-y-auto mb-3">
                 ${createAppList}
               </ul>
             </aside>
