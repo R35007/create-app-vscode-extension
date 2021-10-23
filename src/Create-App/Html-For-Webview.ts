@@ -3,11 +3,11 @@ import { AppProps } from '../modal';
 import { getAdditionalCommands, getAppList, getNonce, getPrerequisites, getUriFromPath } from '../Utilities';
 import generateAppForm from '../Utilities/Generate-App-Form';
 
-export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: AppProps[], selectedApp: AppProps) => {
+export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: AppProps[], selectedApp: AppProps, showLoader: boolean) => {
   // Generate Dynamic Form Fields for the selected App
   const createAppForm = generateAppForm(selectedApp.fieldProps);
   // Generate App Cards
-  const createAppList = getAppList(extensionUri, webview, appsList, selectedApp.appName);
+  const createAppList = getAppList(appsList, selectedApp.appName);
 
   // Additional Details
   const prerequisitesCommands = selectedApp.prerequisites?.map(prereq => prereq.command).join('; ') + '; ';
@@ -28,7 +28,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
           Use a content security policy to only allow loading images from https or from our extension directory,
           and only allow scripts that have a specific nonce.
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; 
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; 
         img-src ${webview.cspSource} https:; script-src 'nonce-${nonce}';">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
@@ -37,9 +37,48 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         <link href="${uri.stylesMainUri}" rel="stylesheet">
   
         <script type="module" src="${uri.toolkitUri}" nonce="${nonce}"></script>
+        <style nonce="${nonce}">
+          .hide-loader{
+             display: none !important;
+          }
+
+          .loader{
+            background: var(--vscode-editor-background);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            z-index: 1;
+            display: grid;
+            place-items: center;
+          }
+          
+          .loader-text{
+            font-size: 26px;
+            opacity: 0.8;
+            animation: blink 0.5s linear infinite alternate;
+            position: absolute;
+            top: 35%;
+            text-align: center;
+            width: 100%;
+          }
+          
+          @keyframes blink {
+            0% {
+              opacity: 0.8;
+            }
+            100% {
+              opacity: 0.5;
+            }
+          }
+
+        </style>
         <title>Create App</title>
       </head>
       <body>
+        <div id="loader" class="loader ${showLoader ? '' : 'hide-loader'}">
+          <div class="loader-text">🚀Launching...</div>
+        </div>
         <div class="container-md my-0 h-100">
           <div class="row pt-4 h-100">
             <aside class="col-3 col-lg-2 d-none d-sm-block app-list-container h-100">
@@ -96,6 +135,11 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         </div>
         <script src="${uri.scriptMainUri}" nonce="${nonce}"></script>
         <script src="${uri.formScriptUri}" nonce="${nonce}"></script>
+        <script nonce="${nonce}">
+          setTimeout(() => {
+            document.getElementById("loader")?.remove();
+          }, 2000);
+        </script>
       </body>
       </html>`;
 }

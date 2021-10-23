@@ -16,7 +16,7 @@ export interface AppProps {
   id: number;
   appName: AppName;
   fieldProps: FieldProps[];
-  logoPath: string[];
+  logoPath: string;
   isSelected: boolean;
   scriptPath: string[];
   prerequisites: CliCommands[];

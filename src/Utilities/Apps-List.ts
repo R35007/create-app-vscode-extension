@@ -6,7 +6,7 @@ export default (): AppProps[] => {
     id: 1,
     appName: AppName.VS_CODE_EXTENSION,
     fieldProps: FieldProps.vsCodeExtension,
-    logoPath: ['media', 'images', 'vscode.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/vscode.png",
     scriptPath: ['media', 'scripts', 'vscode.js'],
     isSelected: true,
     prerequisites: [
@@ -49,7 +49,7 @@ export default (): AppProps[] => {
     id: 2,
     appName: AppName.REACT,
     fieldProps: FieldProps.react,
-    logoPath: ['media', 'images', 'react.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
     scriptPath: ['media', 'scripts', 'react.js'],
     isSelected: false,
     prerequisites: [
@@ -91,7 +91,7 @@ export default (): AppProps[] => {
     id: 3,
     appName: AppName.ANGULAR,
     fieldProps: FieldProps.angular,
-    logoPath: ['media', 'images', 'angular.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png",
     scriptPath: ['media', 'scripts', 'angular.js'],
     isSelected: false,
     prerequisites: [
@@ -133,7 +133,7 @@ export default (): AppProps[] => {
     id: 4,
     appName: AppName.VUE,
     fieldProps: FieldProps.vue,
-    logoPath: ['media', 'images', 'vue.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/vue.png",
     scriptPath: ['media', 'scripts', 'vue.js'],
     isSelected: false,
     prerequisites: [
@@ -193,7 +193,7 @@ export default (): AppProps[] => {
     id: 5,
     appName: AppName.NODE,
     fieldProps: FieldProps.node,
-    logoPath: ['media', 'images', 'node.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/node.png",
     scriptPath: ['media', 'scripts', 'node.js'],
     isSelected: false,
     prerequisites: [
@@ -234,7 +234,7 @@ export default (): AppProps[] => {
     id: 6,
     appName: AppName.REACT_NATIVE,
     fieldProps: FieldProps.reactNative,
-    logoPath: ['media', 'images', 'react.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
     scriptPath: ['media', 'scripts', 'react-native.js'],
     isSelected: false,
     prerequisites: [
@@ -276,7 +276,7 @@ export default (): AppProps[] => {
     id: 7,
     appName: AppName.IONIC,
     fieldProps: FieldProps.ionic,
-    logoPath: ['media', 'images', 'ionic.png'],
+    logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/ionic.png",
     scriptPath: ['media', 'scripts', 'ionic.js'],
     isSelected: false,
     prerequisites: [

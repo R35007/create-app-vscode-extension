@@ -58,7 +58,7 @@ export default class CreateApp {
     this._panel.iconPath = vscode.Uri.joinPath(extensionUri, "media", "images", "ca-logo-sm.png");
 
     // Set the webview's initial html content
-    this._update();
+    this._update(true);
 
     // Listen for when the panel is disposed
     // This happens when the user closes the panel or when the panel is closed programmatically
@@ -67,7 +67,7 @@ export default class CreateApp {
     // Update the content based on view changes
     this._panel.onDidChangeViewState(e => {
       if (this._panel.visible) {
-        this._update();
+        this._update(true);
       }
     }, null, this._disposables);
 
@@ -153,7 +153,7 @@ export default class CreateApp {
     }
   }
 
-  private _update() {
+  private _update(showLoader: boolean = false) {
     // Vary the webview's content based on where it is located in the editor.
 
     switch (this._panel.viewColumn) {
@@ -165,7 +165,8 @@ export default class CreateApp {
           this._extensionUri,
           this._panel.webview,
           this._appsList,
-          this._selectedApp
+          this._selectedApp,
+          showLoader
         );
         return;
     }

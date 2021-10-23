@@ -24,14 +24,13 @@ export const getNonce = () => {
   return text;
 }
 
-export const getAppList = (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: AppProps[], selectedAppName?: string): string => {
+export const getAppList = (appsList: AppProps[], selectedAppName?: string): string => {
   return appsList.map(app => {
-    const logoUri = getUriFromPath(extensionUri, webview, ...app.logoPath);
     return `
       <li id="${app.id}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
         <div class="col-3 text-center thumbnail p-2 d-none d-md-block">
           <img
-              src="${logoUri}"
+              src="${app.logoPath}"
               alt="${app.appName}"
             />
         </div>
