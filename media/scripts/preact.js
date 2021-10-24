@@ -1,5 +1,5 @@
 let installPrerequisites = "";
-let initialCommand = "preact create"
+let initialCommand = "npx preact-cli create"
 let appId = 'hello-world';
 let template = 'default';
 let packageManager = '';

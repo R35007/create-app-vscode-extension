@@ -1,5 +1,5 @@
 let installPrerequisites = "";
-let initialCommand = "create-react-app"
+let initialCommand = "npx create-react-app"
 let appId = 'hello-world';
 let template = '';
 let packageManager = '';

@@ -1,7 +1,13 @@
 import { AppName, AppProps, CliCommands } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = []
+const prerequisites: CliCommands[] = [
+  {
+    label: "degit",
+    command: "npm install -g degit",
+    description: "Click here to install degit"
+  }
+]
 
 const additionalCommands: CliCommands[] = [
   {

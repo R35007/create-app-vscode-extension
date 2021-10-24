@@ -11,18 +11,18 @@ const prerequisites: CliCommands[] = [
 
 const additionalCommands: CliCommands[] = [
   {
-    label: "preact create",
-    command: "preact create",
+    label: "preact-cli create",
+    command: "npx preact-cli create",
     description: "Click here to create the preact app using cli prompts"
   },
   {
     label: "check cli version",
-    command: "preact --version",
+    command: "npx preact-cli --version",
     description: "Click here to check cli version"
   },
   {
     label: "cli help",
-    command: "preact create --help",
+    command: "npx preact-cli create --help",
     description: "Click here to know more cli configurations"
   }
 ]

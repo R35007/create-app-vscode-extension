@@ -12,17 +12,17 @@ const prerequisites: CliCommands[] = [
 const additionalCommands: CliCommands[] = [
   {
     label: "create-react-app",
-    command: "create-react-app",
+    command: "npx create-react-app",
     description: "Click here to create the react app using cli prompts"
   },
   {
     label: "check cli version",
-    command: "create-react-app --version",
+    command: "npx create-react-app --version",
     description: "Click here to check cli version"
   },
   {
     label: "cli help",
-    command: "create-react-app --help",
+    command: "npx create-react-app --help",
     description: "Click here to know more cli configurations"
   }
 ]

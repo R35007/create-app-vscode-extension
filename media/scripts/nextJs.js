@@ -1,5 +1,5 @@
 let installPrerequisites = "";
-let initialCommand = "create-next-app"
+let initialCommand = "npx create-next-app@latest"
 let appId = 'hello-world';
 let example = '';
 let useTypescript = '';

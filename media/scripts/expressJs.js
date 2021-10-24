@@ -1,5 +1,5 @@
 let installPrerequisites = "";
-let initialCommand = "express"
+let initialCommand = "npx express-generator"
 let appId = 'hello-world';
 let viewType = '';
 let stylesheetFormat = '';

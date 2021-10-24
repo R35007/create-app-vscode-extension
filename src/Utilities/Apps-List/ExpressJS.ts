@@ -11,18 +11,18 @@ const prerequisites: CliCommands[] = [
 
 const additionalCommands: CliCommands[] = [
   {
-    label: "express",
-    command: "express",
+    label: "express-generator",
+    command: "npx express-generator",
     description: "Click here to create the express app using cli prompts"
   },
   {
     label: "check cli version",
-    command: "express --version",
+    command: "npx express-generator --version",
     description: "Click here to check cli version"
   },
   {
     label: "cli help",
-    command: "express --help",
+    command: "npx express-generator --help",
     description: "Click here to know more cli configurations"
   }
 ]
