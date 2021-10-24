@@ -14,7 +14,7 @@ const $packageManager = document.getElementById('package-manager');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${example} ${useTypescript} ${packageManager} ${extras}; ${openInVscode}`;
+  const value = `${installPrerequisites} ${initialCommand} ${appId} ${example} ${useTypescript} ${packageManager}; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())

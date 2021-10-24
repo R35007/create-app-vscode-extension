@@ -23,7 +23,7 @@ const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
   const value = `${installPrerequisites} ${initialCommand} ${appId} ${viewType} ${stylesheetFormat} ${addEjs}` +
-    ` ${addHandlebar} ${addPug} ${addHogan} ${noViews} --force ${extras}; ${openInVscode}`;
+    ` ${addHandlebar} ${addPug} ${addHogan} ${noViews} --force; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())

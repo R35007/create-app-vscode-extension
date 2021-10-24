@@ -15,7 +15,7 @@ const $gitInit = document.getElementById('git-init');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${customPresetLocation || '--default'} ${gitInit} ${packageManager} ${extras}; ${openInVscode}`;
+  const value = `${installPrerequisites} ${initialCommand} ${appId} ${customPresetLocation || '--default'} ${gitInit} ${packageManager}; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())

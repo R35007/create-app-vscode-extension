@@ -9,7 +9,7 @@ const $useTypescript = document.getElementById('use-typescript');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${initialCommand} ${appId} ${extras}; ${useTypescript} ${openInVscode}`;
+  const value = `${initialCommand} ${appId}; ${useTypescript} ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())

@@ -12,7 +12,7 @@ const $packageManager = document.getElementById('package-manager');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${example} ${packageManager} ${extras}; ${openInVscode}`;
+  const value = `${installPrerequisites} ${initialCommand} ${appId} ${template} ${packageManager}; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())
@@ -37,8 +37,8 @@ $appId.addEventListener("input", function () {
 })
 
 // Set Template
-$example.addEventListener("change", function () {
-  example = this.value !== 'javascript' ? `--template=${this.value}` : '';
+$template.addEventListener("change", function () {
+  template = this.value !== 'javascript' ? `--template=${this.value}` : '';
   setCommand();
 })
 

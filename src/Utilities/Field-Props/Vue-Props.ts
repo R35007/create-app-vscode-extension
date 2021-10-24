@@ -15,7 +15,7 @@ const vueProps: FieldProps[] = [
     label: "Custom Preset Location",
     type: FieldType.BROWSE,
     buttonText: 'Browse File',
-    description: `Please provide local or remote path to <span class="text-primary">preset.json</span> file`
+    description: `Please provide local path or GitHub URL to <span class="text-primary">preset.json</span> file`
   },
   {
     id: "package-manager",
@@ -41,11 +41,6 @@ const vueProps: FieldProps[] = [
     type: FieldType.RADIO_GROUP,
     value: "no",
     options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
-  },
-  {
-    id: "extras",
-    label: "Additional Configuration",
-    type: FieldType.TEXTBOX,
   },
   {
     id: "folder-location",

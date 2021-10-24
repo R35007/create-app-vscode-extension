@@ -2,10 +2,8 @@ var vscode = acquireVsCodeApi();
 
 const $command = document.getElementById('command');
 
-let extras = '';
 const $folder_location_textbox = document.getElementById('folder-location-textbox');
 const $folder_location_button = document.getElementById('folder-location-button');
-const $extras = document.getElementById('extras');
 
 const $copyCommand = document.getElementById("copy-command")
 const $execute = document.getElementById('execute');
@@ -28,12 +26,6 @@ window.addEventListener('message', event => {
 // Set Folder Location
 $folder_location_button.addEventListener("click", function () {
   vscode.postMessage({ action: 'get-location', id: `folder-location` });
-})
-
-// Set Additional User Configurations
-$extras.addEventListener("input", function () {
-  extras = this.value
-  setCommand();
 })
 
 // On Click op Copy Button Copy Command

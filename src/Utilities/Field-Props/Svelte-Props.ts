@@ -39,11 +39,6 @@ const svelte: FieldProps[] = [
     options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {
-    id: "extras",
-    label: "Additional Configuration",
-    type: FieldType.TEXTBOX,
-  },
-  {
     id: "folder-location",
     label: "App Folder Location",
     type: FieldType.BROWSE,
