@@ -8,6 +8,7 @@ export enum AppName {
   VUE = 'Vue',
   PREACT = 'Preact',
   SVELTE = 'Svelte',
+  NEXT_JS = 'NextJs',
   EXPRESS_JS = 'ExpressJS',
   REACT_NATIVE = 'React Native',
   IONIC = 'Ionic',

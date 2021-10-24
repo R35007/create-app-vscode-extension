@@ -1,18 +1,20 @@
 let installPrerequisites = "";
-let initialCommand = "create-react-app"
+let initialCommand = "create-next-app"
 let appId = 'hello-world';
-let template = '';
+let example = '';
+let useTypescript = '';
 let packageManager = '';
 let openInVscode = '';
 
 const $installPrerequisites = document.getElementById('install-prerequisites');
 const $appId = document.getElementById('app-id');
-const $template = document.getElementById('template');
+const $example = document.getElementById('example');
+const $useTypescript = document.getElementById('use-typescript');
 const $packageManager = document.getElementById('package-manager');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${example} ${packageManager} ${extras}; ${openInVscode}`;
+  const value = `${installPrerequisites} ${initialCommand} ${appId} ${example} ${useTypescript} ${packageManager} ${extras}; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())
@@ -37,14 +39,20 @@ $appId.addEventListener("input", function () {
 })
 
 // Set Template
-$example.addEventListener("change", function () {
-  example = this.value !== 'javascript' ? `--template=${this.value}` : '';
+$example.addEventListener("input", function () {
+  example = this.value ? `--example=${this.value}` : '';
+  setCommand();
+})
+
+// Set Typescript
+$useTypescript.addEventListener("change", function () {
+  useTypescript = this.value === 'yes' ? `--typescript` : '';
   setCommand();
 })
 
 // Set Package
 $packageManager.addEventListener("change", function () {
-  packageManager = this.value !== 'yarn' ? `--use-${this.value}` : '';
+  packageManager = this.value === 'yes' ? `--npm` : '';
   setCommand();
 })
 
