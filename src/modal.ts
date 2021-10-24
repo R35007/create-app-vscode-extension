@@ -6,6 +6,7 @@ export enum AppName {
   ANGULAR = 'Angular',
   REACT = 'React',
   VUE = 'Vue',
+  PREACT = 'Preact',
   EXPRESS_JS = 'ExpressJS',
   REACT_NATIVE = 'React Native',
   IONIC = 'Ionic',

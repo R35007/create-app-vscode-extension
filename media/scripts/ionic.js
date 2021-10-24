@@ -57,7 +57,7 @@ $installPrerequisites.addEventListener("change", function () {
 // Set Extension Id
 $appId.addEventListener("input", function () {
   appId = this.value ? `--project-id=${this.value}` : '';
-  openInVscode = $openInVscode.value === 'yes' ? `cd ${this.value}; code .;` : '';
+  openInVscode = $openInVscode.value === 'yes' ? `code ${this.value};` : '';
   setCommand();
 })
 
@@ -68,7 +68,7 @@ $appName.addEventListener("input", function () {
     const _appId = this.value.toLowerCase().replace(/\s{2,}/g, ' ').replace(/\s/g, '-');
     appId = _appId ? `--project-id=${_appId}` : '';
     $appId.value = _appId;
-    openInVscode = $openInVscode.value === 'yes' ? `cd ${_appId}; code .;` : '';
+    openInVscode = $openInVscode.value === 'yes' ? `code ${_appId};` : '';
   } else {
     appName = '';
     appId = '';
@@ -130,16 +130,12 @@ $skipInstall.addEventListener("change", function () {
 
 // Set Open In VSCode
 $openInVscode.addEventListener("change", function () {
-  openInVscode = this.value === 'yes' ? `cd ${$appId.value}; code .;` : '';
+  openInVscode = this.value === 'yes' ? `code ${$appId.value};` : '';
   setCommand();
 })
 
 const isValidConfiguration = () => {
-
-  const _appName = appName.replace('"', '').trim();
-  const _appId = appId.replace('--project-id=', '').trim();
-
-  const _isValidDisplayName = isNotEmpty('row-app-name', _appName) && isNotEmpty('row-app-name', _appName);
-  const _isValidAppId = isNotEmpty('row-app-id', _appId) && isValidAppId('row-app-id', _appId);
+  const _isValidDisplayName = isNotEmpty('row-app-name', $appName.value) && isNotEmpty('row-app-name', $appName.value);
+  const _isValidAppId = isNotEmpty('row-app-id', $appId.value) && isValidAppId('row-app-id', $appId.value);
   return _isValidAppId && _isValidDisplayName;
 }

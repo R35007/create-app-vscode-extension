@@ -13,7 +13,8 @@ const angularProps: FieldProps[] = [
   {
     id: "prefix",
     label: "Prefix",
-    type: FieldType.TEXTBOX
+    type: FieldType.TEXTBOX,
+    placeholder: "Can have lowercase alphabets, numbers and minus (-). No spaces or special chars are allowed."
   },
   {
     id: "stylesheet-format",

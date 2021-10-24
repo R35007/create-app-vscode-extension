@@ -47,10 +47,9 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
             position: fixed;
             top: 0;
             bottom: 0;
-            width: 100%;
+            right: 0;
+            left: 0;
             z-index: 1;
-            display: grid;
-            place-items: center;
           }
           
           .loader-text{

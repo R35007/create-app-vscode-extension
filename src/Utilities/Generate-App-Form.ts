@@ -40,7 +40,7 @@ const getTextbox = (props: FieldProps) => {
 
 const getRadioGroup = (props: FieldProps) => {
   const radioGroup = `
-  <vscode-radio-group id="${props.id}"" class="${props.className || ''}">
+  <vscode-radio-group id="${props.id}" class="${props.className || ''}">
     ${props.options?.map(opt => {
     return `<vscode-radio ${props.value === opt.value && 'checked'} value="${opt.value || ''}">${opt.label}</vscode-radio>`
   }).join('')}

@@ -47,7 +47,7 @@ const tags = [
 const expressJs: AppProps = {
   appName: AppName.EXPRESS_JS,
   fieldProps: FieldProps.expressJs,
-  logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/node.png",
+  logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/expressJs.png",
   scriptPath: ['media', 'scripts', 'expressJs.js'],
   isSelected: false,
   prerequisites,

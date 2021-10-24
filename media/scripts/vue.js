@@ -49,7 +49,7 @@ $installPrerequisites.addEventListener("change", function () {
 // Set App Id
 $appId.addEventListener("input", function () {
   appId = this.value;
-  openInVscode = $openInVscode.value === 'yes' ? `cd ${appId}; code .;` : '';
+  openInVscode = $openInVscode.value === 'yes' ? `code ${appId};` : '';
   setCommand();
 })
 
@@ -84,11 +84,11 @@ $gitInit.addEventListener("change", function () {
 
 // Set Open In VSCode
 $openInVscode.addEventListener("change", function () {
-  openInVscode = this.value === 'yes' ? `cd ${appId}; code .;` : '';
+  openInVscode = this.value === 'yes' ? `code ${$appId.value};` : '';
   setCommand();
 })
 
 const isValidConfiguration = () => {
-  const _isValidAppId = isNotEmpty('row-app-id', appId) && isValidAppId('row-app-id', appId);
+  const _isValidAppId = isNotEmpty('row-app-id', $appId.value) && isValidAppId('row-app-id', $appId.value);
   return _isValidAppId;
 }

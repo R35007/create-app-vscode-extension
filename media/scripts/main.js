@@ -93,7 +93,7 @@ var isValidAppId = (rowId, value) => {
 }
 
 var isNotEmpty = (rowId, value) => {
-  if (value.length) {
+  if (value?.trim().length) {
     document.getElementById(rowId).querySelector(".error").innerHTML = '';
     return true;
   } else {

@@ -1,19 +1,12 @@
 
 import { FieldProps, FieldType } from '../../modal';
 
-const reactNativeProps: FieldProps[] = [
-  {
-    id: "app-name",
-    label: "App Name",
-    value: 'Hello World',
-    isRequired: true,
-    type: FieldType.TEXTBOX
-  },
+const preactProps: FieldProps[] = [
   {
     id: "app-id",
     label: "App Id",
     type: FieldType.TEXTBOX,
-    value: 'hello-world',
+    value: "hello-world",
     isRequired: true,
     placeholder: "Can have lowercase alphabets, numbers and minus (-). No spaces or special chars are allowed."
   },
@@ -21,14 +14,15 @@ const reactNativeProps: FieldProps[] = [
     id: "template",
     label: "Template",
     type: FieldType.DROPDOWN,
-    value: "expo-template-blank",
+    value: "default",
     options: [
-      { label: "Blank", value: "expo-template-blank" },
-      { label: "Blank (Typescript)", value: "expo-template-blank-typescript" },
-      { label: "Tabs (Typescript)", value: "expo-template-tabs" },
-      { label: "Bare Minimum", value: "expo-template-bare-minimum" }
+      { label: "Default", value: "default" },
+      { label: "Simple", value: "simple" },
+      { label: "Netlify", value: "netlify" },
+      { label: "Typescript", value: "typescript" },
+      { label: "Widget", value: "widget" }
     ],
-    description: "You can find many great community templates by searching for <a href='https://www.npmjs.com/search?q=expo-template-*'>expo-template-*</a> on npm."
+    description: "All official project templates are repos in the <a href='https://github.com/preactjs-templates'>preactjs-templates organization</a>."
   },
   {
     id: "package-manager",
@@ -39,6 +33,13 @@ const reactNativeProps: FieldProps[] = [
       { label: "yarn", value: "yarn" },
       { label: "npm", value: "npm" },
     ]
+  },
+  {
+    id: "git-init",
+    label: "Initialize Git Repository ?",
+    type: FieldType.RADIO_GROUP,
+    value: "no",
+    options: [{ label: "Yes", value: "yes" }, { label: "No", value: "no" }]
   },
   {
     id: "skip-install",
@@ -71,4 +72,4 @@ const reactNativeProps: FieldProps[] = [
   }
 ]
 
-export default reactNativeProps;
+export default preactProps;
