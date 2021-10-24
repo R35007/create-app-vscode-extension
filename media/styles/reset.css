@@ -35,7 +35,9 @@ a {
   text-decoration: none !important;
 }
 
-a:hover {
+a:hover,
+a:focus {
   color: var(--vscode-textLink-activeForeground) !important;
   text-decoration: underline !important;
+  outline: none !important;
 }

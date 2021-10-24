@@ -103,7 +103,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                     ${createAppForm}
                   </div>
                   <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto">
-                    <div class="prerequisites-container">
+                    <div class="prerequisites-container ${prerequisites ? '' : 'd-none'}">
                       <h5>Prerequisites</h5>
                       <div class="prerequisites-content my-3">
                         ${prerequisites}
@@ -121,9 +121,9 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                       ${resources}
                       </div>
                     </div>
-                    <div class="install-prerequisites-container">
+                    <div class="install-prerequisites-container ${prerequisites ? '' : 'd-none'}">
                       <div class="install-prerequisite-content my-3">
-                        <vscode-checkbox id="install-prerequisites" data-command="${prerequisitesCommands}"> Install prerequisites</vscode-checkbox>
+                        <vscode-checkbox id="install-prerequisites" data-command="${prerequisitesCommands}"> Install Prerequisites</vscode-checkbox>
                       </div>
                     </div>
                   </div>

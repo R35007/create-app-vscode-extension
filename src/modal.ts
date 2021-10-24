@@ -7,6 +7,7 @@ export enum AppName {
   REACT = 'React',
   VUE = 'Vue',
   PREACT = 'Preact',
+  SVELTE = 'Svelte',
   EXPRESS_JS = 'ExpressJS',
   REACT_NATIVE = 'React Native',
   IONIC = 'Ionic',
