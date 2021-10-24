@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "create-next-app",
     command: "npm i -g create-next-app",
-    description: "Click here to install create-next-app"
+    description: "Click here to install create-next-app globally"
   }
 ]
 

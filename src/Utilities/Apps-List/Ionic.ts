@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "@ionic/cli",
     command: "npm install -g @ionic/cli",
-    description: "Click here to install @angular/cli"
+    description: "Click here to install @angular/cli globally"
   },
   {
     label: "@angular/cli",

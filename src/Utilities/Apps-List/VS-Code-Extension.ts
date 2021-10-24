@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "yo generator-code",
     command: "npm install -g yo generator-code",
-    description: "Click here to install yo generator-code"
+    description: "Click here to install yo generator-code globally"
   }
 ]
 

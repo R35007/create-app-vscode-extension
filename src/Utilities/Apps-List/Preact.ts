@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "preact-cli",
     command: "npm install -g preact-cli",
-    description: "Click here to install preact-cli"
+    description: "Click here to install preact-cli globally"
   }
 ]
 

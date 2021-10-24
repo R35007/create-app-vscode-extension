@@ -5,20 +5,20 @@ const prerequisites: CliCommands[] = [
   {
     label: "@vue/cli",
     command: "npm install -g @vue/cli",
-    description: "Click here to install @vue/cli"
+    description: "Click here to install @vue/cli globally"
   }
 ]
 
 const additionalCommands: CliCommands[] = [
   {
     label: "@vue/cli-service",
-    command: "npm install @vue/cli-service",
-    description: "Click here to install the vue local service using cli prompts"
+    command: "npm install -g @vue/cli-service",
+    description: "Click here to install the vue local service using cli prompts globally"
   },
   {
     label: "@vue/cli-service-global",
-    command: "npm install @vue/cli-service-global",
-    description: "Click here to install the vue global service using cli prompts"
+    command: "npm install -g @vue/cli-service-global",
+    description: "Click here to install the vue global service using cli prompts globally"
   },
   {
     label: "vue ui",

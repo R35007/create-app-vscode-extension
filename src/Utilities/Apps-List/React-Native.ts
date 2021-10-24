@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "expo-cli",
     command: "npm install -g expo-cli",
-    description: "Click here to install expo-cli"
+    description: "Click here to install expo-cli globally"
   }
 ]
 

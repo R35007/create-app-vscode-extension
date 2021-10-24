@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "express-generator",
     command: "npm install -g express-generator",
-    description: "Click here to install express-generator"
+    description: "Click here to install express-generator globally"
   }
 ]
 

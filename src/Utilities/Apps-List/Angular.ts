@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "@angular/cli",
     command: "npm install -g @angular/cli",
-    description: "Click here to install @angular/cli"
+    description: "Click here to install @angular/cli globally"
   }
 ]
 

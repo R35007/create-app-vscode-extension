@@ -5,7 +5,7 @@ const prerequisites: CliCommands[] = [
   {
     label: "degit",
     command: "npm install -g degit",
-    description: "Click here to install degit"
+    description: "Click here to install degit globally"
   }
 ]
 
