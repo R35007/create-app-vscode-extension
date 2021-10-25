@@ -1,13 +1,14 @@
 import angular from './Angular';
-import expressJs from './ExpressJS';
-import ionic from './Ionic';
 import react from './React';
+import vue from './Vue';
 import preact from './Preact';
 import svelte from './Svelte';
 import nextJs from './NextJs';
 import reactNative from './React-Native';
+import ionic from './Ionic';
+import expressJs from './ExpressJS';
+import nestJs from './NestJs';
 import vsCodeExtension from './VS-Code-Extension';
-import vue from './Vue';
 
 export default [
   angular,
@@ -17,6 +18,7 @@ export default [
   svelte,
   nextJs,
   expressJs,
+  nestJs,
   reactNative,
   ionic,
   vsCodeExtension

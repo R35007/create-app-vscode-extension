@@ -6,6 +6,7 @@ import preact from './Preact-Props';
 import svelte from './Svelte-Props';
 import nextJs from './NextJs-Props';
 import expressJs from './ExpressJs-Props';
+import nestJs from './NestJs-Props';
 import reactNative from './Reactive-Native-Props';
 import ionic from './Ionic-Props';
 
@@ -19,6 +20,7 @@ export default {
   svelte,
   nextJs,
   expressJs,
+  nestJs,
   reactNative,
   ionic
 }
