@@ -5,7 +5,7 @@ export default (fieldProps?: FieldProps[]): string => {
   return fieldProps.map(props => {
     return `
       <div id="row-${props.id}" class="row mb-3 align-items-center">
-        <div class="col-12 col-lg-4 key">${props.label} ${props.isRequired ? `<span class="text-primary">*</span>` : ''}</div>
+        <div class="col-12 col-lg-4 key mb-1">${props.label} ${props.isRequired ? `<span class="text-primary">*</span>` : ''}</div>
         <div class="col-12 col-lg-8 val">
           <div>${fieldSwitch(props)}</div>
           <div>${props.description || ''}</div>

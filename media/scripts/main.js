@@ -44,11 +44,14 @@ $execute.addEventListener("click", function () {
 })
 // #endregion
 
-// On App Card Select
+// On App Switch
 document.querySelectorAll('.app-card').forEach(appCard => {
   appCard.addEventListener('click', function () {
     vscode.postMessage({ action: 'switch-app', appName: this.id });
   })
+})
+document.getElementById("app-list-dropdown").addEventListener("change", function () {
+  vscode.postMessage({ action: 'switch-app', appName: this.value });
 })
 
 // On App Filter input

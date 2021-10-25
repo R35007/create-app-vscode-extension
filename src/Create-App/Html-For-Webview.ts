@@ -9,6 +9,11 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
   // Generate App Cards
   const createAppList = getAppList(appsList, selectedApp.appName);
 
+  // Generate App List dropdown Options
+  const appslistOptions = appsList.map(app => `
+    <vscode-option ${app.appName === selectedApp.appName && 'selected'} value="${app.appName || ''}">${app.appName}</vscode-option>`
+  ).join('');
+
   // Additional Details
   const prerequisitesCommands = selectedApp.prerequisites?.filter(prereq => prereq.command).map(prereq => prereq.command).join('; ');
   const prerequisites = getPrerequisites(selectedApp.prerequisites);
@@ -80,7 +85,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         </div>
         <div class="container-md my-0 h-100">
           <div class="row pt-4 h-100">
-            <aside class="col-3 col-lg-2 d-none d-sm-block app-list-container h-100">
+            <aside class="col-3 col-lg-2 d-none d-md-block app-list-container h-100 pe-0">
               <div class="searchbox-wrapper">
                 <vscode-text-field id="app-list-filter-input" class="search-box d-block mb-2" placeholder="Search apps here"></vscode-text-field>
               </div>
@@ -90,7 +95,10 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
             </aside>
             <section class="col h-100">
               <header class="d-flex align-items-center">
-                <vscode-button class="pe-none mb-2">Create ${selectedApp.appName} App</vscode-button>
+                <vscode-button class="pe-none mb-2 d-none d-md-inline-block">Create ${selectedApp.appName} App</vscode-button>
+                <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none mb-2" style="min-width: 12rem;">
+                  ${appslistOptions}
+                </vscode-dropdown>
               </header>
               <section class="command-container position-relative mb-3">
                 <vscode-text-area id="command" class="d-block w-100" rows="5"></vscode-text-area>
@@ -99,7 +107,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                   <vscode-button id="execute">Excute</vscode-button>
                 </div>
               </section>
-              <section class="configuration-container mx-3">
+              <section class="configuration-container">
                 <div class="row h-100">
                   <div class="col-8 col-lg-9 app-config-container overflow-y-auto h-100">
                     ${createAppForm}
