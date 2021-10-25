@@ -104,7 +104,6 @@ const angularProps: FieldProps[] = [
     id: "folder-location",
     label: "App Folder Location",
     type: FieldType.BROWSE,
-    readonly: true,
     description: "If not provided the app creates in the active workspace folder."
   }
 ]

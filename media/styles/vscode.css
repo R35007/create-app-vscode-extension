@@ -70,7 +70,7 @@ body > * {
   font-size: 90%;
   margin: 0 6px 3px 0;
   cursor: pointer;
-  color: var(--vscode-button-foreground) !important;
+  color: var(--vscode-editor-foreground) !important;
   text-decoration: none !important;
 }
 .tag:hover,
