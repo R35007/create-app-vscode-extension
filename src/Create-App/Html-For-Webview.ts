@@ -89,14 +89,14 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
               <div class="searchbox-wrapper">
                 <vscode-text-field id="app-list-filter-input" class="search-box d-block mb-2" placeholder="Search apps here"></vscode-text-field>
               </div>
-              <ul id="app-list" class="list-group app-list overflow-y-auto mb-3">
+              <ul id="app-list" class="list-group app-list overflow-y-auto mb-3 rounded-0">
                 ${createAppList}
               </ul>
             </aside>
             <section class="col h-100">
-              <header class="d-flex align-items-center">
-                <vscode-button class="pe-none mb-2 d-none d-md-inline-block">Create ${selectedApp.appName} App</vscode-button>
-                <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none mb-2" style="min-width: 12rem;">
+              <header class="d-flex align-items-center mb-2">
+                <vscode-button class="pe-none d-none d-md-inline-block">Create ${selectedApp.appName} App</vscode-button>
+                <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none" style="min-width: 12rem;">
                   ${appslistOptions}
                 </vscode-dropdown>
               </header>
