@@ -1,7 +1,12 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
+  {
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
+  },
   {
     label: "@nestjs/cli",
     command: "npm i -g @nestjs/cli",
@@ -9,7 +14,7 @@ const prerequisites: CliCommands[] = [
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
   {
     label: "nest new",
     command: "nest new",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://nestjs.com/">Home Page</a>`,
   `<a href="https://docs.nestjs.com/">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@nestjs/cli">Npm Package</a> `,
   `<a href="https://courses.nestjs.com/">Courses</a> `
@@ -37,6 +43,7 @@ const tags = [
   "nest",
   "nestJs",
   "node framework",
+  "framework",
   "node",
   "backend",
   "server",

@@ -10,7 +10,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
   const createAppList = getAppList(appsList, selectedApp.appName);
 
   // Additional Details
-  const prerequisitesCommands = selectedApp.prerequisites?.map(prereq => prereq.command).join('; ') + '; ';
+  const prerequisitesCommands = selectedApp.prerequisites?.filter(prereq => prereq.command).map(prereq => prereq.command).join('; ');
   const prerequisites = getPrerequisites(selectedApp.prerequisites);
   const additionalCommands = getAdditionalCommands(selectedApp.additionalCommands);
   const resources = selectedApp.resources.map(r => `<div>${r}</div>`).join('')
@@ -121,9 +121,9 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                       ${resources}
                       </div>
                     </div>
-                    <div class="install-prerequisites-container ${prerequisites ? '' : 'd-none'}">
+                    <div class="install-prerequisites-container ${prerequisitesCommands ? '' : 'd-none'}">
                       <div class="install-prerequisite-content my-3">
-                        <vscode-checkbox id="install-prerequisites" data-command="${prerequisitesCommands}"> Install Prerequisites</vscode-checkbox>
+                        <vscode-checkbox id="install-prerequisites" data-command="${prerequisitesCommands};"> Install Prerequisites Cli</vscode-checkbox>
                       </div>
                     </div>
                   </div>

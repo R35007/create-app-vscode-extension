@@ -1,7 +1,12 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
+  {
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
+  },
   {
     label: "@vue/cli",
     command: "npm install -g @vue/cli",
@@ -9,7 +14,7 @@ const prerequisites: CliCommands[] = [
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
   {
     label: "@vue/cli-service",
     command: "npm install -g @vue/cli-service",
@@ -43,6 +48,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://vuejs.org/">Home Work</a>`,
   `<a href="https://cli.vuejs.org/guide/">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@vue/cli">Vue Cli Npm Package</a>`,
   `<a href="https://www.npmjs.com/package/@vue/cli-service">Vue Cli service Npm Package</a>`,
@@ -52,6 +58,7 @@ const tags = [
   "vue",
   "ui",
   "frontend",
+  "framework",
   "webapp"
 ]
 

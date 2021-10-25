@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { AppProps, CliCommands } from '../modal';
+import { AppProps, Tags } from '../modal';
 
 export const getWebviewOptions = (_extensionUri: vscode.Uri): vscode.WebviewOptions => {
   return {
@@ -43,14 +43,17 @@ export const getAppList = (appsList: AppProps[], selectedAppName?: string): stri
   }).join('')
 }
 
-export const getPrerequisites = (prerequisites: CliCommands[] = []) => {
-  return prerequisites.map(p =>
-    `<span title="${p.description}" data-command="${p.command}" class="tag prerequisites-tag">${p.label}</span>`
-  ).join('')
+export const getPrerequisites = (prerequisites: Tags[] = []) => {
+  return prerequisites.map(p => {
+    if (p.href) {
+      return `<a title="${p.description}" href="${p.href}" class="tag anchor-tag prerequisites-tag">${p.label}</a>`
+    }
+    return `<span title="${p.description}" data-command="${p.command}" class="tag command-tag prerequisites-tag">${p.label}</span>`
+  }).join('')
 }
 
-export const getAdditionalCommands = (additionalCommands: CliCommands[] = []) => {
+export const getAdditionalCommands = (additionalCommands: Tags[] = []) => {
   return additionalCommands.map(ac =>
-    `<span title="${ac.description}" data-command="${ac.command}" class="tag additional-commands-tag">${ac.label}</span>`
+    `<span title="${ac.description}" data-command="${ac.command}" class="tag command-tag additional-commands-tag">${ac.label}</span>`
   ).join('');
 }

@@ -1,15 +1,20 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
   {
-    label: "degit",
-    command: "npm install -g degit",
-    description: "Click here to install degit globally"
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
+  {
+    label: "install degit",
+    command: "npm install -g degit",
+    description: "Click here to install degit globally"
+  },
   {
     label: "create svelte app",
     command: "npx degit sveltejs/template",
@@ -24,6 +29,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://svelte.dev/">Home Page</a>`,
   `<a href="https://svelte.dev/docs">Getting Started with Svelte</a>`,
   `<a href="https://kit.svelte.dev/docs">Getting Started with SvelteKit</a>`,
   `<a href="https://svelte.dev/tutorial/basics">Tutorial</a> `,
@@ -35,6 +41,7 @@ const tags = [
   "sveltekit",
   "ui",
   "frontend",
+  "library",
   "webapp",
   "compiler"
 ]

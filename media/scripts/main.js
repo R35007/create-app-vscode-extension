@@ -62,7 +62,7 @@ $appFilterInput.addEventListener('input', () => {
 })
 
 // On Click of any Prerequisites or additional Commands
-document.querySelectorAll(".additional-details-container .tag").forEach(tag => {
+document.querySelectorAll(".additional-details-container .command-tag").forEach(tag => {
   tag.addEventListener("click", function () {
     vscode.postMessage({
       action: 'execute-command',

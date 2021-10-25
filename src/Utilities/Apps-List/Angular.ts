@@ -1,7 +1,12 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
+  {
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
+  },
   {
     label: "@angular/cli",
     command: "npm install -g @angular/cli",
@@ -9,7 +14,7 @@ const prerequisites: CliCommands[] = [
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
   {
     label: "ng new",
     command: "ng new",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://angular.io/">Home Page</a>`,
   `<a href="https://angular.io/guide/setup-local">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@angular/cli">Npm Package</a>`,
   `<a href="https://angular.io/tutorial">Tutorial</a>`,
@@ -36,6 +42,7 @@ const resources = [
 const tags = [
   "angular",
   "ui",
+  "framework",
   "frontend",
   "webapp"
 ]

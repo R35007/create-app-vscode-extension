@@ -1,15 +1,20 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
   {
-    label: "create-next-app",
-    command: "npm i -g create-next-app",
-    description: "Click here to install create-next-app globally"
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
+  {
+    label: "install create-next-app",
+    command: "npm i -g create-next-app",
+    description: "Click here to install create-next-app globally"
+  },
   {
     label: "create-next-app",
     command: "npx create-next-app@latest",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://nextjs.org/">Home Page</a>`,
   `<a href="https://nextjs.org/docs/getting-started">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/create-next-app">Npm Package</a> `,
   `<a href="https://nextjs.org/showcase#all">Examples</a> `
@@ -37,6 +43,7 @@ const tags = [
   "next",
   "nextJs",
   "react framework",
+  "framework",
   "react",
   "ui",
   "frontend",

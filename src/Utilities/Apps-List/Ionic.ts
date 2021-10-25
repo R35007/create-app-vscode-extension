@@ -1,7 +1,12 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
+  {
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
+  },
   {
     label: "@ionic/cli",
     command: "npm install -g @ionic/cli",
@@ -24,7 +29,7 @@ const prerequisites: CliCommands[] = [
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
   {
     label: "ionic start",
     command: "ionic start",
@@ -53,6 +58,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://ionicframework.com/">Home Page</a>`,
   `<a href="https://ionicframework.com/docs">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@ionic/cli">Npm Package</a>`,
   `<a href="https://ionicframework.com/docs/componentsl">Ionic Components</a>`,
@@ -63,6 +69,7 @@ const tags = [
   "ionic",
   "hybrid",
   "frontend",
+  "framework",
   "ui",
   "mobileapp",
   "mobile",

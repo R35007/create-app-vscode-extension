@@ -1,15 +1,20 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
   {
-    label: "expo-cli",
-    command: "npm install -g expo-cli",
-    description: "Click here to install expo-cli globally"
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
+  {
+    label: "install expo-cli",
+    command: "npm install -g expo-cli",
+    description: "Click here to install expo-cli globally"
+  },
   {
     label: "expo init",
     command: "expo init",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://reactnative.dev/">Home Page</a>`,
   `<a href="https://reactnative.dev/docs/getting-started">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/expo-cli">Npm Package</a>`,
   `<a href="https://www.npmjs.com/search?q=expo-template-*">React Native Templates</a> `
@@ -38,6 +44,7 @@ const tags = [
   "reactnative",
   "native",
   "frontend",
+  "library",
   "ui",
   "mobileapp",
   "mobile",

@@ -1,7 +1,12 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
+  {
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
+  },
   {
     label: "yo generator-code",
     command: "npm install -g yo generator-code",
@@ -9,7 +14,7 @@ const prerequisites: CliCommands[] = [
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
   {
     label: "yo code",
     command: "yo code",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://code.visualstudio.com/api">Home Page</a>`,
   `<a href="https://code.visualstudio.com/api/get-started/your-first-extension">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/generator-code">Npm package</a>`,
   `<a href="https://github.com/microsoft/vscode-extension-samples">VS Code extension API samples</a>`,

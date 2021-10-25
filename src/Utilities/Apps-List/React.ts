@@ -1,15 +1,20 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
   {
-    label: "create-react-app",
-    command: "npm install -g create-react-app",
-    description: "Click here to install create-react-app globally"
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
+  {
+    label: "install create-react-app",
+    command: "npm install -g create-react-app",
+    description: "Click here to install create-react-app globally"
+  },
   {
     label: "create-react-app",
     command: "npx create-react-app",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://reactjs.org/">Home Page</a>`,
   `<a href="https://create-react-app.dev/docs/getting-started">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/create-react-app">Npm Package</a> `,
   `<a href="https://www.npmjs.com/search?q=cra-template-*">React Templates</a> `
@@ -37,6 +43,7 @@ const tags = [
   "react",
   "ui",
   "frontend",
+  "library",
   "webapp"
 ]
 

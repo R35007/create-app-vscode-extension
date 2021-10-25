@@ -22,15 +22,16 @@ export interface AppProps {
   isSelected: boolean;
   logoPath: string;
   scriptPath: string[];
-  prerequisites: CliCommands[];
-  additionalCommands: CliCommands[];
+  prerequisites: Tags[];
+  additionalCommands: Tags[];
   resources: string[];
   tags: string[];
 }
 
-export interface CliCommands {
+export interface Tags {
   label: string;
-  command: string;
+  command?: string;
+  href?: string;
   description: string;
 }
 

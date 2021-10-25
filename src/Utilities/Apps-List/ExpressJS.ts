@@ -1,15 +1,20 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
   {
-    label: "express-generator",
-    command: "npm install -g express-generator",
-    description: "Click here to install express-generator globally"
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
+  {
+    label: "install express-generator",
+    command: "npm install -g express-generator",
+    description: "Click here to install express-generator globally"
+  },
   {
     label: "express-generator",
     command: "npx express-generator",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://expressjs.com/">Home Page</a>`,
   `<a href="https://expressjs.com/en/starter/generator.html">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/express-generator">Npm Package</a>`,
 ]

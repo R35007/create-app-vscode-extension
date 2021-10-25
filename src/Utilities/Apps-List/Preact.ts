@@ -1,15 +1,20 @@
-import { AppName, AppProps, CliCommands } from '../../modal';
+import { AppName, AppProps, Tags } from '../../modal';
 import FieldProps from '../Field-Props';
 
-const prerequisites: CliCommands[] = [
+const prerequisites: Tags[] = [
   {
-    label: "preact-cli",
-    command: "npm install -g preact-cli",
-    description: "Click here to install preact-cli globally"
+    label: "node",
+    href: "https://nodejs.org/en/",
+    description: "https://nodejs.org/en/"
   }
 ]
 
-const additionalCommands: CliCommands[] = [
+const additionalCommands: Tags[] = [
+  {
+    label: "install preact-cli",
+    command: "npm install -g preact-cli",
+    description: "Click here to install preact-cli globally"
+  },
   {
     label: "preact-cli create",
     command: "npx preact-cli create",
@@ -28,6 +33,7 @@ const additionalCommands: CliCommands[] = [
 ]
 
 const resources = [
+  `<a href="https://preactjs.com/">Home Page</a>`,
   `<a href="https://preactjs.com/cli/getting-started/">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/preact">Npm Package</a> `,
   `<a href="https://preactjs.com/about/demos-examples">Demos and Examples</a> `
@@ -38,6 +44,7 @@ const tags = [
   "preact",
   "ui",
   "frontend",
+  "library",
   "webapp"
 ]
 
