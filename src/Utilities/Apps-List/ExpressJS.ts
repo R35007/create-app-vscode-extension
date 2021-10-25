@@ -53,6 +53,7 @@ const tags = [
 const expressJs: AppProps = {
   appName: AppName.EXPRESS_JS,
   fieldProps: FieldProps.expressJs,
+  description: "ExpressJS is a web application framework that provides you with a simple API to build websites, web apps and back ends",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/expressJs.png",
   scriptPath: ['media', 'scripts', 'expressJs.js'],
   isSelected: false,

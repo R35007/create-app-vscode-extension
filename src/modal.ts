@@ -18,6 +18,7 @@ export enum AppName {
 
 export interface AppProps {
   appName: AppName;
+  description: string;
   fieldProps: FieldProps[];
   isSelected: boolean;
   logoPath: string;

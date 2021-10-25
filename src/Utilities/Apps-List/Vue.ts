@@ -66,6 +66,7 @@ const tags = [
 const vue: AppProps = {
   appName: AppName.VUE,
   fieldProps: FieldProps.vue,
+  description: "Vue is a progressive javscript framework for building user interfaces",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/vue.png",
   scriptPath: ['media', 'scripts', 'vue.js'],
   isSelected: false,

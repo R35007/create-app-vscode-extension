@@ -89,7 +89,9 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
               </ul>
             </aside>
             <section class="col h-100">
-              <vscode-button class="pe-none mb-2">Create ${selectedApp.appName} App</vscode-button>
+              <header class="d-flex align-items-center">
+                <vscode-button class="pe-none mb-2">Create ${selectedApp.appName} App</vscode-button>
+              </header>
               <section class="command-container position-relative mb-3">
                 <vscode-text-area id="command" class="d-block w-100" rows="5"></vscode-text-area>
                 <div class="action-container d-inline-block position-absolute">
@@ -103,6 +105,12 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                     ${createAppForm}
                   </div>
                   <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto">
+                    <div class="about-container">
+                      <h5>About</h5>
+                      <div class="about-content my-3">
+                        ${selectedApp.description}
+                      </div>
+                    </div>
                     <div class="prerequisites-container ${prerequisites ? '' : 'd-none'}">
                       <h5>Prerequisites</h5>
                       <div class="prerequisites-content my-3">

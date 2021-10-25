@@ -89,3 +89,7 @@ body > * {
 .configuration-container {
   height: calc(100% - 15rem);
 }
+
+.about-content {
+  font-size: 12px;
+}

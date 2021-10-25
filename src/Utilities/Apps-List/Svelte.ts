@@ -50,6 +50,7 @@ const tags = [
 const svelte: AppProps = {
   appName: AppName.SVELTE,
   fieldProps: FieldProps.svelte,
+  description: "Svelte is a radical new approach to building user interfaces using compiler. In Short Svelte is a complier and not a library",
   isSelected: false,
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/svelte.png",
   scriptPath: ['media', 'scripts', 'svelte.js'],

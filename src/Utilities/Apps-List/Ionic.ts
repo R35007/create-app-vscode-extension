@@ -81,6 +81,7 @@ const tags = [
 const ionic: AppProps = {
   appName: AppName.IONIC,
   fieldProps: FieldProps.ionic,
+  description: "Ionic is an HTML5 mobile app development framework targeted at building hybrid mobile apps",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/ionic.png",
   scriptPath: ['media', 'scripts', 'ionic.js'],
   isSelected: false,

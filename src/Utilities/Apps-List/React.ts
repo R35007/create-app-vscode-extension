@@ -51,6 +51,7 @@ const tags = [
 const react: AppProps = {
   appName: AppName.REACT,
   fieldProps: FieldProps.react,
+  description: "React is a declarative, efficient, and flexible JavaScript library for building user interfaces",
   isSelected: false,
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
   scriptPath: ['media', 'scripts', 'react.js'],

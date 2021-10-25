@@ -52,6 +52,7 @@ const tags = [
 const preact: AppProps = {
   appName: AppName.PREACT,
   fieldProps: FieldProps.preact,
+  description: 'Preact is alternative to  React with the same modern API, claiming to be a “fast 3kB”',
   isSelected: false,
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/preact.png",
   scriptPath: ['media', 'scripts', 'preact.js'],

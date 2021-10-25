@@ -54,6 +54,7 @@ const tags = [
 const nestJs: AppProps = {
   appName: AppName.NEST_JS,
   fieldProps: FieldProps.nestJs,
+  description: "NestJS is a framework for building efficient, scalable Node.js web applications",
   isSelected: false,
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/nestJs.png",
   scriptPath: ['media', 'scripts', 'nestJs.js'],

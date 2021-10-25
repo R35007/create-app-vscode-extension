@@ -53,6 +53,7 @@ const tags = [
 const vsCodeExtension: AppProps = {
   appName: AppName.VS_CODE_EXTENSION,
   fieldProps: FieldProps.vsCodeExtension,
+  description: "VS Code extensions let you add languages, debuggers, and tools to your installation to support your development workflow.",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/vscode.png",
   scriptPath: ['media', 'scripts', 'vscode.js'],
   isSelected: false,

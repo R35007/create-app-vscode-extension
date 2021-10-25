@@ -54,6 +54,7 @@ const tags = [
 const nextJs: AppProps = {
   appName: AppName.NEXT_JS,
   fieldProps: FieldProps.nextJs,
+  description: "NextJs is a React Framework used for front-end development",
   isSelected: false,
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/nextJs.png",
   scriptPath: ['media', 'scripts', 'nextJs.js'],

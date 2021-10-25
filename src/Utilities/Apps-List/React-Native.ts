@@ -56,6 +56,7 @@ const tags = [
 const reactNative: AppProps = {
   appName: AppName.REACT_NATIVE,
   fieldProps: FieldProps.reactNative,
+  description: "React Native is a popular JavaScript-based mobile app framework that allows you to build natively-rendered mobile apps for iOS and Android.",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
   scriptPath: ['media', 'scripts', 'react-native.js'],
   isSelected: false,

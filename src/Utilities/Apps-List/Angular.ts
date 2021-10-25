@@ -51,6 +51,7 @@ const tags = [
 const angular: AppProps = {
   appName: AppName.ANGULAR,
   fieldProps: FieldProps.angular,
+  description: "Angular is a platform and framework for building single-page client applications using HTML and TypeScript",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png",
   scriptPath: ['media', 'scripts', 'angular.js'],
   isSelected: false,

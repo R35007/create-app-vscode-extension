@@ -27,7 +27,7 @@ export const getNonce = () => {
 export const getAppList = (appsList: AppProps[], selectedAppName?: string): string => {
   return appsList.map(app => {
     return `
-      <li id="${app.appName}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
+      <li id="${app.appName}" title="${app.description}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
         <div class="col-3 text-center thumbnail p-2 d-none d-md-block">
           <img
               src="${app.logoPath}"
