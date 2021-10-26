@@ -19,6 +19,7 @@ Available Apps:
 <h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/preact.png" width="20"></sub>Preact</h3><h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png" width="20"></sub>Angular</h3>
 <h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/nextJs.png" width="20"></sub>NextJs</h3>
 <h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/svelte.png" width="20"></sub>Svelte</h3>
+<h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/django.png" width="20"></sub>Django</h3>
 <h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/expressJs.png" width="20"></sub>ExpressJs</h3>
 <h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/nestJs.png" width="20"></sub>NestJs</h3>
 <h3><sub><img style="margin-right: 1rem" src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png" width="20"></sub>React Native</h3>

@@ -4,6 +4,7 @@ import vue from './Vue';
 import preact from './Preact';
 import svelte from './Svelte';
 import nextJs from './NextJs';
+import django from './Django';
 import reactNative from './React-Native';
 import ionic from './Ionic';
 import expressJs from './ExpressJS';
@@ -17,6 +18,7 @@ export default [
   preact,
   svelte,
   nextJs,
+  django,
   expressJs,
   nestJs,
   reactNative,

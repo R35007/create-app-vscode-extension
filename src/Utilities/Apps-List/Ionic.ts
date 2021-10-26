@@ -71,6 +71,7 @@ const tags = [
   "frontend",
   "framework",
   "ui",
+  "web",
   "mobileapp",
   "mobile",
   "phone",

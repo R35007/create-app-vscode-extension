@@ -46,7 +46,6 @@ const tags = [
   "vscode",
   "vscodeextension",
   "vscode-extension",
-  "extensions"
 ]
 
 
