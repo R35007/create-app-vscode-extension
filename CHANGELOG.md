@@ -1,4 +1,4 @@
-## v1.0.0
+## v2.0.0
 
 - Added more Apps to Create
 - Implemented New UI Layout
