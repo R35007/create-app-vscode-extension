@@ -42,6 +42,7 @@ const resources = [
 const tags = [
   "angular",
   "ui",
+  "web",
   "framework",
   "frontend",
   "webapp"

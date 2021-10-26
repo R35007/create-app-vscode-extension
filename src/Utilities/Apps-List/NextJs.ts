@@ -47,7 +47,8 @@ const tags = [
   "react",
   "ui",
   "frontend",
-  "webapp"
+  "webapp",
+  "web"
 ]
 
 

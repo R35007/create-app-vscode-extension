@@ -44,7 +44,8 @@ const tags = [
   "ui",
   "frontend",
   "library",
-  "webapp"
+  "webapp",
+  "web"
 ]
 
 

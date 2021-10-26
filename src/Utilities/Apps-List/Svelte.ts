@@ -43,6 +43,7 @@ const tags = [
   "frontend",
   "library",
   "webapp",
+  "web",
   "compiler"
 ]
 
