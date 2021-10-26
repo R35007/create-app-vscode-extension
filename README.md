@@ -11,7 +11,7 @@ Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create:App` to open
 
 Provide you App name and other configurations and click `Execute` button to Create your first app using official boilerplates.
 
-Available Apps:
+Supported Apps:
 
 <h3 style="display: inline-block; margin-right: 10px"><sub><a href="https://angular.io/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png" alt="" width="20" style="margin-right: 1rem"></a></sub>Angular</h3>
 <h3 style="display: inline-block; margin-right: 10px"><sub><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png" alt="" width="20" style="margin-right: 1rem"></a></sub>React</h3>
