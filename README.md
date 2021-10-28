@@ -1,6 +1,5 @@
 <h1>
-  <sub><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/ca-logo.png" height="40"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-   Create App
+  <sub><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/ca-logo.png" height="40"></sub> Create App
 </h1>
 
 Easily Create any UI App with Official Starter Templates or Boilerplates using CLI.
@@ -19,7 +18,7 @@ Provide you App name and other configurations and click `Execute` button to Crea
 <span><sub><a href="https://preactjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/preact.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Preact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/nextJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NextJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://svelte.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/svelte.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Svelte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://www.djangoproject.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/django.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://www.djangoproject.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/django.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
 <span><sub><a href="https://expressjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/expressJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;ExpressJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://nestjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/nestJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NestJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://reactnative.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React Native</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
