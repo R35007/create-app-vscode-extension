@@ -11,6 +11,11 @@ const prerequisites: Tags[] = [
     label: "yo generator-code",
     command: "npm install -g yo generator-code",
     description: "Click here to install yo generator-code globally"
+  },
+  {
+    label: "vsce",
+    command: "npm install -g vsce",
+    description: "Click here to install vsce globally"
   }
 ]
 
@@ -19,6 +24,16 @@ const additionalCommands: Tags[] = [
     label: "yo code",
     command: "yo code",
     description: "Click here to create the vscode extension using cli prompts"
+  },
+  {
+    label: "vsce package",
+    command: "vsce package",
+    description: "Click here to package vscode extension"
+  },
+  {
+    label: "vsce publish",
+    command: "vsce publish",
+    description: "Click here to publish vscode extension"
   },
   {
     label: "check cli version",
