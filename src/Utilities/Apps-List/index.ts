@@ -5,10 +5,11 @@ import preact from './Preact';
 import svelte from './Svelte';
 import nextJs from './NextJs';
 import django from './Django';
-import reactNative from './React-Native';
-import ionic from './Ionic';
+import gatsby from './Gatsby';
 import expressJs from './ExpressJS';
 import nestJs from './NestJs';
+import reactNative from './React-Native';
+import ionic from './Ionic';
 import vsCodeExtension from './VS-Code-Extension';
 
 export default [
@@ -19,6 +20,7 @@ export default [
   svelte,
   nextJs,
   django,
+  gatsby,
   expressJs,
   nestJs,
   reactNative,

@@ -29,10 +29,7 @@ export const getAppList = (appsList: AppProps[], selectedAppName?: string): stri
     return `
       <li id="${app.appName}" title="${app.description}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
         <div class="col-3 text-center thumbnail p-2">
-          <img
-              src="${app.logoPath}"
-              alt="${app.appName}"
-            />
+          <img src="${app.logoPath}" />
         </div>
         <div class="tags d-none">
           ${app.tags?.join(',')}

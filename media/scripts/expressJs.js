@@ -1,4 +1,3 @@
-let installPrerequisites = "";
 let initialCommand = "npx express-generator"
 let appId = 'hello-world';
 let viewType = '';
@@ -10,7 +9,6 @@ let addHogan = '';
 let noViews = '';
 let openInVscode = '';
 
-const $installPrerequisites = document.getElementById('install-prerequisites');
 const $appId = document.getElementById('app-id');
 const $viewType = document.getElementById('view-type');
 const $stylesheetFormat = document.getElementById('stylesheet-format');
@@ -22,7 +20,7 @@ const $noViews = document.getElementById('no-views');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${viewType} ${stylesheetFormat} ${addEjs}` +
+  const value = `${initialCommand} ${appId} ${viewType} ${stylesheetFormat} ${addEjs}` +
     ` ${addHandlebar} ${addPug} ${addHogan} ${noViews} --force; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
@@ -33,12 +31,6 @@ const setCommand = () => {
 
 // Set Initial Command
 setCommand();
-
-// Set Prerequisites
-$installPrerequisites.addEventListener("change", function () {
-  installPrerequisites = this.checked ? this.dataset.command : '';
-  setCommand();
-})
 
 // Set App Id
 $appId.addEventListener("input", function () {

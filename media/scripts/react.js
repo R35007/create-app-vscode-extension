@@ -1,18 +1,16 @@
-let installPrerequisites = "";
 let initialCommand = "npx create-react-app"
 let appId = 'hello-world';
 let template = '';
 let packageManager = '';
 let openInVscode = '';
 
-const $installPrerequisites = document.getElementById('install-prerequisites');
 const $appId = document.getElementById('app-id');
 const $template = document.getElementById('template');
 const $packageManager = document.getElementById('package-manager');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${installPrerequisites} ${initialCommand} ${appId} ${template} ${packageManager}; ${openInVscode}`;
+  const value = `${initialCommand} ${appId} ${template} ${packageManager}; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())
@@ -22,12 +20,6 @@ const setCommand = () => {
 
 // Set Initial Command
 setCommand();
-
-// Set Prerequisites
-$installPrerequisites.addEventListener("change", function () {
-  installPrerequisites = this.checked ? this.dataset.command : '';
-  setCommand();
-})
 
 // Set App Id
 $appId.addEventListener("input", function () {

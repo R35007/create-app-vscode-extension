@@ -9,6 +9,7 @@ export enum AppName {
   PREACT = 'Preact',
   SVELTE = 'Svelte',
   NEXT_JS = 'NextJs',
+  GATSBY = 'Gatsby',
   DJANGO = 'Django',
   EXPRESS_JS = 'ExpressJS',
   NEST_JS = 'NestJs',

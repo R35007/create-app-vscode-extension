@@ -1,18 +1,14 @@
-let initialCommand = "npx create-next-app@latest"
+let initialCommand = "npx gatsby new"
 let appId = 'hello-world';
-let example = '';
-let useTypescript = '';
-let packageManager = '';
+let templatePath = '';
 let openInVscode = '';
 
 const $appId = document.getElementById('app-id');
-const $example = document.getElementById('example');
-const $useTypescript = document.getElementById('use-typescript');
-const $packageManager = document.getElementById('package-manager');
+const $templatePath = document.getElementById('template-path');
 const $openInVscode = document.getElementById('open-in-vscode');
 
 const setCommand = () => {
-  const value = `${initialCommand} ${appId} ${example} ${useTypescript} ${packageManager}; ${openInVscode}`;
+  const value = `${initialCommand} ${appId} ${templatePath}; ${openInVscode}`;
   const cleanCommand = value.replace(/\s{2,}/g, ' ') // replace all multiple spaces with single space
     .trim().split(';')
     .map(c => c.trim())
@@ -23,6 +19,20 @@ const setCommand = () => {
 // Set Initial Command
 setCommand();
 
+// Handle messages sent from the extension to the webview
+window.addEventListener('message', event => {
+  const message = event.data; // The json data that the extension sent
+  switch (message.action) {
+    case 'set-location':
+      if (message.id === 'template-path') {
+        templatePath = `--template="${message.value}"`;
+        $templatePathTextbox.value = message.value;
+        setCommand();
+      }
+      break;
+  }
+});
+
 // Set App Id
 $appId.addEventListener("input", function () {
   appId = this.value;
@@ -30,21 +40,9 @@ $appId.addEventListener("input", function () {
   setCommand();
 })
 
-// Set Template
-$example.addEventListener("input", function () {
-  example = this.value ? `--example=${this.value}` : '';
-  setCommand();
-})
-
-// Set Typescript
-$useTypescript.addEventListener("change", function () {
-  useTypescript = this.value === 'yes' ? `--typescript` : '';
-  setCommand();
-})
-
-// Set Package
-$packageManager.addEventListener("change", function () {
-  packageManager = this.value === 'yes' ? `--npm` : '';
+// Set Custom Preset location
+$templatePath.addEventListener("input", function () {
+  templatePath = this.value;
   setCommand();
 })
 
