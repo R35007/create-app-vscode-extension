@@ -1,3 +1,7 @@
+## v3.0.1
+
+- On `Execute` button click, the terminal opens in powershell and failed to execute the create app commands - `Fixed`
+- Now The Terminal open in `Git bash` by default on click of the `Execute` button.
 ## v3.0.0
 
 - Added Gatsby App
