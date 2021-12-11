@@ -19,8 +19,7 @@ export class Command {
   executeCreateCommand() {
     const terminal = vscode.window.createTerminal({
       name: `Creating your ${this.appType} App`,
-      cwd: this.location,
-      shellPath: "bash",
+      cwd: this.location
     });
     this.commands.forEach(command => {
       terminal.sendText(command);

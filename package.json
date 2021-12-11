@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Easily Create any UI App with Official Starter Templates or Boilerplates using CLI",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
