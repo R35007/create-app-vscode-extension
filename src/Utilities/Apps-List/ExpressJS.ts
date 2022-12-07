@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,13 +30,13 @@ const additionalCommands: Tags[] = [
     command: "npx express-generator --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://expressjs.com/">Home Page</a>`,
   `<a href="https://expressjs.com/en/starter/generator.html">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/express-generator">Npm Package</a>`,
-]
+];
 
 const tags = [
   "expressgenerator",
@@ -47,7 +47,7 @@ const tags = [
   "node",
   "nodejs",
   "nodeserver"
-]
+];
 
 
 const expressJs: AppProps = {
@@ -61,6 +61,6 @@ const expressJs: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default expressJs;

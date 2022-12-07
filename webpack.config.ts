@@ -2,13 +2,42 @@
 
 'use strict';
 
-const path = require('path');
+import * as path from 'path';
+import { NodeModulesAccessor, NodeModulesKeys } from './src/NodeModuleAccessor';
+import { Configuration } from 'webpack';
+import CopyPlugin = require('copy-webpack-plugin');
 
 //@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
+function copyNodeModulesFiles(): CopyPlugin {
+  const files: NodeModulesKeys[] = Object.keys(NodeModulesKeys)
+    .filter((key) => !isNaN(Number(key)))
+    .map((key) => Number(key));
+  const copies: CopyPlugin.ObjectPattern[] = files.map((file) => {
+    const value = NodeModulesAccessor.getPathToNodeModulesFile(file);
+    let sourcePath;
+    let destinationPath;
+    if (value.includeFolder) {
+      sourcePath = path.join(...value.sourcePath);
+      destinationPath = path.join(...value.destinationPath);
+    } else {
+      sourcePath = path.join(...value.sourcePath, value.fileName);
+      destinationPath = path.join(...value.destinationPath, value.fileName);
+    }
+    return {
+      from: sourcePath,
+      to: destinationPath,
+    };
+  });
+  return new CopyPlugin({
+    patterns: copies,
+  });
+}
+
+
 /** @type WebpackConfig */
-const extensionConfig = {
+const extensionConfig: Configuration = {
   target: 'node', // vscode extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/
 	mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
 
@@ -40,6 +69,7 @@ const extensionConfig = {
       }
     ]
   },
+  plugins:[copyNodeModulesFiles()],
   devtool: 'nosources-source-map'
 };
 module.exports = [ extensionConfig ];

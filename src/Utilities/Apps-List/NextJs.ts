@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,14 +30,14 @@ const additionalCommands: Tags[] = [
     command: "npx create-next-app@latest --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://nextjs.org/">Home Page</a>`,
   `<a href="https://nextjs.org/docs/getting-started">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/create-next-app">Npm Package</a> `,
   `<a href="https://nextjs.org/showcase#all">Examples</a> `
-]
+];
 
 const tags = [
   "next",
@@ -49,7 +49,7 @@ const tags = [
   "frontend",
   "webapp",
   "web"
-]
+];
 
 
 const nextJs: AppProps = {
@@ -63,6 +63,6 @@ const nextJs: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default nextJs;

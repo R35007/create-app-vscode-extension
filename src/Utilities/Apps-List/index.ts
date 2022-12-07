@@ -26,4 +26,4 @@ export default [
   reactNative,
   ionic,
   vsCodeExtension
-]
+];

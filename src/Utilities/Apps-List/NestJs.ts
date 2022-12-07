@@ -12,7 +12,7 @@ const prerequisites: Tags[] = [
     command: "npm i -g @nestjs/cli",
     description: "Click here to install create-next-app globally"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,14 +30,14 @@ const additionalCommands: Tags[] = [
     command: "nest new --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://nestjs.com/">Home Page</a>`,
   `<a href="https://docs.nestjs.com/">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@nestjs/cli">Npm Package</a> `,
   `<a href="https://courses.nestjs.com/">Courses</a> `
-]
+];
 
 const tags = [
   "nest",
@@ -48,7 +48,7 @@ const tags = [
   "backend",
   "server",
   "nodeserver"
-]
+];
 
 
 const nestJs: AppProps = {
@@ -62,6 +62,6 @@ const nestJs: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default nestJs;

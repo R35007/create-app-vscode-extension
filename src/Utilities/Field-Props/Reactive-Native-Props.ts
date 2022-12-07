@@ -63,6 +63,6 @@ const reactNativeProps: FieldProps[] = [
     type: FieldType.BROWSE,
     description: "If not provided the app creates in the active workspace folder."
   }
-]
+];
 
 export default reactNativeProps;

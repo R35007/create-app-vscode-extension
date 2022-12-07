@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,7 +30,7 @@ const additionalCommands: Tags[] = [
     command: "npx gatsby new --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://www.gatsbyjs.com/">Home Page</a>`,
@@ -38,7 +38,7 @@ const resources = [
   `<a href="https://www.npmjs.com/package/gatsby-cli">Npm Package</a> `,
   `<a href="https://www.gatsbyjs.com/starters">Starter Templates</a> `,
   `<a href="https://github.com/orgs/gatsbyjs/repositories">Starter Templates Repos</a> `
-]
+];
 
 const tags = [
   "gatsby",
@@ -51,7 +51,7 @@ const tags = [
   "full stack",
   "webapp",
   "web"
-]
+];
 
 
 const gatsby: AppProps = {
@@ -65,6 +65,6 @@ const gatsby: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default gatsby;

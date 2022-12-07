@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,14 +30,14 @@ const additionalCommands: Tags[] = [
     command: "npx preact-cli create --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://preactjs.com/">Home Page</a>`,
   `<a href="https://preactjs.com/cli/getting-started/">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/preact">Npm Package</a> `,
   `<a href="https://preactjs.com/about/demos-examples">Demos and Examples</a> `
-]
+];
 
 const tags = [
   "react",
@@ -47,7 +47,7 @@ const tags = [
   "library",
   "webapp",
   "web"
-]
+];
 
 
 const preact: AppProps = {
@@ -61,6 +61,6 @@ const preact: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default preact;

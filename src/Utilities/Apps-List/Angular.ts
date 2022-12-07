@@ -12,7 +12,7 @@ const prerequisites: Tags[] = [
     command: "npm install -g @angular/cli",
     description: "Click here to install @angular/cli globally"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,14 +30,14 @@ const additionalCommands: Tags[] = [
     command: "ng new --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://angular.io/">Home Page</a>`,
   `<a href="https://angular.io/guide/setup-local">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@angular/cli">Npm Package</a>`,
   `<a href="https://angular.io/tutorial">Tutorial</a>`,
-]
+];
 
 const tags = [
   "angular",
@@ -46,7 +46,7 @@ const tags = [
   "framework",
   "frontend",
   "webapp"
-]
+];
 
 
 const angular: AppProps = {
@@ -60,6 +60,6 @@ const angular: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default angular;

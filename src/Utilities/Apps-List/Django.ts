@@ -12,7 +12,7 @@ const prerequisites: Tags[] = [
     command: "python -m pip install Django",
     description: "Click here to install Django globally"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,13 +30,13 @@ const additionalCommands: Tags[] = [
     command: "django-admin startproject --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://www.djangoproject.com/">Home Page</a>`,
   `<a href="https://www.djangoproject.com/start/">Getting Started</a>`,
   `<a href="https://docs.djangoproject.com/en/3.2/intro/tutorial01/">Tutorial</a>`,
-]
+];
 
 const tags = [
   "django",
@@ -47,7 +47,7 @@ const tags = [
   "ui",
   "web",
   "webapp"
-]
+];
 
 
 const angular: AppProps = {
@@ -61,6 +61,6 @@ const angular: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default angular;

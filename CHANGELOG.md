@@ -1,3 +1,8 @@
+## v3.1.0
+
+- Typo fixes.
+- Build size reduced.
+  
 ## v3.0.2
 
 - Due to compatibility reverted back [v3.0.1](#v3.0.1)
@@ -6,6 +11,7 @@
 
 - On `Execute` button click, the terminal opens in powershell and failed to execute the create app commands - `Fixed`
 - Now The Terminal open in `Git bash` by default on click of the `Execute` button.
+  
 ## v3.0.0
 
 - Added Gatsby App

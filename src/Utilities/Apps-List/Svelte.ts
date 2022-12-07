@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -26,7 +26,7 @@ const additionalCommands: Tags[] = [
     description: "Click here to create the sveltekit app using cli prompts"
   },
 
-]
+];
 
 const resources = [
   `<a href="https://svelte.dev/">Home Page</a>`,
@@ -34,7 +34,7 @@ const resources = [
   `<a href="https://kit.svelte.dev/docs">Getting Started with SvelteKit</a>`,
   `<a href="https://svelte.dev/tutorial/basics">Tutorial</a> `,
   `<a href="https://svelte.dev/examples#hello-world">Examples</a> `
-]
+];
 
 const tags = [
   "svelte",
@@ -45,7 +45,7 @@ const tags = [
   "webapp",
   "web",
   "compiler"
-]
+];
 
 
 const svelte: AppProps = {
@@ -59,6 +59,6 @@ const svelte: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default svelte;

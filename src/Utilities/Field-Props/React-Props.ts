@@ -48,6 +48,6 @@ const reactProps: FieldProps[] = [
     type: FieldType.BROWSE,
     description: "If not provided the app creates in the active workspace folder."
   }
-]
+];
 
 export default reactProps;

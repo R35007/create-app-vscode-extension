@@ -12,7 +12,7 @@ const prerequisites: Tags[] = [
     command: "npm install -g @vue/cli",
     description: "Click here to install @vue/cli globally"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -45,14 +45,14 @@ const additionalCommands: Tags[] = [
     command: "vue create --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://vuejs.org/">Home Work</a>`,
   `<a href="https://cli.vuejs.org/guide/">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/@vue/cli">Vue Cli Npm Package</a>`,
   `<a href="https://www.npmjs.com/package/@vue/cli-service">Vue Cli service Npm Package</a>`,
-]
+];
 
 const tags = [
   "vue",
@@ -60,13 +60,13 @@ const tags = [
   "frontend",
   "framework",
   "webapp"
-]
+];
 
 
 const vue: AppProps = {
   appName: AppName.VUE,
   fieldProps: FieldProps.vue,
-  description: "Vue is a progressive javscript framework for building user interfaces",
+  description: "Vue is a progressive javascript framework for building user interfaces",
   logoPath: "https://raw.githubusercontent.com/R35007/create-app-support/master/images/vue.png",
   scriptPath: ['media', 'scripts', 'vue.js'],
   isSelected: false,
@@ -74,6 +74,6 @@ const vue: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default vue;

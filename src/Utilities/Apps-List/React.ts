@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,14 +30,14 @@ const additionalCommands: Tags[] = [
     command: "npx create-react-app --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://reactjs.org/">Home Page</a>`,
   `<a href="https://create-react-app.dev/docs/getting-started">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/create-react-app">Npm Package</a> `,
   `<a href="https://www.npmjs.com/search?q=cra-template-*">React Templates</a> `
-]
+];
 
 const tags = [
   "react",
@@ -46,7 +46,7 @@ const tags = [
   "library",
   "webapp",
   "web"
-]
+];
 
 
 const react: AppProps = {
@@ -60,6 +60,6 @@ const react: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default react;

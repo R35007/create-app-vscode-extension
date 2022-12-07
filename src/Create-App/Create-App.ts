@@ -78,7 +78,7 @@ export default class CreateApp {
   onDidReceiveMessage = (message: any) => {
     switch (message.action) {
       case 'switch-app': {
-        this._switchApp(message.appName)
+        this._switchApp(message.appName);
         return;
       }
       case 'get-location': {
@@ -108,13 +108,13 @@ export default class CreateApp {
         return;
       }
     }
-  }
+  };
 
 
   private _copyCommand = (command: string) => {
     vscode.env.clipboard.writeText(command);
     vscode.window.showInformationMessage('Copied command to the clipboard 📋');
-  }
+  };
 
   private _switchApp = (appName: string) => {
     this._appsList.forEach(app => {
@@ -124,7 +124,7 @@ export default class CreateApp {
       }
     });
     this._update();
-  }
+  };
 
   private _getFolderLocation = async (props: any) => {
     const folderLocations = await vscode.window.showOpenDialog({
@@ -132,12 +132,12 @@ export default class CreateApp {
       canSelectFiles: false,
       canSelectMany: false,
       ...props
-    })
+    });
 
     if (folderLocations?.length) {
       this._panel.webview.postMessage({ action: 'set-location', value: folderLocations[0].fsPath, id: props.id });
     }
-  }
+  };
 
   public dispose() {
     CreateApp.currentPanel = undefined;

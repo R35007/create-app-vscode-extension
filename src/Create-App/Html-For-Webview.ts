@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { AppProps } from '../modal';
+import { NodeModulesAccessor, NodeModulesKeys } from '../NodeModuleAccessor';
 import { getAdditionalCommands, getAppList, getNonce, getPrerequisites, getUriFromPath } from '../Utilities';
 import generateAppForm from '../Utilities/Generate-App-Form';
 
@@ -10,17 +11,17 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
   const createAppList = getAppList(appsList, selectedApp.appName);
 
   // Generate App List dropdown Options
-  const appslistOptions = appsList.map(app => `
+  const appsListOptions = appsList.map(app => `
     <vscode-option ${app.appName === selectedApp.appName && 'selected'} value="${app.appName || ''}">${app.appName}</vscode-option>`
   ).join('');
 
   // Additional Details
-  const prerequisitesCommands = selectedApp.prerequisites?.filter(prereq => prereq.command).map(prereq => prereq.command).join('; ');
+  const prerequisitesCommands = selectedApp.prerequisites?.filter(preReq => preReq.command).map(preReq => preReq.command).join('; ');
   const prerequisites = getPrerequisites(selectedApp.prerequisites);
   const additionalCommands = getAdditionalCommands(selectedApp.additionalCommands);
-  const resources = selectedApp.resources.map(r => `<div>${r}</div>`).join('')
+  const resources = selectedApp.resources.map(r => `<div>${r}</div>`).join('');
 
-  const uri = getUris(extensionUri, webview, selectedApp)
+  const uri = getUris(extensionUri, webview, selectedApp);
 
   // Use a nonce to only allow specific scripts to be run
   const nonce = getNonce();
@@ -97,14 +98,14 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
               <header class="d-flex align-items-center mb-2">
                 <vscode-button class="pe-none d-none d-md-inline-block">Create ${selectedApp.appName} App</vscode-button>
                 <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none" style="min-width: 12rem;">
-                  ${appslistOptions}
+                  ${appsListOptions}
                 </vscode-dropdown>
               </header>
               <section class="command-container position-relative mb-3">
                 <vscode-text-area id="command" class="d-block w-100" rows="5"></vscode-text-area>
                 <div class="action-container d-inline-block position-absolute">
                   <vscode-button appearance="secondary" id="copy-command">Copy</vscode-button>
-                  <vscode-button id="execute">Excute</vscode-button>
+                  <vscode-button id="execute">Execute</vscode-button>
                 </div>
               </section>
               <section class="configuration-container">
@@ -157,7 +158,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         </script>
       </body>
       </html>`;
-}
+};
 
 // Webview Uri for script and style to run in the webview
 const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview, selectedApp: AppProps) => {
@@ -165,8 +166,9 @@ const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview, selectedApp:
   const stylesResetUri = getUriFromPath(extensionUri, webview, 'media', 'styles', 'reset.css');
   const stylesMainUri = getUriFromPath(extensionUri, webview, 'media', 'styles', 'vscode.css');
   const scriptMainUri = getUriFromPath(extensionUri, webview, 'media', 'scripts', 'main.js');
-  const toolkitUri = getUriFromPath(extensionUri, webview, 'node_modules', '@vscode', 'webview-ui-toolkit', 'dist', 'toolkit.js');
-  const bootstrapUri = getUriFromPath(extensionUri, webview, 'node_modules', 'bootstrap', 'dist', 'css', 'bootstrap.min.css');
+
+  const toolkitUri = getUriFromPath(extensionUri, webview, ...NodeModulesAccessor.getPathToOutputFile(NodeModulesKeys.uiToolkit));
+  const bootstrapUri = getUriFromPath(extensionUri, webview, ...NodeModulesAccessor.getPathToOutputFile(NodeModulesKeys.bootstrap));
   const formScriptUri = getUriFromPath(extensionUri, webview, ...selectedApp.scriptPath);
 
   return {
@@ -176,5 +178,5 @@ const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview, selectedApp:
     toolkitUri,
     bootstrapUri,
     formScriptUri
-  }
-}
+  };
+};

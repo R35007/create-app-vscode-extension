@@ -7,7 +7,7 @@ const prerequisites: Tags[] = [
     href: "https://nodejs.org/en/",
     description: "https://nodejs.org/en/"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -30,14 +30,14 @@ const additionalCommands: Tags[] = [
     command: "expo init --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://reactnative.dev/">Home Page</a>`,
   `<a href="https://reactnative.dev/docs/getting-started">Getting Started</a>`,
   `<a href="https://www.npmjs.com/package/expo-cli">Npm Package</a>`,
   `<a href="https://www.npmjs.com/search?q=expo-template-*">React Native Templates</a> `
-]
+];
 
 const tags = [
   "react",
@@ -50,7 +50,7 @@ const tags = [
   "mobile",
   "phone",
   "react-native"
-]
+];
 
 
 const reactNative: AppProps = {
@@ -64,6 +64,6 @@ const reactNative: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default reactNative;

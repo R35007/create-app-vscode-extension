@@ -17,7 +17,7 @@ const prerequisites: Tags[] = [
     command: "npm install -g vsce",
     description: "Click here to install vsce globally"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -45,7 +45,7 @@ const additionalCommands: Tags[] = [
     command: "yo code --help",
     description: "Click here to know more cli configurations"
   }
-]
+];
 
 const resources = [
   `<a href="https://code.visualstudio.com/api">Home Page</a>`,
@@ -53,7 +53,7 @@ const resources = [
   `<a href="https://www.npmjs.com/package/generator-code">Npm package</a>`,
   `<a href="https://github.com/microsoft/vscode-extension-samples">VS Code extension API samples</a>`,
   `<a href="https://github.com/microsoft/vscode-webview-ui-toolkit">VS Code webview ui toolkit</a> `,
-]
+];
 
 const tags = [
   "extension",
@@ -61,7 +61,7 @@ const tags = [
   "vscode",
   "vscodeextension",
   "vscode-extension",
-]
+];
 
 
 const vsCodeExtension: AppProps = {
@@ -75,6 +75,6 @@ const vsCodeExtension: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default vsCodeExtension;

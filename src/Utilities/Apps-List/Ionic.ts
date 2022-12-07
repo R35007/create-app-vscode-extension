@@ -27,7 +27,7 @@ const prerequisites: Tags[] = [
     command: "npm install -g create-react-app",
     description: "Click here to install create-react-app If the the ionic app --type=react"
   }
-]
+];
 
 const additionalCommands: Tags[] = [
   {
@@ -55,7 +55,7 @@ const additionalCommands: Tags[] = [
     command: "ionic start --list",
     description: "Click here to see list of available templates"
   }
-]
+];
 
 const resources = [
   `<a href="https://ionicframework.com/">Home Page</a>`,
@@ -63,7 +63,7 @@ const resources = [
   `<a href="https://www.npmjs.com/package/@ionic/cli">Npm Package</a>`,
   `<a href="https://ionicframework.com/docs/componentsl">Ionic Components</a>`,
   `<a href="https://ionic.io/ionicons">Ionic Icons</a>`,
-]
+];
 
 const tags = [
   "ionic",
@@ -76,7 +76,7 @@ const tags = [
   "mobile",
   "phone",
   "hybridapp"
-]
+];
 
 
 const ionic: AppProps = {
@@ -90,6 +90,6 @@ const ionic: AppProps = {
   additionalCommands,
   resources,
   tags
-}
+};
 
 export default ionic;

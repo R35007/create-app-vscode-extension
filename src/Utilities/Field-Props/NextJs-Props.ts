@@ -18,7 +18,7 @@ const nextJsProps: FieldProps[] = [
   },
   {
     id: "use-typescript",
-    label: "Use Typescrit ?",
+    label: "Use Typescript ?",
     type: FieldType.RADIO_GROUP,
     value: "no",
     options: [
@@ -49,6 +49,6 @@ const nextJsProps: FieldProps[] = [
     type: FieldType.BROWSE,
     description: "If not provided the app creates in the active workspace folder."
   }
-]
+];
 
 export default nextJsProps;
