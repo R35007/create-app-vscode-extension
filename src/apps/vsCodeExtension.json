@@ -1,0 +1,198 @@
+{
+  "appName": "VS Code Extension",
+  "description": "VS Code extensions let you add languages, debuggers, and tools to your installation to support your development workflow.",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/vscode.png",
+  "prerequisites": [
+    {
+      "label": "node",
+      "description": "https://nodejs.org/en/",
+      "href": "https://nodejs.org/en/"
+    },
+    {
+      "label": "yo generator-code",
+      "description": "Click here to install yo generator-code globally",
+      "command": "npm install -g yo generator-code"
+    },
+    {
+      "label": "vsce",
+      "description": "Click here to install vsce globally",
+      "command": "npm install -g vsce"
+    }
+  ],
+  "commandTemplate": "yo code --quick ${extensionId} ${extensionDescription} ${extensionType} ${packageManager} ${useWebpack} ${initializeGit} ${skipInstall}",
+  "fields": {
+    "extensionId": {
+      "type": "textbox",
+      "label": "Extension Id",
+      "placeholder": "Can have lowercase alphabets and hyphen (-). No spaces or special chars are allowed.",
+      "prefix": "--extensionId=",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "App Id is Required.",
+        "pattern": "Invalid Id. No spaces or special chars are allowed."
+      }
+    },
+    "extensionName": {
+      "type": "textbox",
+      "label": "Extension Name",
+      "prefix": "--extensionDisplayName='",
+      "suffix": "'",
+      "value": "Hello World",
+      "required": true,
+      "errors": {
+        "required": "App Name is Required."
+      }
+    },
+    "extensionDescription": {
+      "type": "textbox",
+      "label": "Description",
+      "prefix": "--extensionDescription='",
+      "suffix": "'"
+    },
+    "extensionType": {
+      "type": "dropdown",
+      "label": "Type",
+      "options": [
+        {
+          "label": "Typescript",
+          "value": "ts"
+        },
+        {
+          "label": "Javascript",
+          "value": "js"
+        },
+        {
+          "label": "Color Theme",
+          "value": "colortheme"
+        },
+        {
+          "label": "Language Support",
+          "value": "language"
+        },
+        {
+          "label": "Code Snippets",
+          "value": "snippets"
+        },
+        {
+          "label": "Keymap",
+          "value": "keymap"
+        },
+        {
+          "label": "Extension Pack",
+          "value": "extensionpack"
+        },
+        {
+          "label": "Language Pack (Localization)",
+          "value": "localization"
+        },
+        {
+          "label": "Notebook Renderer (TypeScript)",
+          "value": "notebook"
+        },
+        {
+          "label": "Web",
+          "value": "web"
+        }
+      ],
+      "prefix": "--extensionType=",
+      "value": "ts"
+    },
+    "packageManager": {
+      "type": "radio",
+      "label": "Package Manager",
+      "options": [
+        {
+          "label": "yarn",
+          "value": "--pkgManager=yarn"
+        },
+        {
+          "label": "npm",
+          "value": ""
+        }
+      ],
+      "value": ""
+    },
+    "useWebpack": {
+      "type": "radio",
+      "label": "Bundle with webpack ?",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--webpack"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "value": ""
+    },
+    "initializeGit": {
+      "type": "radio",
+      "label": "Initialize Git Repository ?",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--gitInit"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "value": "--gitInit"
+    },
+    "skipInstall": {
+      "type": "radio",
+      "label": "Skip Install ?",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--skip-install"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "value": ""
+    }
+  },
+  "additionalCommands": [
+    {
+      "label": "yo code",
+      "description": "Click here to create the vscode extension using cli prompts",
+      "command": "yo code"
+    },
+    {
+      "label": "vsce package",
+      "description": "Click here to package vscode extension",
+      "command": "vsce package"
+    },
+    {
+      "label": "vsce publish",
+      "description": "Click here to publish vscode extension",
+      "command": "vsce publish"
+    },
+    {
+      "label": "check cli version",
+      "description": "Click here to check cli version",
+      "command": "yo code --version"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "yo code --help"
+    }
+  ],
+  "resources": [
+    "<a href='https://code.visualstudio.com/api'>Home Page</a>",
+    "<a href='https://code.visualstudio.com/api/get-started/your-first-extension'>Getting Started</a>",
+    "<a href='https://github.com/microsoft/vscode-extension-samples'>VS Code extension API samples</a>",
+    "<a href='https://github.com/microsoft/vscode-webview-ui-toolkit'>VS Code webview ui toolkit</a> ",
+    "<a href='https://www.npmjs.com/package/generator-code'>Npm package</a>"
+  ],
+  "tags": ["extension", "node", "vscode", "vscode-extension", "vscodeextension"]
+}

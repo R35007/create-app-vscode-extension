@@ -1,0 +1,221 @@
+{
+  "appName": "Angular",
+  "description": "Angular is a platform and framework for building single-page client applications using HTML and TypeScript.",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png",
+  "prerequisites": [
+    {
+      "label": "node",
+      "description": "https://nodejs.org/en/",
+      "href": "https://nodejs.org/en/"
+    },
+    {
+      "label": "@angular/cli",
+      "description": "Click here to install @angular/cli globally",
+      "command": "npm install -g @angular/cli"
+    }
+  ],
+  "commandTemplate": "ng new ${appId} ${prefix} ${styleSheet} ${routing} ${inlineStyle} ${inlineTemplate} ${purpose} ${strict} ${package} ${initGit} ${skipInstall} --defaults",
+  "fields": {
+    "appId": {
+      "label": "App Id",
+      "type": "textbox",
+      "placeholder": "Can have lowercase alphabets and hyphen (-). No spaces or special chars are allowed.",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "App Id is Required.",
+        "pattern": "Invalid Id. No spaces or special chars are allowed."
+      }
+    },
+    "prefix": {
+      "label": "Prefix",
+      "type": "textbox",
+      "prefix": "--prefix=",
+      "placeholder": "Can have lowercase alphabets, numbers and minus (-). No spaces or special chars are allowed.",
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "pattern": "Invalid Id. No spaces or special chars are allowed."
+      }
+    },
+    "styleSheet": {
+      "label": "Style sheet Format",
+      "type": "dropdown",
+      "value": "",
+      "prefix": "--style=",
+      "options": [
+        {
+          "label": "CSS",
+          "value": ""
+        },
+        {
+          "label": "SCSS",
+          "value": "scss"
+        },
+        {
+          "label": "SASS",
+          "value": "sass"
+        },
+        {
+          "label": "LESS",
+          "value": "less"
+        }
+      ]
+    },
+    "routing": {
+      "label": "Include Routing ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--routing"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "inlineStyle": {
+      "label": "Include Inline Styles ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--inline-style"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "inlineTemplate": {
+      "label": "Include Inline Template ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--inline-template"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "purpose": {
+      "label": "For learning purpose only ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--minimal"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "description": "If Yes It creates a workspace without any testing frameworks."
+    },
+    "strict": {
+      "label": "Do Strict Type Check ?",
+      "type": "radio",
+      "value": "",
+      "prefix": "--strict=",
+      "options": [
+        {
+          "label": "Yes",
+          "value": ""
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ]
+    },
+    "package": {
+      "label": "Package Manager",
+      "type": "radio",
+      "value": "",
+      "prefix": "--package-manager=",
+      "options": [
+        {
+          "label": "npm",
+          "value": ""
+        },
+        {
+          "label": "yarn",
+          "value": "yarn"
+        },
+        {
+          "label": "pnpm",
+          "value": "pnpm"
+        },
+        {
+          "label": "cnpm",
+          "value": "cnpm"
+        }
+      ]
+    },
+    "initGit": {
+      "label": "Initialize Git Repository ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": ""
+        },
+        {
+          "label": "No",
+          "value": "--skip-git"
+        }
+      ]
+    },
+    "skipInstall": {
+      "label": "Skip Install ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--skip-install"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    }
+  },
+  "additionalCommands": [
+    {
+      "label": "ng new",
+      "description": "Click here to create the angular app using cli prompts",
+      "command": "ng new"
+    },
+    {
+      "label": "check cli version",
+      "description": "Click here to check cli version",
+      "command": "ng --version"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "ng new --help"
+    }
+  ],
+  "resources": [
+    "<a href='https://angular.io/'>Home Page</a>",
+    "<a href='https://angular.io/guide/setup-local'>Getting Started</a>",
+    "<a href='https://angular.io/tutorial'>Tutorial</a>",
+    "<a href='https://www.npmjs.com/package/@angular/cli'>Npm Package</a>"
+  ],
+  "tags": ["angular", "framework", "frontend", "ui", "web", "webapp"]
+}

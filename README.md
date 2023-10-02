@@ -12,6 +12,7 @@ Provide you App name and other configurations and click `Execute` button to Crea
 
 ## Supported Apps:
 
+<span><sub><a href="https://vitejs.dev/"><img src="https://vitejs.dev/logo.svg" alt="" width="20"></a></sub>&nbsp;&nbsp;Vite</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://angular.io/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Angular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://vuejs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/master/images/vue.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Vue</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

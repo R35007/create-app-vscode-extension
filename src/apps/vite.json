@@ -1,0 +1,72 @@
+{
+  "appName": "Vite",
+  "description": "Vite is a frontend tool for building web applications quickly, created by Evan You, the creator of the Vue.js framework, that provides a fast dev server, bundling and a great developer experience.",
+  "logoPath": "https://vitejs.dev/logo.svg",
+  "prerequisites": [
+    {
+      "label": "node",
+      "description": "https://nodejs.org/en/",
+      "href": "https://nodejs.org/en/"
+    }
+  ],
+  "commandTemplate": "npm create vite@latest ${appId} -- ${template} --yes",
+  "fields": {
+    "appId": {
+      "type": "textbox",
+      "label": "App Id",
+      "placeholder": "Can have lowercase alphabets hyphen (-) and dot (.). No spaces or special chars are allowed.",
+      "description": "You can use . for the project name to scaffold in the current directory.",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[.|a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "App Id is Required.",
+        "pattern": "Invalid Id. No spaces or special chars are allowed."
+      }
+    },
+    "template": {
+      "type": "dropdown",
+      "label": "Vite Template",
+      "description": "Check out Awesome Vite for <a href='https://github.com/vitejs/awesome-vite#templates'>community maintained templates</a> that include other tools or target different frameworks",
+      "options": [
+        { "label": "Vanilla", "value": "vanilla" },
+        { "label": "Vanilla + Typescript", "value": "vanilla-ts" },
+        { "label": "Vue", "value": "vue" },
+        { "label": "Vue + Typescript", "value": "vue-ts" },
+        { "label": "React", "value": "react" },
+        { "label": "React + Typescript", "value": "react-ts" },
+        { "label": "React + swc", "value": "react-swc" },
+        { "label": "React + swc + Typescript", "value": "react-swc-ts" },
+        { "label": "Preact", "value": "preact" },
+        { "label": "Preact + Typescript", "value": "preact-ts" },
+        { "label": "Lit", "value": "lit" },
+        { "label": "Lit + Typescript", "value": "lit-ts" },
+        { "label": "Svelte", "value": "svelte" },
+        { "label": "Svelte + Typescript", "value": "svelte-ts" },
+        { "label": "Solid", "value": "solid" },
+        { "label": "Solid + Typescript", "value": "solid-ts" }
+      ],
+      "prefix": "--template=",
+      "value": "vanilla"
+    }
+  },
+  "additionalCommands": [
+    {
+      "label": "install create-vite",
+      "description": "Click here to install create-vite globally",
+      "command": "npm install -g create-vite"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "npm create vite@latest --yes --help"
+    }
+  ],
+  "resources": [
+    "<a href='https://vitejs.dev/'>Home Page</a>",
+    "<a href='https://vitejs.dev/guide/'>Getting Started</a>",
+    "<a href='https://www.npmjs.com/package/create-vite'>Npm Package</a> ",
+    "<a href='https://github.com/vitejs/awesome-vite#templates'>Vite Templates</a> "
+  ],
+  "tags": ["vue", "react", "preact", "svelte", "solid", "qwik", "lit", "vanilla", "ui", "frontend", "library", "webapp", "web"]
+}

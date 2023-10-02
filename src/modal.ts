@@ -20,16 +20,16 @@ export enum AppName {
 }
 
 export interface AppProps {
-  appName: AppName;
+  appName: string;
+  commandTemplate?: string;
   description: string;
-  fieldProps: FieldProps[];
-  isSelected: boolean;
+  fields: Record<string, FieldProps>;
   logoPath: string;
-  scriptPath: string[];
   prerequisites: Tags[];
   additionalCommands: Tags[];
   resources: string[];
   tags: string[];
+  isSelected?: boolean;
 }
 
 export interface Tags {
@@ -40,9 +40,9 @@ export interface Tags {
 }
 
 export interface FieldProps {
-  id: string;
   label: string;
-  type: FieldType;
+  prefix?: string;
+  type: string;
   value?: string | boolean;
   className?: string;
   placeholder?: string;
@@ -50,14 +50,16 @@ export interface FieldProps {
   buttonText?: string;
   description?: string;
   readonly?: boolean;
-  isRequired?: boolean;
+  required?: boolean;
+  pattern?: string;
+  errors?: { required?: string, pattern?: string };
   options?: DropDownOptions[];
 }
 
 export enum FieldType {
-  TEXTBOX = 'text-field',
+  TEXTBOX = 'textbox',
   CHECKBOX = 'checkbox',
-  RADIO_GROUP = 'radio-group',
+  RADIO_GROUP = 'radio',
   BROWSE = 'browse',
   DROPDOWN = 'dropdown',
 }
@@ -65,4 +67,5 @@ export enum FieldType {
 export interface DropDownOptions {
   label: string;
   value: any;
+  fields?: Record<string, FieldProps>;
 }

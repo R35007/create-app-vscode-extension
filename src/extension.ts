@@ -1,17 +1,14 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { Commands } from './modal';
 import CreateApp from './Create-App/Create-App';
-import { getWebviewOptions } from './Utilities';
+import { Commands } from './modal';
+import { getWebviewOptions } from './utilities';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "create-app" is now active!');
 	const mySubs = context.subscriptions;
 
 	mySubs.push(vscode.commands.registerCommand(Commands.CREATE_APP, () => {

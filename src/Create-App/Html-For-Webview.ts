@@ -1,14 +1,14 @@
 import * as vscode from 'vscode';
-import { AppProps } from '../modal';
 import { NodeModulesAccessor, NodeModulesKeys } from '../NodeModuleAccessor';
-import { getAdditionalCommands, getAppList, getNonce, getPrerequisites, getUriFromPath } from '../Utilities';
-import generateAppForm from '../Utilities/Generate-App-Form';
+import { AppProps } from '../modal';
+import { generateAppList, getNonce, getUriFromPath } from '../utilities';
+import generateAppForm from './Generate-App-Form';
 
 export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: AppProps[], selectedApp: AppProps, showLoader: boolean) => {
   // Generate Dynamic Form Fields for the selected App
-  const createAppForm = generateAppForm(selectedApp.fieldProps);
+  const createAppForm = generateAppForm(selectedApp.fields);
   // Generate App Cards
-  const createAppList = getAppList(appsList, selectedApp.appName);
+  const createAppList = generateAppList(appsList, selectedApp.appName);
 
   // Generate App List dropdown Options
   const appsListOptions = appsList.map(app => `
@@ -16,10 +16,51 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
   ).join('');
 
   // Additional Details
-  const prerequisitesCommands = selectedApp.prerequisites?.filter(preReq => preReq.command).map(preReq => preReq.command).join('; ');
-  const prerequisites = getPrerequisites(selectedApp.prerequisites);
-  const additionalCommands = getAdditionalCommands(selectedApp.additionalCommands);
-  const resources = selectedApp.resources.map(r => `<div>${r}</div>`).join('');
+  const prerequisites = selectedApp.prerequisites?.map(p => {
+    if (p.href) return `<a title="${p.description}" href="${p.href}" class="tag anchor-tag prerequisites-tag">${p.label}</a>`;
+    return `<span title="${p.description}" data-command="${p.command}" class="tag command-tag prerequisites-tag">${p.label}</span>`;
+  }).join('');
+
+  const additionalCommands = selectedApp.additionalCommands?.map(ac =>
+    `<span title="${ac.description}" data-command="${ac.command}" class="tag command-tag additional-commands-tag">${ac.label}</span>`
+  ).join('');
+
+  const resources = selectedApp.resources?.map(resource => `<div>${resource}</div>`).join('');
+
+  const aboutSection = selectedApp.description?.length ? `<div class="about-container">
+    <h5>About</h5>
+    <div class="about-content my-3">
+      ${selectedApp.description}
+    </div>
+  </div>` : '';
+
+  const prerequisitesSection = selectedApp.prerequisites?.length ? `<div class="prerequisites-container">
+    <h5>Prerequisites</h5>
+    <div class="prerequisites-content my-3">
+      ${prerequisites}
+    </div>
+  </div>` : '';
+
+  const additionCommandsSection = selectedApp.additionalCommands?.length ? `<div class="additional-commands-container">
+    <h5>Additional Commands</h5>
+    <div class="additional-commands-content my-3">
+      ${additionalCommands}
+    </div>
+  </div>` : '';
+
+  const resourcesSection = selectedApp.resources?.length ? `<div class="resources-container">
+    <h5>Resources</h5>
+    <div class="resources-content my-3">
+    ${resources}
+    </div>
+  </div>` : '';
+
+  const installPrerequisitesSection = selectedApp.prerequisites?.some(item => item.command) ? `<div class="install-prerequisites-container">
+    <div class="install-prerequisite-content my-3">
+      <vscode-checkbox id="install-prerequisites"> Install Prerequisites Cli</vscode-checkbox>
+    </div>
+  </div>` : '';
+
 
   const uri = getUris(extensionUri, webview, selectedApp);
 
@@ -110,39 +151,25 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
               </section>
               <section class="configuration-container">
                 <div class="row h-100">
-                  <div class="col-8 col-lg-9 app-config-container overflow-y-auto h-100">
+                  <div id="create-app-form" class="col app-config-container overflow-y-auto h-100">
                     ${createAppForm}
+                    <div class="row mb-3 align-items-center">
+                      <div class="col-12 val">
+                        <div class="d-flex">
+                          <vscode-text-field id="app-folder-location" class="d-block flex-1 w-100 control" placeholder="Please select provide any folder to create app"></vscode-text-field>
+                          <vscode-button id="app-folder-location-btn" style="white-space: nowrap;">Browse Folder</vscode-button>
+                        </div>
+                        <div>Leave it empty to create app in active workspace folder.</div>
+                        <div class="error text-primary"></div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto">
-                    <div class="about-container">
-                      <h5>About</h5>
-                      <div class="about-content my-3">
-                        ${selectedApp.description}
-                      </div>
-                    </div>
-                    <div class="prerequisites-container ${prerequisites ? '' : 'd-none'}">
-                      <h5>Prerequisites</h5>
-                      <div class="prerequisites-content my-3">
-                        ${prerequisites}
-                      </div>
-                    </div>
-                    <div class="additional-commands-container">
-                      <h5>Additional Commands</h5>
-                      <div class="additional-commands-content my-3">
-                        ${additionalCommands}
-                      </div>
-                    </div>
-                    <div class="resources-container">
-                      <h5>Resources</h5>
-                      <div class="resources-content my-3">
-                      ${resources}
-                      </div>
-                    </div>
-                    <div class="install-prerequisites-container ${prerequisitesCommands ? '' : 'd-none'}">
-                      <div class="install-prerequisite-content my-3">
-                        <vscode-checkbox id="install-prerequisites" data-command="${prerequisitesCommands};"> Install Prerequisites Cli</vscode-checkbox>
-                      </div>
-                    </div>
+                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto ${aboutSection || prerequisitesSection || additionCommandsSection || resourcesSection || installPrerequisitesSection ? '' : 'd-none'}">
+                    ${aboutSection}
+                    ${prerequisitesSection}
+                    ${additionCommandsSection}
+                    ${resourcesSection}
+                    ${installPrerequisitesSection}
                   </div>
                 </div>
               </section>
@@ -150,11 +177,13 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
           </div>
         </div>
         <script src="${uri.scriptMainUri}" nonce="${nonce}"></script>
-        <script src="${uri.formScriptUri}" nonce="${nonce}"></script>
         <script nonce="${nonce}">
           setTimeout(() => {
+            init(${JSON.stringify(selectedApp)});
+          }, 300);
+          setTimeout(() => {
             document.getElementById("loader")?.remove();
-          }, 2000);
+          }, 1000);
         </script>
       </body>
       </html>`;
@@ -169,7 +198,6 @@ const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview, selectedApp:
 
   const toolkitUri = getUriFromPath(extensionUri, webview, ...NodeModulesAccessor.getPathToOutputFile(NodeModulesKeys.uiToolkit));
   const bootstrapUri = getUriFromPath(extensionUri, webview, ...NodeModulesAccessor.getPathToOutputFile(NodeModulesKeys.bootstrap));
-  const formScriptUri = getUriFromPath(extensionUri, webview, ...selectedApp.scriptPath);
 
   return {
     stylesResetUri,
@@ -177,6 +205,5 @@ const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview, selectedApp:
     scriptMainUri,
     toolkitUri,
     bootstrapUri,
-    formScriptUri
   };
 };

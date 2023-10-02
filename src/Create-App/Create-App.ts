@@ -1,8 +1,8 @@
 
 import * as vscode from 'vscode';
+import getAppsList from '../Get-Apps-List';
 import { AppProps, Commands } from '../modal';
-import { getWebviewOptions } from '../Utilities';
-import AppsList from '../Utilities/Apps-List';
+import { getWebviewOptions, interpolate } from '../utilities';
 import { Command } from './Command';
 import getHtmlForWebview from './Html-For-Webview';
 
@@ -15,13 +15,13 @@ export default class CreateApp {
    */
   public static currentPanel: CreateApp | undefined;
 
-  private readonly _panel: vscode.WebviewPanel;
-  private readonly _webview: vscode.Webview;
-  private readonly _extensionUri: vscode.Uri;
-  private _disposables: vscode.Disposable[] = [];
+  readonly #panel: vscode.WebviewPanel;
+  readonly #extensionUri: vscode.Uri;
+  readonly #webview: vscode.Webview;
+  #disposables: vscode.Disposable[] = [];
 
-  private _appsList: AppProps[] = AppsList;
-  private _selectedApp: AppProps = this._appsList[0];
+  #appsList: AppProps[] = getAppsList() as AppProps[];
+  #selectedApp: AppProps = this.#appsList[0];
 
   public static createOrShow(extensionUri: vscode.Uri) {
     const column = vscode.window.activeTextEditor
@@ -30,7 +30,7 @@ export default class CreateApp {
 
     // If we already have a panel, show it.
     if (CreateApp.currentPanel) {
-      CreateApp.currentPanel._panel.reveal(column);
+      CreateApp.currentPanel.#panel.reveal(column);
       return;
     }
 
@@ -51,58 +51,55 @@ export default class CreateApp {
   }
 
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
-    this._panel = panel;
-    this._webview = panel.webview;
-    this._extensionUri = extensionUri;
+    this.#panel = panel;
+    this.#webview = panel.webview;
+    this.#extensionUri = extensionUri;
 
-    this._panel.iconPath = vscode.Uri.joinPath(extensionUri, "media", "images", "ca-logo-sm.png");
+    this.#panel.iconPath = vscode.Uri.joinPath(extensionUri, "media", "images", "ca-logo-sm.png");
 
     // Set the webview's initial html content
-    this._update(true);
+    this.#update(true);
 
     // Listen for when the panel is disposed
     // This happens when the user closes the panel or when the panel is closed programmatically
-    this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
-
-    // Update the content based on view changes
-    this._panel.onDidChangeViewState(e => {
-      if (this._panel.visible) {
-        this._update(true);
-      }
-    }, null, this._disposables);
+    this.#panel.onDidDispose(() => this.dispose(), null, this.#disposables);
 
     // Handle messages from the webview
-    this._panel.webview.onDidReceiveMessage(this.onDidReceiveMessage, null, this._disposables);
+    this.#panel.webview.onDidReceiveMessage(this.onDidReceiveMessage, null, this.#disposables);
   }
 
   onDidReceiveMessage = (message: any) => {
     switch (message.action) {
       case 'switch-app': {
-        this._switchApp(message.appName);
+        this.#switchApp(message.appName);
         return;
       }
       case 'get-location': {
-        this._getFolderLocation(message);
+        this.#getFolderLocation(message);
+        return;
+      }
+      case 'get-command-template': {
+        this.#panel.webview.postMessage({ action: 'set-command-template', value: interpolate(message.formValues, message.commandTemplate) });
         return;
       }
       case 'execute-command': {
         const command = new Command(
           message.command,
           message.location,
-          this._selectedApp.appName
+          this.#selectedApp.appName
         );
         command.executeCommand();
         return;
       }
       case 'copy-command': {
-        this._copyCommand(message.command);
+        this.#copyCommand(message.command);
         return;
       }
       case 'execute-create-command': {
         const command = new Command(
           message.command,
           message.location,
-          this._selectedApp.appName
+          this.#selectedApp.appName
         );
         command.executeCreateCommand();
         return;
@@ -110,23 +107,22 @@ export default class CreateApp {
     }
   };
 
-
-  private _copyCommand = (command: string) => {
+  #copyCommand = (command: string) => {
     vscode.env.clipboard.writeText(command);
     vscode.window.showInformationMessage('Copied command to the clipboard 📋');
   };
 
-  private _switchApp = (appName: string) => {
-    this._appsList.forEach(app => {
+  #switchApp = (appName: string) => {
+    this.#appsList.forEach(app => {
       if (app.appName === appName) {
         app.isSelected = true;
-        this._selectedApp = app;
+        this.#selectedApp = app;
       }
     });
-    this._update();
+    this.#update();
   };
 
-  private _getFolderLocation = async (props: any) => {
+  #getFolderLocation = async (props: any) => {
     const folderLocations = await vscode.window.showOpenDialog({
       canSelectFolders: true,
       canSelectFiles: false,
@@ -135,7 +131,7 @@ export default class CreateApp {
     });
 
     if (folderLocations?.length) {
-      this._panel.webview.postMessage({ action: 'set-location', value: folderLocations[0].fsPath, id: props.id });
+      this.#panel.webview.postMessage({ action: props.isAppLocation ? 'set-app-location' : 'set-location', value: folderLocations[0].fsPath, name: props.name });
     }
   };
 
@@ -143,29 +139,29 @@ export default class CreateApp {
     CreateApp.currentPanel = undefined;
 
     // Clean up our resources
-    this._panel.dispose();
+    this.#panel.dispose();
 
-    while (this._disposables.length) {
-      const disposable = this._disposables.pop();
+    while (this.#disposables.length) {
+      const disposable = this.#disposables.pop();
       if (disposable) {
         disposable.dispose();
       }
     }
   }
 
-  private _update(showLoader: boolean = false) {
+  #update(showLoader: boolean = false) {
     // Vary the webview's content based on where it is located in the editor.
 
-    switch (this._panel.viewColumn) {
+    switch (this.#panel.viewColumn) {
       case vscode.ViewColumn.Two:
       case vscode.ViewColumn.Three:
       case vscode.ViewColumn.One:
       default:
-        this._panel.webview.html = getHtmlForWebview(
-          this._extensionUri,
-          this._panel.webview,
-          this._appsList,
-          this._selectedApp,
+        this.#panel.webview.html = getHtmlForWebview(
+          this.#extensionUri,
+          this.#panel.webview,
+          this.#appsList,
+          this.#selectedApp,
           showLoader
         );
         return;

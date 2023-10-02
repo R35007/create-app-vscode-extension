@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
-import { AppProps, Tags } from '../modal';
-import { NodeModulesAccessor } from '../NodeModuleAccessor';
+import { NodeModulesAccessor } from './NodeModuleAccessor';
+import { AppProps } from './modal';
 
 export const getWebviewOptions = (extensionUri: vscode.Uri): vscode.WebviewOptions => {
   return {
@@ -27,7 +27,7 @@ export const getNonce = () => {
   return text;
 };
 
-export const getAppList = (appsList: AppProps[], selectedAppName?: string): string => {
+export const generateAppList = (appsList: AppProps[], selectedAppName?: string): string => {
   return appsList.map(app => {
     return `
       <li id="${app.appName}" title="${app.description}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
@@ -43,17 +43,14 @@ export const getAppList = (appsList: AppProps[], selectedAppName?: string): stri
   }).join('');
 };
 
-export const getPrerequisites = (prerequisites: Tags[] = []) => {
-  return prerequisites.map(p => {
-    if (p.href) {
-      return `<a title="${p.description}" href="${p.href}" class="tag anchor-tag prerequisites-tag">${p.label}</a>`;
-    }
-    return `<span title="${p.description}" data-command="${p.command}" class="tag command-tag prerequisites-tag">${p.label}</span>`;
-  }).join('');
+export const toCamelCase = (str: string) => {
+  return str.replace(/(?:^.|[A-Z]|\b.)/g, function (letter, index) {
+    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
+  }).trim().replace(/\s+/g, '');
 };
 
-export const getAdditionalCommands = (additionalCommands: Tags[] = []) => {
-  return additionalCommands.map(ac =>
-    `<span title="${ac.description}" data-command="${ac.command}" class="tag command-tag additional-commands-tag">${ac.label}</span>`
-  ).join('');
+export const interpolate = (object: object, format: string) => {
+  const keys = Object.keys(object);
+  const values = Object.values(object);
+  return new Function(...keys, `return \`${format}\`;`)(...values);
 };

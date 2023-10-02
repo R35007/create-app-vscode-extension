@@ -1,0 +1,69 @@
+{
+  "appName": "React",
+  "description": "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
+  "prerequisites": [
+    {
+      "label": "node",
+      "description": "https://nodejs.org/en/",
+      "href": "https://nodejs.org/en/"
+    }
+  ],
+  "commandTemplate": "npx create-react-app ${appId} ${template}",
+  "fields": {
+    "appId": {
+      "type": "textbox",
+      "label": "App Id",
+      "placeholder": "Can have lowercase alphabets and hyphen (-). No spaces or special chars are allowed.",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "App Id is Required.",
+        "pattern": "Invalid Id. No spaces or special chars are allowed."
+      }
+    },
+    "template": {
+      "type": "dropdown",
+      "label": "Template",
+      "description": "You can find many great community templates by searching for <a href='https://www.npmjs.com/search?q=cra-template-*'>cra-template-*</a> on npm.",
+      "options": [
+        { "label": "Javascript", "value": "" },
+        { "label": "Typescript", "value": "--template=typescript" },
+        { "label": "Typescript, Bootstrap, SASS", "value": "--template=tbs" },
+        { "label": "Typescript, Redux", "value": "--template=redux-typescript" },
+        { "label": "Javascript, Redux", "value": "--template=redux" }
+      ],
+      "value": ""
+    }
+  },
+  "additionalCommands": [
+    {
+      "label": "install create-react-app",
+      "description": "Click here to install create-react-app globally",
+      "command": "npm install -g create-react-app"
+    },
+    {
+      "label": "create-react-app",
+      "description": "Click here to create the react app using cli prompts",
+      "command": "npx create-react-app"
+    },
+    {
+      "label": "check cli version",
+      "description": "Click here to check cli version",
+      "command": "npx create-react-app --version"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "npx create-react-app --help"
+    }
+  ],
+  "resources": [
+    "<a href='https://reactjs.org/'>Home Page</a>",
+    "<a href='https://create-react-app.dev/docs/getting-started'>Getting Started</a>",
+    "<a href='https://www.npmjs.com/package/create-react-app'>Npm Package</a> ",
+    "<a href='https://www.npmjs.com/search?q=cra-template-*'>React Templates</a> "
+  ],
+  "tags": ["react", "ui", "frontend", "library", "webapp", "web"]
+}

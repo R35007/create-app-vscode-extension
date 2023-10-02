@@ -54,7 +54,7 @@ body > * {
 }
 
 .error {
-  line-height: 1.2rem;
+  margin-top: 3px;
 }
 
 .text-primary {
