@@ -6,9 +6,9 @@ Easily Create any UI App with Official Starter Templates or Boilerplate using CL
 
 ## Features
 
-- Easy to create a boilerplate app using the `Create App: Interactive`view.
+- Easy to create a boilerplate app using the `Create App: Interactive` view.
 - Bored of interactive form fields, no worries. Try the new `Create App: Quick` command to create a app in seconds using vscode quick pick command pallet.
-- Create our own custom apps and commands that generates interactive form fields and quick picks.
+- Add our own custom apps and commands that generates interactive form fields and quick picks.
 
 ## Supported Apps:
 
@@ -27,14 +27,14 @@ Easily Create any UI App with Official Starter Templates or Boilerplate using CL
 <span><sub><a href="https://code.visualstudio.com/api"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/vscode.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;VS Code Extension</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://vuejs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/vue.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Vue</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-## Interactive
+## Create App: Interactive
 
 - Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create App: Interactive` to open the Create App view.
 - This opens an interactive ui that prompts you tp pick the app name and provide configurations to create the app.
 
 ![Screen Capture in Action](https://github.com/R35007/create-app-support/blob/version_4/images/preview_interactive.gif?raw=true)
 
-## Quick Pick
+## Create App: Quick
 
 - Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create App: Quick` to open the Create App quick prompt.
 - This provides you the quick command pallet and prompt you the pick the app and its required minimal configurations to create the app.
@@ -146,4 +146,6 @@ interface AppProps {
 - Example 4:
   - We can also use conditional logic to generate the command from commandTemplate
   - Set commandTemplate as `ng new ${fields.appId} ${!fields.routing ? '--default-route' : fields.routing} --defaults`,
-  - from the above commandTemplate, If the value of routing is empty the we set a default command as `--default-route`
+  - from the above commandTemplate, If the value of routing is empty the we set a default command as `--default-route`.
+
+> Note: Adding semicolon `;` will add a newline after the semicolon.

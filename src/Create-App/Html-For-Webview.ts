@@ -163,7 +163,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                       </div>
                     </div>
                   </div>
-                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto ${aboutSection || prerequisitesSection || additionCommandsSection || resourcesSection || installPrerequisitesSection ? '' : 'd-none'}">
+                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto d-none d-lg-block ${aboutSection || prerequisitesSection || additionCommandsSection || resourcesSection || installPrerequisitesSection ? '' : 'd-none'}">
                     ${aboutSection}
                     ${prerequisitesSection}
                     ${additionCommandsSection}

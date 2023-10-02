@@ -1,3 +1,8 @@
+## v4.0.1
+
+- Fixed - Style issue fixed.
+- Fixed - Vulnerabilities fixed.
+
 ## v4.0.0
 
 - New✨ - Now we can add our own custom apps to generate a interactive ui.
