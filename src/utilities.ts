@@ -28,11 +28,11 @@ export const getNonce = () => {
 };
 
 export const generateAppList = (appsList: AppProps[], selectedAppName?: string): string => {
-  return appsList.map(app => {
+  return appsList.map((app, index) => {
     return `
-      <li id="${app.appName}" title="${app.description}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
+      <li id="${app.appName}" style="order: ${app.order || index + 1}" title="${app.description}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
         <div class="col-3 text-center thumbnail p-2">
-          <img src="${app.logoPath}" />
+          <img src="${app.logoPath || "https://raw.githubusercontent.com/R35007/create-app-support/master/images/ca-logo.png"}" />
         </div>
         <div class="tags d-none">
           ${app.tags?.join(',')}
@@ -43,14 +43,19 @@ export const generateAppList = (appsList: AppProps[], selectedAppName?: string):
   }).join('');
 };
 
-export const toCamelCase = (str: string) => {
-  return str.replace(/(?:^.|[A-Z]|\b.)/g, function (letter, index) {
-    return index == 0 ? letter.toLowerCase() : letter.toUpperCase();
-  }).trim().replace(/\s+/g, '');
-};
-
 export const interpolate = (object: object, format: string) => {
   const keys = Object.keys(object);
   const values = Object.values(object);
   return new Function(...keys, `return \`${format}\`;`)(...values);
 };
+
+export const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
+
+const toSanitizedCommand = (str: string) =>
+  str
+    .replace(/ +(?= )/g, "")
+    .replace(/;/g, ";\n")
+    .replace(/\n\s+/g, "\n")
+    .replace(/\s*;\s*/g, ";\n")
+    .replace(/\n+/g, "\n")
+    .trim();

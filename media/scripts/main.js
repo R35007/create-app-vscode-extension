@@ -1,16 +1,10 @@
 var vscode = acquireVsCodeApi();
 
 let fieldProps = {};
-let commandTemplate = "";
+let commandTemplate = "${fields['*']}";
 let prerequisites = "";
 
 const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
-
-const hasValidValue = (e) => {
-  if (e.target.pattern && !new RegExp(e.target.pattern).test(e.target.value)) return false;
-  if (e.target.required && !`${e.target.value}`.length) return false;
-  return true;
-};
 
 const toSanitizedCommand = (str) =>
   str
@@ -22,12 +16,12 @@ const toSanitizedCommand = (str) =>
     .trim();
 
 const setCommand = () => {
-  const formValues = Object.fromEntries(
+  const fields = Object.fromEntries(
     Object.entries(fieldProps).map(([key, props]) => [key, getCommand(props.prefix, props.value, props.suffix)])
   );
   return vscode.postMessage({
     action: "get-command-template",
-    formValues: { ...formValues, prerequisites },
+    formValues: { fields: { ...fields, "*": Object.values(fields).join(" ").trim() }, prerequisites },
     commandTemplate: `${prerequisites}${commandTemplate}`,
   });
 };
@@ -40,6 +34,7 @@ function init(selectedApp) {
   const $appFilterInput = document.getElementById("app-list-filter-input");
   const $appFolderLocationBtn = document.getElementById("app-folder-location-btn");
   const $appFolderLocation = document.getElementById("app-folder-location");
+  const $copyJsonBtn = document.getElementById("copy-json");
 
   // Handle messages sent from the extension to the webview
   window.addEventListener("message", (event) => {
@@ -52,6 +47,7 @@ function init(selectedApp) {
         break;
       case "set-app-location":
         $appFolderLocation.value = message.value;
+        break;
       case "set-command-template":
         $command.value = toSanitizedCommand(message.value);
         break;
@@ -59,8 +55,8 @@ function init(selectedApp) {
   });
 
   // Set Default values
-  commandTemplate = selectedApp.commandTemplate;
-  fieldProps = selectedApp.fields;
+  commandTemplate = selectedApp.commandTemplate || "${fields['*']}";
+  fieldProps = selectedApp.fields || {};
   setCommand();
 
   // Set Prerequisites
@@ -81,22 +77,23 @@ function init(selectedApp) {
     function onChangeHandler(e) {
       const fieldName = e.target.name;
       const fieldValue = e.target.value;
-      if (fieldName === "app-folder-location") return;
+
+      const $errorDiv = document.querySelector(`.${fieldName}-error`);
 
       if (fieldProps[fieldName].required && !`${fieldValue}`.length) {
         $execute.disabled = true;
-        this.parentNode.parentNode.children[2].innerText = fieldProps[fieldName].errors.required || "Required.";
+        if ($errorDiv) $errorDiv.innerHTML = fieldProps[fieldName].errors.required || "Required.";
         return;
       }
 
-      if (fieldProps[fieldName].pattern && !new RegExp(fieldProps[fieldName].pattern).test(fieldValue)) {
+      if (`${fieldValue}`.length && fieldProps[fieldName].pattern && !new RegExp(fieldProps[fieldName].pattern).test(fieldValue)) {
         $execute.disabled = true;
-        this.parentNode.parentNode.children[2].innerText = fieldProps[fieldName].errors.pattern || "Invalid pattern.";
+        if ($errorDiv) $errorDiv.innerHTML = fieldProps[fieldName].errors.pattern || "Invalid Pattern.";
         return;
       }
 
       $execute.disabled = false;
-      this.parentNode.parentNode.children[2].innerText = "";
+      if ($errorDiv) $errorDiv.innerHTML = "";
       fieldProps[e.target.name].value = fieldValue;
       setCommand();
     }
@@ -110,6 +107,11 @@ function init(selectedApp) {
     browseButton.addEventListener("click", function () {
       vscode.postMessage({ action: "get-location", name: this.dataset.name });
     });
+  });
+
+  // On Copy json button click
+  $copyJsonBtn.addEventListener("click", function () {
+    vscode.postMessage({ action: "copy-json" });
   });
 
   // On App location browse button click

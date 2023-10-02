@@ -9,25 +9,26 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "npm create vite@latest ${appId} -- ${template} --yes",
+  "commandTemplate": "npm create vite@latest ${fields.appId} -- ${fields.template} --yes",
   "fields": {
     "appId": {
-      "type": "textbox",
       "label": "App Id",
-      "placeholder": "Can have lowercase alphabets hyphen (-) and dot (.). No spaces or special chars are allowed.",
-      "description": "You can use . for the project name to scaffold in the current directory.",
+      "type": "textbox",
+      "placeholder": "^[a-z]+(-[a-z]+)*$",
+      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-) and dot (.)",
       "value": "hello-world",
       "required": true,
       "pattern": "^[.|a-z]+(-[a-z]+)*$",
       "errors": {
         "required": "App Id is Required.",
-        "pattern": "Invalid Id. No spaces or special chars are allowed."
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[.|a-z]+(-[a-z]+)*$"
       }
     },
     "template": {
       "type": "dropdown",
       "label": "Vite Template",
       "description": "Check out Awesome Vite for <a href='https://github.com/vitejs/awesome-vite#templates'>community maintained templates</a> that include other tools or target different frameworks",
+      "prompt": true,
       "options": [
         { "label": "Vanilla", "value": "vanilla" },
         { "label": "Vanilla + Typescript", "value": "vanilla-ts" },
@@ -63,10 +64,22 @@
     }
   ],
   "resources": [
-    "<a href='https://vitejs.dev/'>Home Page</a>",
-    "<a href='https://vitejs.dev/guide/'>Getting Started</a>",
-    "<a href='https://www.npmjs.com/package/create-vite'>Npm Package</a> ",
-    "<a href='https://github.com/vitejs/awesome-vite#templates'>Vite Templates</a> "
+    {
+      "label": "Home Page",
+      "href": "https://vitejs.dev/"
+    },
+    {
+      "label": "Getting Started",
+      "href": "https://vitejs.dev/guide/"
+    },
+    {
+      "label": "Npm Package",
+      "href": "https://www.npmjs.com/package/create-vite"
+    },
+    {
+      "label": "Templates",
+      "href": "https://github.com/vitejs/awesome-vite#templates"
+    }
   ],
-  "tags": ["vue", "react", "preact", "svelte", "solid", "qwik", "lit", "vanilla", "ui", "frontend", "library", "webapp", "web"]
+  "tags": ["vite", "vue", "react", "preact", "svelte", "solid", "qwik", "lit", "vanilla", "ui", "frontend", "library", "webapp", "web"]
 }

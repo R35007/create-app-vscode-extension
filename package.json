@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/R35007/create-app-support"
+    "url": "https://github.com/R35007/create-app-vscode-extension"
   },
   "engines": {
     "vscode": "^1.50.0"
@@ -47,11 +47,484 @@
   "contributes": {
     "commands": [
       {
-        "command": "create.app",
-        "title": "App",
-        "category": "Create"
+        "command": "create-app.interactive",
+        "title": "Interactive",
+        "category": "Create App"
+      },
+      {
+        "command": "create-app.quick",
+        "title": "Quick",
+        "category": "Create App"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Create App",
+      "properties": {
+        "create-app.settings.customAppPath": {
+          "type": "string",
+          "description": "Set custom file or folder path of the custom app json. please restart the vscode to take effect."
+        },
+        "create-app.settings.customApps": {
+          "type": "array",
+          "description": "Provide the list of custom app details. please restart the vscode to take effect.",
+          "examples": [
+            [],
+            [
+              {
+                "appName": "App Name",
+                "order": 1,
+                "description": "App Description",
+                "logoPath": "https://app-logo.png",
+                "prerequisites": [
+                  {
+                    "label": "label",
+                    "description": "description",
+                    "href": "https://link/to/site"
+                  },
+                  {
+                    "label": "label",
+                    "description": "description",
+                    "command": "cli command"
+                  }
+                ],
+                "commandTemplate": "cli prefix ${field.appId} or ${fields['*']} cli suffix",
+                "fields": {
+                  "appId": {
+                    "label": "App Id",
+                    "type": "textbox",
+                    "placeholder": "placeholder",
+                    "value": "hello-world",
+                    "required": true,
+                    "pattern": "^[a-z]+(-[a-z]+)*$",
+                    "prefix": "",
+                    "suffix": "",
+                    "errors": {
+                      "required": "App Id is Required.",
+                      "pattern": "Invalid Id. No spaces or special chars are allowed."
+                    },
+                    "options": [
+                      {
+                        "label": "provide options only for type dropdown",
+                        "value": "--init"
+                      }
+                    ]
+                  }
+                },
+                "additionalCommands": [
+                  {
+                    "label": "label",
+                    "description": "description",
+                    "command": "cli command"
+                  }
+                ],
+                "resources": [
+                  "<a href='https://home-page/'>Home Page</a>"
+                ],
+                "tags": [
+                  "tags",
+                  "to",
+                  "filter",
+                  "app"
+                ]
+              }
+            ]
+          ],
+          "items": {
+            "type": "object",
+            "examples": [
+              {},
+              {
+                "appName": "App Name",
+                "order": 1,
+                "description": "App Description",
+                "logoPath": "https://app-logo.png",
+                "prerequisites": [
+                  {
+                    "label": "label",
+                    "description": "description",
+                    "href": "https://link/to/site"
+                  },
+                  {
+                    "label": "label",
+                    "description": "description",
+                    "command": "cli command"
+                  }
+                ],
+                "commandTemplate": "cli prefix ${field.appId} or ${fields['*']} cli suffix",
+                "fields": {
+                  "appId": {
+                    "label": "App Id",
+                    "type": "textbox",
+                    "placeholder": "placeholder",
+                    "value": "hello-world",
+                    "required": true,
+                    "pattern": "^[a-z]+(-[a-z]+)*$",
+                    "prefix": "",
+                    "suffix": "",
+                    "errors": {
+                      "required": "App Id is Required.",
+                      "pattern": "Invalid Id. No spaces or special chars are allowed."
+                    },
+                    "options": [
+                      {
+                        "label": "provide options only for type dropdown",
+                        "value": "--init"
+                      }
+                    ]
+                  }
+                },
+                "additionalCommands": [
+                  {
+                    "label": "label",
+                    "description": "description",
+                    "command": "cli command"
+                  }
+                ],
+                "resources": [
+                  "<a href='https://home-page/'>Home Page</a>"
+                ],
+                "tags": [
+                  "tags",
+                  "to",
+                  "filter",
+                  "app"
+                ]
+              }
+            ],
+            "properties": {
+              "appName": {
+                "type": "string"
+              },
+              "hide": {
+                "type": "boolean"
+              },
+              "order": {
+                "type": "number"
+              },
+              "description": {
+                "type": "string"
+              },
+              "logoPath": {
+                "type": "string"
+              },
+              "prerequisites": {
+                "type": "array",
+                "examples": [
+                  [],
+                  [
+                    {
+                      "label": "label",
+                      "description": "description",
+                      "href": "https://link/to/site"
+                    },
+                    {
+                      "label": "label",
+                      "description": "description",
+                      "command": "cli command"
+                    }
+                  ]
+                ],
+                "items": {
+                  "type": "object",
+                  "examples": [
+                    {},
+                    {
+                      "label": "label",
+                      "description": "description",
+                      "href": "https://link/to/site"
+                    },
+                    {
+                      "label": "label",
+                      "description": "description",
+                      "command": "cli command"
+                    }
+                  ],
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "href": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "description",
+                        "href"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "command": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "label",
+                        "description",
+                        "command"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "commandTemplate": {
+                "type": "string"
+              },
+              "fields": {
+                "type": "object",
+                "examples": [
+                  {},
+                  {
+                    "appId": {
+                      "label": "App Id",
+                      "type": "textbox",
+                      "placeholder": "placeholder",
+                      "value": "hello-world",
+                      "required": true,
+                      "prompt": true,
+                      "pattern": "^[a-z]+(-[a-z]+)*$",
+                      "prefix": "",
+                      "suffix": "",
+                      "errors": {
+                        "required": "App Id is Required.",
+                        "pattern": "Invalid Id. No spaces or special chars are allowed."
+                      },
+                      "options": [
+                        {
+                          "label": "provide options only for type dropdown",
+                          "value": "--init"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "additionalProperties": {
+                  "type": "object",
+                  "examples": [
+                    {},
+                    {
+                      "appId": {
+                        "label": "App Id",
+                        "type": "textbox",
+                        "placeholder": "placeholder",
+                        "value": "hello-world",
+                        "required": true,
+                        "prompt": true,
+                        "pattern": "^[a-z]+(-[a-z]+)*$",
+                        "prefix": "",
+                        "suffix": "",
+                        "errors": {
+                          "required": "App Id is Required.",
+                          "pattern": "Invalid Id. No spaces or special chars are allowed."
+                        },
+                        "options": [
+                          {
+                            "label": "provide options only for type dropdown",
+                            "value": "--init"
+                          }
+                        ]
+                      }
+                    }
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "textbox",
+                        "dropdown",
+                        "radio",
+                        "browse",
+                        "checkbox"
+                      ]
+                    },
+                    "placeholder": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "required": {
+                      "type": "boolean"
+                    },
+                    "canSelectFile": {
+                      "type": "boolean"
+                    },
+                    "canSelectFolder": {
+                      "type": "boolean"
+                    },
+                    "prompt": {
+                      "type": "boolean"
+                    },
+                    "pattern": {
+                      "type": "string"
+                    },
+                    "prefix": {
+                      "type": "string"
+                    },
+                    "suffix": {
+                      "type": "string"
+                    },
+                    "errors": {
+                      "type": "object",
+                      "examples": [
+                        {},
+                        {
+                          "required": "App Id is Required.",
+                          "pattern": "Invalid Id. No spaces or special chars are allowed."
+                        }
+                      ],
+                      "properties": {
+                        "required": {
+                          "type": "string"
+                        },
+                        "pattern": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "options": {
+                      "type": "array",
+                      "examples": [
+                        [],
+                        [
+                          {
+                            "label": "provide options only for type dropdown",
+                            "value": "--init"
+                          }
+                        ]
+                      ],
+                      "items": {
+                        "type": "object",
+                        "examples": [
+                          {},
+                          {
+                            "label": "provide options only for type dropdown",
+                            "value": "--init"
+                          }
+                        ],
+                        "properties": {
+                          "label": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "label",
+                          "value"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "type"
+                  ],
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "dropdown"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "options"
+                    ]
+                  }
+                }
+              },
+              "additionalCommands": {
+                "type": "array",
+                "examples": [
+                  [],
+                  [
+                    {
+                      "label": "label",
+                      "description": "description",
+                      "command": "cli command"
+                    }
+                  ]
+                ],
+                "items": {
+                  "type": "object",
+                  "examples": [
+                    {},
+                    {
+                      "label": "label",
+                      "description": "description",
+                      "command": "cli command"
+                    }
+                  ],
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "command": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "description",
+                    "command"
+                  ]
+                }
+              },
+              "resources": {
+                "type": "array",
+                "examples": [
+                  [],
+                  [
+                    "<a href='https://home-page/'>Home Page</a>"
+                  ]
+                ],
+                "items": {
+                  "type": "string"
+                }
+              },
+              "tags": {
+                "type": "array",
+                "examples": [
+                  [],
+                  [
+                    "tags",
+                    "to",
+                    "filter",
+                    "app"
+                  ]
+                ],
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "appName"
+            ]
+          }
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

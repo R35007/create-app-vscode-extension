@@ -25,7 +25,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
     `<span title="${ac.description}" data-command="${ac.command}" class="tag command-tag additional-commands-tag">${ac.label}</span>`
   ).join('');
 
-  const resources = selectedApp.resources?.map(resource => `<div>${resource}</div>`).join('');
+  const resources = selectedApp.resources?.map(resource => `<div><a href='${resource.href}' title='${resource.description || resource.href}'>${resource.label}</a></div>`).join('');
 
   const aboutSection = selectedApp.description?.length ? `<div class="about-container">
     <h5>About</h5>
@@ -60,7 +60,6 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
       <vscode-checkbox id="install-prerequisites"> Install Prerequisites Cli</vscode-checkbox>
     </div>
   </div>` : '';
-
 
   const uri = getUris(extensionUri, webview, selectedApp);
 
@@ -125,7 +124,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         <div id="loader" class="loader ${showLoader ? '' : 'hide-loader'}">
           <div class="loader-text">🚀Launching...</div>
         </div>
-        <div class="container-md my-0 h-100">
+        <div class="container-lg my-0 h-100">
           <div class="row pt-4 h-100">
             <aside class="col-3 col-lg-2 d-none d-md-block app-list-container h-100 pe-0">
               <div class="searchbox-wrapper">
@@ -136,17 +135,18 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
               </ul>
             </aside>
             <section class="col h-100">
-              <header class="d-flex align-items-center mb-2">
+              <header class="d-flex align-items-center justify-content-between mb-2">
                 <vscode-button class="pe-none d-none d-md-inline-block">Create ${selectedApp.appName} App</vscode-button>
                 <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none" style="min-width: 12rem;">
                   ${appsListOptions}
                 </vscode-dropdown>
+                <span id="copy-json" title="Click here to copy app json" class="tag" style="opacity: 0.5">copy config</span>
               </header>
               <section class="command-container position-relative mb-3">
                 <vscode-text-area id="command" class="d-block w-100" rows="5"></vscode-text-area>
                 <div class="action-container d-inline-block position-absolute">
-                  <vscode-button appearance="secondary" id="copy-command">Copy</vscode-button>
-                  <vscode-button id="execute">Execute</vscode-button>
+                  <vscode-button appearance="secondary" id="copy-command" title="click here to copy the command">Copy</vscode-button>
+                  <vscode-button id="execute" title="click here to execute the command in terminal">Execute</vscode-button>
                 </div>
               </section>
               <section class="configuration-container">
@@ -155,12 +155,11 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                     ${createAppForm}
                     <div class="row mb-3 align-items-center">
                       <div class="col-12 val">
-                        <div class="d-flex">
-                          <vscode-text-field id="app-folder-location" class="d-block flex-1 w-100 control" placeholder="Please select provide any folder to create app"></vscode-text-field>
-                          <vscode-button id="app-folder-location-btn" style="white-space: nowrap;">Browse Folder</vscode-button>
+                        <div class="d-flex mb-1">
+                          <vscode-text-field id="app-folder-location" class="d-block flex-1 w-100" placeholder="Please select provide any folder to create app"></vscode-text-field>
+                          <vscode-button id="app-folder-location-btn" title="Browse location to carate app" style="white-space: nowrap;">Browse Folder</vscode-button>
                         </div>
                         <div>Leave it empty to create app in active workspace folder.</div>
-                        <div class="error text-primary"></div>
                       </div>
                     </div>
                   </div>

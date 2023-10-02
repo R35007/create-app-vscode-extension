@@ -7,10 +7,9 @@ const generateFormFields = (fieldProps: Record<string, FieldProps> = {}): string
       <div class="row mb-3 align-items-center">
         <div class="col-12 col-lg-4 key mb-1">${fieldProps.label} ${fieldProps.required ? `<span class="text-primary">*</span>` : ''}</div>
         <div class="col-12 col-lg-8 val">
-          <div>${fieldSwitch(fieldName, fieldProps)}</div>
+          <div class="mb-1">${fieldSwitch(fieldName, fieldProps)}</div>
+          <div class="error ${fieldName}-error text-danger"></div>
           <div class="description">${fieldProps.description || ''}</div>
-          <div class="error text-danger">
-          </div>
         </div>
       </div>
     `;
@@ -21,7 +20,7 @@ const fieldSwitch = (fieldName: string, fieldProps: FieldProps) => {
   switch (fieldProps.type) {
     case FieldType.TEXTBOX:
       return getTextbox(fieldName, fieldProps);
-    case FieldType.RADIO_GROUP:
+    case FieldType.RADIO:
       return getRadioGroup(fieldName, fieldProps);
     case FieldType.CHECKBOX:
       return getCheckbox(fieldName, fieldProps);
@@ -40,8 +39,6 @@ const getTextbox = (fieldName: string, props: FieldProps) => {
     class="d-block control" 
     value="${props.value || ''}" 
     name="${fieldName}" 
-    ${props.disabled ? 'disabled' : ''} 
-    ${props.readonly ? 'readonly' : ''}
     ${props.required ? 'required' : ''}
   ></<vscode-text-field>`;
 };
@@ -51,8 +48,6 @@ const getRadioGroup = (fieldName: string, props: FieldProps) => {
   <vscode-radio-group 
     class="control" 
     name="${fieldName}" 
-    ${props.disabled ? 'disabled' : ''} 
-    ${props.readonly ? 'readonly' : ''}
     ${props.required ? 'required' : ''}
   >
     ${props.options?.map(opt => `<vscode-radio ${props.value === opt.value && 'checked'} value="${opt.value}">${opt.label}</vscode-radio>`).join('')}
@@ -66,8 +61,6 @@ const getDropDown = (fieldName: string, props: FieldProps) => {
   <vscode-dropdown 
     class="d-block w-100 control"
     name="${fieldName}" 
-    ${props.disabled ? 'disabled' : ''} 
-    ${props.readonly ? 'readonly' : ''}
     ${props.required ? 'required' : ''}
   >
     ${props.options?.map(opt => `<vscode-option ${opt.value === props.value && 'selected'} value="${opt.value || " "}">${opt.label}</vscode-option>`).join('')}
@@ -80,8 +73,6 @@ const getCheckbox = (fieldName: string, props: FieldProps) => {
     class="control" 
     value="${props.value || ''}" 
     name="${fieldName}" 
-    ${props.disabled ? 'disabled' : ''} 
-    ${props.readonly ? 'readonly' : ''}
     ${props.required ? 'required' : ''}
     ></<vscode-checkbox>`;
 };
@@ -93,8 +84,6 @@ const getBrowse = (fieldName: string, props: FieldProps) => {
       name="${fieldName}" 
       class="d-block w-100 flex-1 control" 
       placeholder="${props.placeholder || 'Please select any folder'}" 
-      ${props.disabled ? 'disabled' : ''} 
-      ${props.readonly ? 'readonly' : ''}
       ${props.required ? 'required' : ''}
     ></vscode-text-field>
     <vscode-button data-name="${fieldName}" class="browse-btn" style="white-space: nowrap;">

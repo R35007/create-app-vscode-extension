@@ -53,10 +53,6 @@ body > * {
   flex: 1;
 }
 
-.error {
-  margin-top: 3px;
-}
-
 .text-primary {
   color: var(--vscode-textLink-foreground) !important;
 }
@@ -73,8 +69,10 @@ body > * {
   color: var(--vscode-editor-foreground) !important;
   text-decoration: none !important;
 }
+
 .tag:hover,
 .tag:focus {
+  opacity: 1 !important;
   color: var(--vscode-button-foreground) !important;
   text-decoration: none !important;
   background-color: var(--vscode-button-background);

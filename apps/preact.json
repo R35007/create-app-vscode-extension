@@ -1,0 +1,144 @@
+{
+  "appName": "Preact",
+  "description": "Preact is alternative to  React with the same modern API, claiming to be a “fast 3kB”.",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/preact.png",
+  "prerequisites": [
+    {
+      "label": "node",
+      "description": "https://nodejs.org/en/",
+      "href": "https://nodejs.org/en/"
+    }
+  ],
+  "commandTemplate": "npx preact-cli create ${fields.template} ${fields.appId} ${fields.packageManager} ${fields.initializeGit} ${fields.skipInstall}",
+  "fields": {
+    "appId": {
+      "label": "App Id",
+      "type": "textbox",
+      "placeholder": "^[a-z]+(-[a-z]+)*$",
+      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "App Id is Required.",
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
+      }
+    },
+    "template": {
+      "label": "Template",
+      "type": "dropdown",
+      "value": "default",
+      "prompt": true,
+      "options": [
+        {
+          "label": "Default",
+          "value": "default"
+        },
+        {
+          "label": "Simple",
+          "value": "simple"
+        },
+        {
+          "label": "Netlify",
+          "value": "netlify"
+        },
+        {
+          "label": "Typescript",
+          "value": "typescript"
+        },
+        {
+          "label": "Widget",
+          "value": "widget"
+        }
+      ],
+      "description": "All official project templates are repos in the <a href='https://github.com/preactjs-templates'>preactjs-templates organization</a>."
+    },
+    "packageManager": {
+      "label": "Package Manager",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "npm",
+          "value": ""
+        },
+        {
+          "label": "yarn",
+          "value": "--yarn"
+        }
+      ]
+    },
+    "initializeGit": {
+      "label": "Initialize Git Repository ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--git"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "skipInstall": {
+      "label": "Skip Install ?",
+      "type": "radio",
+      "value": "",
+      "prefix": "--install=",
+      "options": [
+        {
+          "label": "Yes",
+          "value": ""
+        },
+        {
+          "label": "No",
+          "value": "false"
+        }
+      ]
+    }
+  },
+  "additionalCommands": [
+    {
+      "label": "install preact-cli",
+      "description": "Click here to install preact-cli globally",
+      "command": "npm install -g preact-cli"
+    },
+    {
+      "label": "preact-cli create",
+      "description": "Click here to create the preact app using cli prompts",
+      "command": "npx preact-cli create"
+    },
+    {
+      "label": "check cli version",
+      "description": "Click here to check cli version",
+      "command": "npx preact-cli --version"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "npx preact-cli create --help"
+    }
+  ],
+  "resources": [
+    {
+      "label": "Home Page",
+      "href": "https://preactjs.com/"
+    },
+    {
+      "label": "Getting Started",
+      "href": "https://preactjs.com/cli/getting-started/"
+    },
+    {
+      "label": "Npm Package",
+      "href": "https://www.npmjs.com/package/preact"
+    },
+    {
+      "label": "Demos and Examples",
+      "href": "https://preactjs.com/about/demos-examples"
+    }
+  ],
+  "tags": ["frontend", "library", "preact", "react", "ui", "web", "webapp"]
+}

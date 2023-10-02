@@ -19,19 +19,20 @@
       "command": "npm install -g vsce"
     }
   ],
-  "commandTemplate": "yo code --quick ${extensionId} ${extensionDescription} ${extensionType} ${packageManager} ${useWebpack} ${initializeGit} ${skipInstall}",
+  "commandTemplate": "yo code --quick ${fields['*']}",
   "fields": {
     "extensionId": {
-      "type": "textbox",
       "label": "Extension Id",
-      "placeholder": "Can have lowercase alphabets and hyphen (-). No spaces or special chars are allowed.",
+      "type": "textbox",
       "prefix": "--extensionId=",
+      "placeholder": "^[a-z]+(-[a-z]+)*$",
+      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
       "required": true,
       "pattern": "^[a-z]+(-[a-z]+)*$",
       "errors": {
-        "required": "App Id is Required.",
-        "pattern": "Invalid Id. No spaces or special chars are allowed."
+        "required": "Extension Id is Required.",
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
     },
     "extensionName": {
@@ -54,6 +55,7 @@
     "extensionType": {
       "type": "dropdown",
       "label": "Type",
+      "prompt": true,
       "options": [
         {
           "label": "Typescript",
@@ -188,11 +190,26 @@
     }
   ],
   "resources": [
-    "<a href='https://code.visualstudio.com/api'>Home Page</a>",
-    "<a href='https://code.visualstudio.com/api/get-started/your-first-extension'>Getting Started</a>",
-    "<a href='https://github.com/microsoft/vscode-extension-samples'>VS Code extension API samples</a>",
-    "<a href='https://github.com/microsoft/vscode-webview-ui-toolkit'>VS Code webview ui toolkit</a> ",
-    "<a href='https://www.npmjs.com/package/generator-code'>Npm package</a>"
+    {
+      "label": "Home Page",
+      "href": "https://code.visualstudio.com/api"
+    },
+    {
+      "label": "Getting Started",
+      "href": "https://code.visualstudio.com/api/get-started/your-first-extension"
+    },
+    {
+      "label": "Npm Package",
+      "href": "https://www.npmjs.com/package/generator-code"
+    },
+    {
+      "label": "VS Code extension API samples",
+      "href": "https://github.com/microsoft/vscode-extension-samples"
+    },
+    {
+      "label": "VS Code webview ui toolkit",
+      "href": "https://github.com/microsoft/vscode-webview-ui-toolkit"
+    }
   ],
   "tags": ["extension", "node", "vscode", "vscode-extension", "vscodeextension"]
 }

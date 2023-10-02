@@ -1,0 +1,249 @@
+{
+  "appName": "Ionic",
+  "description": "Ionic is an HTML5 mobile app development framework targeted at building hybrid mobile apps",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/ionic.png",
+  "prerequisites": [
+    {
+      "label": "node",
+      "description": "https://nodejs.org/en/",
+      "href": "https://nodejs.org/en/"
+    },
+    {
+      "label": "@ionic/cli",
+      "description": "Click here to install @angular/cli globally",
+      "command": "npm install -g @ionic/cli"
+    },
+    {
+      "label": "@angular/cli",
+      "description": "Click here to install @angular/cli If the the ionic app --type=angular",
+      "command": "npm install -g @angular/cli"
+    },
+    {
+      "label": "@vue/cli",
+      "description": "Click here to install @vue/cli If the the ionic app --type=vue",
+      "command": "npm install -g @vue/cli"
+    },
+    {
+      "label": "create-react-app",
+      "description": "Click here to install create-react-app If the the ionic app --type=react",
+      "command": "npm install -g create-react-app"
+    }
+  ],
+  "commandTemplate": "ionic start ${fields.appName} ${fields.appId} ${fields.type} ${fields.template} ${fields.includeCapacitor} ${fields.includeCordova} ${fields.initializeGit} ${fields.skipInstall} --yes",
+  "fields": {
+    "appId": {
+      "label": "App Id",
+      "type": "textbox",
+      "placeholder": "^[a-z]+(-[a-z]+)*$",
+      "prefix": "--project-id=",
+      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "App Id is Required.",
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
+      }
+    },
+    "appName": {
+      "type": "textbox",
+      "label": "App Name",
+      "value": "Hello World",
+      "prefix": "\"",
+      "suffix": "\"",
+      "required": true,
+      "errors": {
+        "required": "App Name is Required."
+      }
+    },
+    "type": {
+      "type": "dropdown",
+      "label": "Type",
+      "prompt": true,
+      "options": [
+        {
+          "label": "Angular",
+          "value": "angular"
+        },
+        {
+          "label": "Vue",
+          "value": "vue"
+        },
+        {
+          "label": "React",
+          "value": "react"
+        },
+        {
+          "label": "Ionic Angular (older ionic version 3)",
+          "value": "ionic-angular"
+        },
+        {
+          "label": "Ionic One",
+          "value": "ionic1"
+        }
+      ],
+      "prefix": "--type=",
+      "value": "angular"
+    },
+
+    "template": {
+      "type": "dropdown",
+      "label": "Template",
+      "prompt": true,
+      "options": [
+        {
+          "label": "Tabs",
+          "value": "tabs"
+        },
+        {
+          "label": "Sidemenu",
+          "value": "sidemenu"
+        },
+        {
+          "label": "Blank",
+          "value": "blank"
+        },
+        {
+          "label": "List",
+          "value": "list"
+        },
+        {
+          "label": "My first app - A sample app that builds a camera with gallery",
+          "value": "my-first-app"
+        },
+        {
+          "label": "Conference - A kitchen-sink app that shows off all Ionic has to offer",
+          "value": "conference"
+        },
+        {
+          "label": "Super",
+          "value": "super"
+        },
+        {
+          "label": "Tutorial",
+          "value": "tutorial"
+        },
+        {
+          "label": "AWS Mobile Hub Starter",
+          "value": "aws"
+        },
+        {
+          "label": "Google Maps and a side menu",
+          "value": "maps"
+        }
+      ],
+      "value": "tabs"
+    },
+    "includeCapacitor": {
+      "type": "radio",
+      "label": "Include Capacitor ?",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--capacitor"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "value": ""
+    },
+    "includeCordova": {
+      "type": "radio",
+      "label": "Include Cordova ?",
+      "description": "Cordova is deprecated. Please use with caution.",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--cordova"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "value": ""
+    },
+    "initializeGit": {
+      "type": "radio",
+      "label": "Initialize Git Repository ?",
+      "options": [
+        {
+          "label": "Yes",
+          "value": ""
+        },
+        {
+          "label": "No",
+          "value": "--no-git"
+        }
+      ],
+      "value": ""
+    },
+    "skipInstall": {
+      "type": "radio",
+      "label": "Skip Install ?",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "--no-deps"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ],
+      "value": ""
+    }
+  },
+  "additionalCommands": [
+    {
+      "label": "ionic start",
+      "description": "Click here to create the ionic app using cli prompts",
+      "command": "ionic start"
+    },
+    {
+      "label": "check ionic cli version",
+      "description": "Click here to check ionic cli version",
+      "command": "ionic --version"
+    },
+    {
+      "label": "check angular cli version",
+      "description": "Click here to angular ionic cli version",
+      "command": "ng --version"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "ionic start --help"
+    },
+    {
+      "label": "List Templates",
+      "description": "Click here to see list of available templates",
+      "command": "ionic start --list"
+    }
+  ],
+  "resources": [
+    {
+      "label": "Home Page",
+      "href": "https://ionicframework.com/"
+    },
+    {
+      "label": "Getting Started",
+      "href": "https://ionicframework.com/docs"
+    },
+    {
+      "label": "Npm Package",
+      "href": "https://www.npmjs.com/package/@ionic/cli"
+    },
+    {
+      "label": "Ionic Icons",
+      "href": "https://ionic.io/ionicons"
+    },
+    {
+      "label": "Ionic Components",
+      "href": "https://ionicframework.com/docs/components"
+    }
+  ],
+  "tags": ["framework", "frontend", "hybrid", "hybridapp", "ionic", "mobile", "mobileapp", "phone", "ui", "web"]
+}

@@ -23,7 +23,7 @@ export class Command {
     });
     this.commands.forEach(command => {
       terminal.sendText(command);
-    })
+    });
     terminal.show();
   };
 
@@ -34,7 +34,7 @@ export class Command {
     });
     this.commands.forEach(command => {
       terminal.sendText(command);
-    })
+    });
     terminal.show();
   };
 }

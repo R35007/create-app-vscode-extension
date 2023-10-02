@@ -9,31 +9,45 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "npx create-react-app ${appId} ${template}",
+  "commandTemplate": "npx create-react-app ${fields['*']}",
   "fields": {
     "appId": {
-      "type": "textbox",
       "label": "App Id",
-      "placeholder": "Can have lowercase alphabets and hyphen (-). No spaces or special chars are allowed.",
+      "type": "textbox",
+      "placeholder": "^[a-z]+(-[a-z]+)*$",
+      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
       "required": true,
       "pattern": "^[a-z]+(-[a-z]+)*$",
       "errors": {
         "required": "App Id is Required.",
-        "pattern": "Invalid Id. No spaces or special chars are allowed."
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
     },
     "template": {
       "type": "dropdown",
       "label": "Template",
       "description": "You can find many great community templates by searching for <a href='https://www.npmjs.com/search?q=cra-template-*'>cra-template-*</a> on npm.",
+      "prompt": true,
+      "prefix": "--template=",
       "options": [
         { "label": "Javascript", "value": "" },
-        { "label": "Typescript", "value": "--template=typescript" },
-        { "label": "Typescript, Bootstrap, SASS", "value": "--template=tbs" },
-        { "label": "Typescript, Redux", "value": "--template=redux-typescript" },
-        { "label": "Javascript, Redux", "value": "--template=redux" }
+        { "label": "Typescript", "value": "typescript" },
+        { "label": "Typescript, Bootstrap, SASS", "value": "tbs" },
+        { "label": "Typescript, Redux", "value": "redux-typescript" },
+        { "label": "Javascript, Redux", "value": "redux" }
       ],
+      "value": ""
+    },
+    "packageManager": {
+      "type": "radio",
+      "label": "Package Manager",
+      "options": [
+        { "label": "yarn", "value": "" },
+        { "label": "npm", "value": "npm" },
+        { "label": "pnp", "value": "pnp" }
+      ],
+      "prefix": "--use-",
       "value": ""
     }
   },
@@ -60,10 +74,22 @@
     }
   ],
   "resources": [
-    "<a href='https://reactjs.org/'>Home Page</a>",
-    "<a href='https://create-react-app.dev/docs/getting-started'>Getting Started</a>",
-    "<a href='https://www.npmjs.com/package/create-react-app'>Npm Package</a> ",
-    "<a href='https://www.npmjs.com/search?q=cra-template-*'>React Templates</a> "
+    {
+      "label": "Home Page",
+      "href": "https://reactjs.org/"
+    },
+    {
+      "label": "Getting Started",
+      "href": "https://create-react-app.dev/docs/getting-started"
+    },
+    {
+      "label": "Npm Package",
+      "href": "https://www.npmjs.com/package/create-react-app"
+    },
+    {
+      "label": "React Templates",
+      "href": "https://www.npmjs.com/search?q=cra-template-*"
+    }
   ],
   "tags": ["react", "ui", "frontend", "library", "webapp", "web"]
 }
