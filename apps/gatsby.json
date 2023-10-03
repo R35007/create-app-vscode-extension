@@ -9,7 +9,10 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "npx gatsby new ${fields['*']}",
+  "commandTemplate": [
+    "npx gatsby new ${fields.getExcept('openInVsCode')};",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -29,6 +32,21 @@
       "label": "Starter Template Url",
       "description": "You can get may official starter template <a href=\"https://www.gatsbyjs.com/starters\">here</a>",
       "placeholder": "Please provide a Starter Template GitHub URL here"
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

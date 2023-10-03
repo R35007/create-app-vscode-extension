@@ -14,7 +14,11 @@
       "command": "npm install -g @vue/cli"
     }
   ],
-  "commandTemplate": "vue create ${fields.appId} ${fields.presetLocation || '--default'} ${fields.packageManager} ${fields.initializeGit}",
+  "commandTemplate": [
+    "${fields.installPrerequisites}",
+    "vue create ${fields.appId} ${fields.presetLocation || '--default'} ${fields.packageManager} ${fields.initializeGit};",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -71,6 +75,36 @@
         {
           "label": "No",
           "value": "--no-git"
+        }
+      ]
+    },
+    "installPrerequisites": {
+      "label": "Install Prerequisites ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "npm install -g @vue/cli;"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
         }
       ]
     }

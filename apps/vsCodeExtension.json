@@ -19,9 +19,9 @@
       "command": "npm install -g vsce"
     }
   ],
-  "commandTemplate": "yo code --quick ${fields['*']}",
+  "commandTemplate": ["${fields.installPrerequisites}", "yo code --quick ${fields.getExcept('installPrerequisites')};"],
   "fields": {
-    "extensionId": {
+    "appId": {
       "label": "Extension Id",
       "type": "textbox",
       "prefix": "--extensionId=",
@@ -160,6 +160,21 @@
         }
       ],
       "value": ""
+    },
+    "installPrerequisites": {
+      "label": "Install Prerequisites ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "npm install -g yo generator-code; npm install -g vsce;"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

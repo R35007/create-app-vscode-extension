@@ -9,7 +9,11 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "${fields.useSvelteKit} ${fields.appId} ${fields.useTypescript}",
+  "commandTemplate": [
+    "${fields.useSvelteKit} ${fields.appId};",
+    "${fields.useTypescript ? `cd ${fields.appId}; node scripts/setupTypeScript.js;` : ''}",
+    "${fields.openInVsCode ? fields.useTypescript ? 'code .' : `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -46,7 +50,7 @@
       "options": [
         {
           "label": "Yes",
-          "value": ";cd hello-world; node scripts/setupTypeScript.js;"
+          "value": "yes"
         },
         {
           "label": "No",
@@ -54,6 +58,21 @@
         }
       ],
       "value": ""
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

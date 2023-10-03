@@ -5,7 +5,7 @@ import { Command } from './Create-App/Command';
 import CreateApp from './Create-App/Create-App';
 import { getAppsList } from './Create-App/Get-Apps-List';
 import { Commands, FieldType } from './modal';
-import { getCommand, interpolate } from './utilities';
+import { getCommand, getInterpolateObject, interpolate, toSanitizedCommand } from './utilities';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -114,8 +114,8 @@ export function activate(context: vscode.ExtensionContext) {
 			createAppLocation = savedPathUri?.[0].fsPath || createAppLocation;
 		}
 
-		const commandStr = interpolate({ fields }, selectedApp?.commandTemplate || "${fields['*']}");
-		const command = new Command(commandStr, createAppLocation, appName);
+		const commandStr = interpolate({ fields: getInterpolateObject(fields) }, ([] as any).concat(selectedApp?.commandTemplate || "${fields.get('*')}"));
+		const command = new Command(toSanitizedCommand(commandStr), createAppLocation, appName);
 		command.executeCommand();
 	}));
 }

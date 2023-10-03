@@ -1,5 +1,5 @@
 <h1>
-  <a href="https://marketplace.visualstudio.com/items?itemName=Thinker.create-app"><sub><img src="https://github.com/R35007/create-app-support/blob/version_4/images/ca-logo.png?raw=true" height="40"></sub> Create App</a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=Thinker.create-app"><sub><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/ca-logo.png?raw=true" height="40"></sub> Create App</a>
 </h1>
 
 Easily Create any UI App with Official Starter Templates or Boilerplate using CLI.
@@ -12,40 +12,41 @@ Easily Create any UI App with Official Starter Templates or Boilerplate using CL
 
 ## Supported Apps:
 
-<span><sub><a href="https://angular.io/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/angular.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Angular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://www.djangoproject.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/django.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://expressjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/expressJs.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;ExpressJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://www.gatsbyjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/gatsby.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Gatsby</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://ionicframework.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/ionic.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Ionic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<span><sub><a href="https://nestjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/nestJs.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;NestJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://nextjs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/nextJs.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;NextJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://preactjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/preact.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Preact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://reactjs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/react.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;React</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://reactnative.dev/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/react.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;React Native</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://svelte.dev/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/svelte.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Svelte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<span><sub><a href="https://vitejs.dev/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/vite.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Vite</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://code.visualstudio.com/api"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/vscode.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;VS Code Extension</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://vuejs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4/images/vue.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Vue</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://angular.io/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/angular.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Angular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://www.djangoproject.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/django.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://expressjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/expressJs.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;ExpressJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://www.gatsbyjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/gatsby.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Gatsby</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://ionicframework.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/ionic.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Ionic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<span><sub><a href="https://nestjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/nestJs.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;NestJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://nextjs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/nextJs.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;NextJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://preactjs.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/preact.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Preact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://reactjs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/react.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;React</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://reactnative.dev/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/react.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;React Native</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://svelte.dev/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/svelte.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Svelte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<span><sub><a href="https://vitejs.dev/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/vite.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Vite</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://code.visualstudio.com/api"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/vscode.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;VS Code Extension</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://vuejs.org/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/vue.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Vue</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 ## Create App: Interactive
 
 - Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create App: Interactive` to open the Create App view.
 - This opens an interactive ui that prompts you tp pick the app name and provide configurations to create the app.
 
-![Screen Capture in Action](https://github.com/R35007/create-app-support/blob/version_4/images/preview_interactive.gif?raw=true)
+![Create App: Interactive Preview](https://github.com/R35007/create-app-support/blob/version_4.1.0/images/preview_interactive.gif?raw=true)
 
 ## Create App: Quick
 
 - Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create App: Quick` to open the Create App quick prompt.
 - This provides you the quick command pallet and prompt you the pick the app and its required minimal configurations to create the app.
 
-![Screen Capture in Action](https://github.com/R35007/create-app-support/blob/version_4/images/preview_quick.gif?raw=true)
+![Create App: Quick Preview](https://github.com/R35007/create-app-support/blob/version_4.1.0/images/preview_quick.gif?raw=true)
 
 ## Custom App Config interface
 
 - Custom app can be provide in two ways.
   - use `create-app.settings.customApps` setting - provide a direct list of custom apps config.
   - or use `create-app.settings.customAppPath` setting - provide the `json` file path or folder path containing list of custom apps config.
+  - Click [here](https://github.com/R35007/create-app-vscode-extension/tree/master/apps) for more app config references.
 
 ```ts
 interface Tags {
@@ -79,7 +80,7 @@ interface FieldProps {
 
 interface AppProps {
   appName: string; // Provide a unique app name. This overrides the app configs if already exist with a same name.
-  commandTemplate: string; // Provide a command template here. Ex: "commandTemplate": "ng new ${fields.appId} --defaults" or "ng new ${fields['*']} --defaults"
+  commandTemplate: string | string[]; // Provide a command template here. Ex: "commandTemplate": "ng new ${fields.appId} --defaults" or "ng new ${fields['*']} --defaults"
   fields?: Record<string, FieldProps>; // Provide the app configuration to generate a app form fields. Ex: "fields": { "appId": { "type": "textbox", "required": true, value: "hello-world" } }
   description?: string; // This description will be shown below the About section in the right side of the form.
   order?: number; // Provide the App order to display in the apps list
@@ -92,60 +93,20 @@ interface AppProps {
 }
 ```
 
-### `commandTemplate`
+### `commandTemplate` Variables
 
 - `commandTemplate` helps to generate the cli command.
 - It takes the variable `fields` and populates its value based on the field name.
-- Lets see the commandTemplate examples for the given fields
 
 ```json
 {
-  "fields": {
-    "appId": {
-      "label": "App Id",
-      "type": "textbox",
-      "placeholder": "Can have lowercase alphabets and hyphen (-). No spaces or special chars are allowed.",
-      "value": "hello-world",
-      "required": true,
-      "pattern": "^[a-z]+(-[a-z]+)*$",
-      "errors": {
-        "required": "App Id is Required.",
-        "pattern": "Invalid Id. No spaces or special chars are allowed."
-      }
-    }
-    "routing": {
-      "label": "Include Routing ?",
-      "type": "radio",
-      "value": "--routing",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--routing"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
-    }
-  }
+  "commandTemplate": [
+    "npm install -g @angular/cli ;" // Add semicolon (;) to end the command. This adds the new line after the semicolon.
+    "ng new ${fields.appId} ${fields['template']};", // populates the value of the specified field name.
+    "ng new ${fields.get('appId', 'template')};", // populates the value of the specified field name using get method.
+    "ng new fields.get('*');", // populates all field values.
+    "ng new ${fields.getExcept('appId', 'template')};", // populates all the field values except the given field names.
+    "${fields.openInVsCode ? `code ${fields.appId};` : ''}" // conditionally updated the command based on other field values.
+  ]
 }
 ```
-
-- Example 1:
-  - If commandTemplate is `ng new ${fields.appId} --defaults`,
-  - Then the output of the command for the above commandTemplate will be `ng new hello-world --defaults`.
-  - As we have seen the `routing` value is not populated in the command as we have not used in it.
-- Example 2:
-  - To see the routing value in the command we need to provide the commandTemplate as `ng new ${fields.appId} ${fields.routing} --defaults`.
-  - Now the output of the command for the above commandTemplate will be `ng new hello-world --routing --defaults`.
-- Example 3:
-  - Instead of explicitly setting each field value in commandTemplate we can use `${fields['*']}` to populate all the field values.
-  - Set commandTemplate as `ng new ${fields['*']} --defaults`,
-  - Now the output of the command for the above commandTemplate will be `ng new hello-world --routing --defaults`.
-- Example 4:
-  - We can also use conditional logic to generate the command from commandTemplate
-  - Set commandTemplate as `ng new ${fields.appId} ${!fields.routing ? '--default-route' : fields.routing} --defaults`,
-  - from the above commandTemplate, If the value of routing is empty the we set a default command as `--default-route`.
-
-> Note: Adding semicolon `;` will add a newline after the semicolon.

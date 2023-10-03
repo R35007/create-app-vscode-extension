@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Easily Create any UI App with Official Starter Templates or Boilerplate using CLI",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
@@ -23,6 +23,7 @@
   ],
   "keywords": [
     "Create App",
+    "Create Vite App",
     "Create UI App",
     "Create Angular App",
     "Create Vue App",
@@ -37,7 +38,8 @@
     "Create Node App",
     "Create Ionic App",
     "Create React Native App",
-    "Create Vs Code Extension App"
+    "Create Vs Code Extension App",
+    "Create Project"
   ],
   "activationEvents": [
     "onCommand:create.app",
@@ -87,7 +89,7 @@
                     "command": "cli command"
                   }
                 ],
-                "commandTemplate": "cli prefix ${field.appId} or ${fields['*']} cli suffix",
+                "commandTemplate": "cli prefix ${fields.appId} ${fields.get('appId')} ${fields.getExcept('appId')} ${fields.get('*')} cli suffix",
                 "fields": {
                   "appId": {
                     "label": "App Id",
@@ -150,7 +152,7 @@
                     "command": "cli command"
                   }
                 ],
-                "commandTemplate": "cli prefix ${field.appId} or ${fields['*']} cli suffix",
+                "commandTemplate": "cli prefix ${fields.appId} ${fields.get('appId')} ${fields.getExcept('appId')} ${fields.get('*')} cli suffix",
                 "fields": {
                   "appId": {
                     "label": "App Id",
@@ -280,7 +282,17 @@
                 }
               },
               "commandTemplate": {
-                "type": "string"
+                "oneOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                ]
               },
               "fields": {
                 "type": "object",
@@ -288,6 +300,7 @@
                   {},
                   {
                     "appId": {
+                      "order": 1,
                       "label": "App Id",
                       "type": "textbox",
                       "placeholder": "placeholder",
@@ -316,6 +329,7 @@
                     {},
                     {
                       "appId": {
+                        "order": 1,
                         "label": "App Id",
                         "type": "textbox",
                         "placeholder": "placeholder",
@@ -339,6 +353,9 @@
                     }
                   ],
                   "properties": {
+                    "order": {
+                      "type": "number"
+                    },
                     "label": {
                       "type": "string"
                     },

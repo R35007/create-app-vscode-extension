@@ -29,13 +29,20 @@
       "command": "npm install -g create-react-app"
     }
   ],
-  "commandTemplate": "ionic start ${fields.appName} ${fields.appId} ${fields.type} ${fields.template} ${fields.includeCapacitor} ${fields.includeCordova} ${fields.initializeGit} ${fields.skipInstall} --yes",
+  "commandTemplate": [
+    "${fields.installPrerequisites && fields.type === 'angular' ? 'npm install -g @angular/cli;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'vue' ? 'npm install -g @vue/cli;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'react' ? 'npm install -g create-react-app;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'ionic-angular' ? 'npm install -g @ionic/cli;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'ionic1' ? 'npm install -g @ionic/cli;' : ''}",
+    "ionic start ${fields.appName} --project-id=${fields.appId} --type=${fields.type} ${fields.getExcept('appName', 'appId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
       "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
-      "prefix": "--project-id=",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
       "required": true,
@@ -82,10 +89,8 @@
           "value": "ionic1"
         }
       ],
-      "prefix": "--type=",
       "value": "angular"
     },
-
     "template": {
       "type": "dropdown",
       "label": "Template",
@@ -194,6 +199,36 @@
         }
       ],
       "value": ""
+    },
+    "installPrerequisites": {
+      "label": "Install Prerequisites ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

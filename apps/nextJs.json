@@ -9,7 +9,10 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "npx create-next-app@latest ${fields['*']}",
+  "commandTemplate": [
+    "npx create-next-app@latest ${fields.getExcept('openInVsCode')};",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -60,6 +63,21 @@
         }
       ],
       "value": ""
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

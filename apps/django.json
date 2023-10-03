@@ -14,7 +14,11 @@
       "command": "python -m pip install Django"
     }
   ],
-  "commandTemplate": "django-admin startproject ${fields['*']}",
+  "commandTemplate": [
+    "${fields.installPrerequisites}",
+    "django-admin startproject ${fields.getExcept('installPrerequisites', 'openInVsCode')};",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -53,6 +57,36 @@
       "prefix": "--extension=",
       "description": "Please separate multiple file extension(s) with comma",
       "value": "py"
+    },
+    "installPrerequisites": {
+      "label": "Install Prerequisites ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "python -m pip install Django;"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

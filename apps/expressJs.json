@@ -9,7 +9,10 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "npx express-generator ${fields['*']} --force",
+  "commandTemplate": [
+    "npx express-generator ${fields.getExcept('openInVsCode')} --force;",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -164,6 +167,21 @@
         }
       ],
       "value": ""
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

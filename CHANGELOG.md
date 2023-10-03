@@ -1,3 +1,10 @@
+## v4.1.0
+
+- Moved - `Install Prerequisites ?` moved into the form fields.
+- Added - `Open in VSCode ?` in the form fields.
+- Enhanced - `commandTemplate` can also be given as a array of string.
+- Added - `fields.get()`, `fields.getExcept()` method to get the list of field values.
+
 ## v4.0.1
 
 - Fixed - Style issue fixed.
@@ -16,6 +23,8 @@
 - Added - `copy config` button ont he top right corner of the command text area. Helps to copy the app configurations and override the default configs.
 - Removed - `Open in vscode` config from all app configs.
 - Fixed - Keeps on reloading on view switching the tabs issue fixed.
+- [Create App: Interactive Preview](https://github.com/R35007/create-app-support/blob/version_4/images/preview_interactive.gif?raw=true)
+- [Create App: Quick Preview](https://github.com/R35007/create-app-support/blob/version_4/images/preview_quick.gif?raw=true)
 
 ## v3.1.0
 

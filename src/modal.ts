@@ -27,6 +27,7 @@ export interface Tags {
 export interface FieldProps {
   type: FieldType.TEXTBOX | FieldType.CHECKBOX | FieldType.RADIO | FieldType.DROPDOWN | FieldType.BROWSE;
   label: string;
+  order?: number;
   prefix?: string;
   suffix?: string;
   value?: string | boolean;
@@ -44,7 +45,7 @@ export interface FieldProps {
 
 export interface AppProps {
   appName: string;
-  commandTemplate: string;
+  commandTemplate: string | string[];
   hide?: boolean;
   fields?: Record<string, FieldProps>;
   description?: string;

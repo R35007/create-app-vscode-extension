@@ -9,7 +9,10 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": "npm create vite-extra@latest ${fields.appId} -- ${fields.template} --yes",
+  "commandTemplate": [
+    "npm create vite-extra@latest ${fields.appId} -- ${fields.template} --yes;",
+    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+  ],
   "fields": {
     "appId": {
       "label": "App Id",
@@ -62,6 +65,21 @@
       ],
       "prefix": "--template=",
       "value": "ssr-vanilla"
+    },
+    "openInVsCode": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     }
   },
   "additionalCommands": [

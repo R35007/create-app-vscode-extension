@@ -2,9 +2,9 @@ import { FieldProps, FieldType } from '../modal';
 
 const generateFormFields = (fieldProps: Record<string, FieldProps> = {}): string => {
   if (!Object.entries(fieldProps).length) { return ''; };
-  return Object.entries(fieldProps).map(([fieldName, fieldProps]) => {
+  return Object.entries(fieldProps).map(([fieldName, fieldProps], index) => {
     return `
-      <div class="row mb-3 align-items-center">
+      <div class="row mb-3 align-items-center" style="order: ${fieldProps.order ?? index}">
         <div class="col-12 col-lg-4 key mb-1">${fieldProps.label} ${fieldProps.required ? `<span class="text-primary">*</span>` : ''}</div>
         <div class="col-12 col-lg-8 val">
           <div class="mb-1">${fieldSwitch(fieldName, fieldProps)}</div>

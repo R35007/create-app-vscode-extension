@@ -55,16 +55,56 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
     </div>
   </div>` : '';
 
-  const installPrerequisitesSection = selectedApp.prerequisites?.some(item => item.command) ? `<div class="install-prerequisites-container">
-    <div class="install-prerequisite-content my-3">
-      <vscode-checkbox id="install-prerequisites"> Install Prerequisites Cli</vscode-checkbox>
+  const browseAppLocation = `<div class="row mb-3 align-items-center" style="order: ${Object.keys(selectedApp.fields || {}).length + 1}">
+    <div class="col-12 val">
+      <div class="d-flex mb-1">
+        <vscode-text-field id="app-folder-location" class="d-block flex-1 w-100" placeholder="Please provide the folder path to create app"></vscode-text-field>
+        <vscode-button id="app-folder-location-btn" title="Browse location to carate app" style="white-space: nowrap;">Browse Folder</vscode-button>
+      </div>
+      <div>Leave it empty to create app in active workspace folder.</div>
     </div>
-  </div>` : '';
-
-  const uri = getUris(extensionUri, webview, selectedApp);
+  </div>`;
 
   // Use a nonce to only allow specific scripts to be run
   const nonce = getNonce();
+
+  const uri = getUris(extensionUri, webview, selectedApp);
+
+  const loaderStyles = `<style nonce="${nonce}">
+    .hide-loader{
+      display: none !important;
+    }
+
+    .loader{
+      background: var(--vscode-editor-background);
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 1;
+    }
+    
+    .loader-text{
+      font-size: 26px;
+      opacity: 0.8;
+      animation: blink 0.5s linear infinite alternate;
+      position: absolute;
+      top: 35%;
+      text-align: center;
+      width: 100%;
+    }
+    
+    @keyframes blink {
+      0% {
+        opacity: 0.8;
+      }
+      100% {
+        opacity: 0.5;
+      }
+    }
+
+  </style>`;
 
   return `<!DOCTYPE html>
       <html lang="en">
@@ -83,41 +123,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
         <link href="${uri.stylesMainUri}" rel="stylesheet">
   
         <script type="module" src="${uri.toolkitUri}" nonce="${nonce}"></script>
-        <style nonce="${nonce}">
-          .hide-loader{
-             display: none !important;
-          }
-
-          .loader{
-            background: var(--vscode-editor-background);
-            position: fixed;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-            z-index: 1;
-          }
-          
-          .loader-text{
-            font-size: 26px;
-            opacity: 0.8;
-            animation: blink 0.5s linear infinite alternate;
-            position: absolute;
-            top: 35%;
-            text-align: center;
-            width: 100%;
-          }
-          
-          @keyframes blink {
-            0% {
-              opacity: 0.8;
-            }
-            100% {
-              opacity: 0.5;
-            }
-          }
-
-        </style>
+        ${loaderStyles}
         <title>Create App</title>
       </head>
       <body style="overflow: hidden;">
@@ -140,7 +146,7 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
                 <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none" style="min-width: 12rem;">
                   ${appsListOptions}
                 </vscode-dropdown>
-                <span id="copy-json" title="Click here to copy app json" class="tag" style="opacity: 0.5">copy config</span>
+                <span id="copy-config" title="Click here to copy app config" class="tag" style="opacity: 0.5">copy config</span>
               </header>
               <section class="command-container position-relative mb-3">
                 <vscode-text-area id="command" class="d-block w-100" rows="5"></vscode-text-area>
@@ -151,24 +157,15 @@ export default (extensionUri: vscode.Uri, webview: vscode.Webview, appsList: App
               </section>
               <section class="configuration-container">
                 <div class="row h-100">
-                  <div id="create-app-form" class="col app-config-container overflow-y-auto h-100">
+                  <div id="create-app-form" class="col d-flex flex-column app-config-container overflow-y-auto h-100">
                     ${createAppForm}
-                    <div class="row mb-3 align-items-center">
-                      <div class="col-12 val">
-                        <div class="d-flex mb-1">
-                          <vscode-text-field id="app-folder-location" class="d-block flex-1 w-100" placeholder="Please select provide any folder to create app"></vscode-text-field>
-                          <vscode-button id="app-folder-location-btn" title="Browse location to carate app" style="white-space: nowrap;">Browse Folder</vscode-button>
-                        </div>
-                        <div>Leave it empty to create app in active workspace folder.</div>
-                      </div>
-                    </div>
+                    ${browseAppLocation}
                   </div>
-                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto d-none d-lg-block ${aboutSection || prerequisitesSection || additionCommandsSection || resourcesSection || installPrerequisitesSection ? '' : 'd-none'}">
+                  <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto d-none d-lg-block ${aboutSection || prerequisitesSection || additionCommandsSection || resourcesSection ? '' : 'd-none'}">
                     ${aboutSection}
                     ${prerequisitesSection}
                     ${additionCommandsSection}
                     ${resourcesSection}
-                    ${installPrerequisitesSection}
                   </div>
                 </div>
               </section>

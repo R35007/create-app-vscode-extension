@@ -2,7 +2,6 @@ var vscode = acquireVsCodeApi();
 
 let fieldProps = {};
 let commandTemplate = "${fields['*']}";
-let prerequisites = "";
 
 const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
 
@@ -21,20 +20,19 @@ const setCommand = () => {
   );
   return vscode.postMessage({
     action: "get-command-template",
-    formValues: { fields: { ...fields, "*": Object.values(fields).join(" ").trim() }, prerequisites },
-    commandTemplate: `${prerequisites}${commandTemplate}`,
+    fields,
+    commandTemplate,
   });
 };
 
 function init(selectedApp) {
   const $command = document.getElementById("command");
-  const $installPrerequisites = document.getElementById("install-prerequisites");
   const $copyCommand = document.getElementById("copy-command");
   const $execute = document.getElementById("execute");
   const $appFilterInput = document.getElementById("app-list-filter-input");
   const $appFolderLocationBtn = document.getElementById("app-folder-location-btn");
   const $appFolderLocation = document.getElementById("app-folder-location");
-  const $copyJsonBtn = document.getElementById("copy-json");
+  const $copyConfigBtn = document.getElementById("copy-config");
 
   // Handle messages sent from the extension to the webview
   window.addEventListener("message", (event) => {
@@ -55,23 +53,9 @@ function init(selectedApp) {
   });
 
   // Set Default values
-  commandTemplate = selectedApp.commandTemplate || "${fields['*']}";
+  commandTemplate = [].concat(selectedApp.commandTemplate || "${fields.get('*')}").join(" ");
   fieldProps = selectedApp.fields || {};
   setCommand();
-
-  // Set Prerequisites
-  $installPrerequisites?.addEventListener("change", function () {
-    if (!selectedApp.prerequisites?.some((item) => item.command)) return;
-
-    prerequisites = this.checked
-      ? selectedApp.prerequisites
-          ?.filter((preReq) => preReq.command)
-          .map((preReq) => preReq.command)
-          .join(";") + ";"
-      : "";
-
-    setCommand();
-  });
 
   document.querySelectorAll("#create-app-form .control").forEach((control) => {
     function onChangeHandler(e) {
@@ -109,9 +93,9 @@ function init(selectedApp) {
     });
   });
 
-  // On Copy json button click
-  $copyJsonBtn.addEventListener("click", function () {
-    vscode.postMessage({ action: "copy-json" });
+  // On Copy config button click
+  $copyConfigBtn.addEventListener("click", function () {
+    vscode.postMessage({ action: "copy-config" });
   });
 
   // On App location browse button click

@@ -43,6 +43,21 @@ export const generateAppList = (appsList: AppProps[], selectedAppName?: string):
   }).join('');
 };
 
+export const getInterpolateObject = (fields: object) => {
+  const interpolateObject = {
+    ...fields,
+    "*": Object.values(fields).join(" ").trim(),
+    get(...args: string[]) {
+      return args.map((arg) => (this as any)[arg]).join(" ");
+    },
+    getExcept(...args: string[]) {
+      return Object.entries(fields).filter(([key]) => !args.includes(key)).map(([, value]) => value).join(" ");
+    },
+  };
+
+  return interpolateObject;
+};
+
 export const interpolate = (object: object, format: string) => {
   const keys = Object.keys(object);
   const values = Object.values(object);
@@ -51,7 +66,7 @@ export const interpolate = (object: object, format: string) => {
 
 export const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
 
-const toSanitizedCommand = (str: string) =>
+export const toSanitizedCommand = (str: string) =>
   str
     .replace(/ +(?= )/g, "")
     .replace(/;/g, ";\n")

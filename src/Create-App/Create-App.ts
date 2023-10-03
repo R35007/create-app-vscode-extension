@@ -1,7 +1,7 @@
 
 import * as vscode from 'vscode';
 import { AppProps, Commands } from '../modal';
-import { getWebviewOptions, interpolate } from '../utilities';
+import { getInterpolateObject, getWebviewOptions, interpolate } from '../utilities';
 import { Command } from './Command';
 import getHtmlForWebview from './Html-For-Webview';
 
@@ -76,7 +76,7 @@ export default class CreateApp {
         return;
       }
       case 'get-command-template': {
-        this.#setCommandTemplate(message.formValues, message.commandTemplate);
+        this.#setCommandTemplate(message.fields, message.commandTemplate);
         return;
       }
       case 'execute-command': {
@@ -92,8 +92,8 @@ export default class CreateApp {
         this.#copyCommand(message.command);
         return;
       }
-      case 'copy-json': {
-        this.#copyJSON();
+      case 'copy-config': {
+        this.#copyConfig();
         return;
       }
       case 'execute-create-command': {
@@ -108,9 +108,9 @@ export default class CreateApp {
     }
   };
 
-  #copyJSON = () => {
+  #copyConfig = () => {
     vscode.env.clipboard.writeText(JSON.stringify(this.#selectedApp, null, vscode.window.activeTextEditor?.options.tabSize || "\t"));
-    vscode.window.showInformationMessage(`${this.#selectedApp.appName} App JSON copied to clipboard 📋`);
+    vscode.window.showInformationMessage(`${this.#selectedApp.appName} App config is copied to clipboard 📋`);
   };
 
   #copyCommand = (command: string) => {
@@ -142,11 +142,15 @@ export default class CreateApp {
     }
   };
 
-  #setCommandTemplate = (formValues: object, commandTemplate: string) => {
+  #setCommandTemplate = (fieldProps: any, commandTemplate: string) => {
     try {
-      this.#panel.webview.postMessage({ action: 'set-command-template', value: interpolate(formValues, commandTemplate) });
+      this.#panel.webview.postMessage({ action: 'set-command-template', value: interpolate({ fields: getInterpolateObject(fieldProps) }, commandTemplate) });
     } catch (err: any) {
-      vscode.window.showErrorMessage(err.message + ". Please check the commandTemplate");
+      if (err.message.includes('no defined')) {
+        vscode.window.showErrorMessage(err.message + ". Please use ${fields.get('yourFieldName')} in the commandTemplate");
+      } else {
+        vscode.window.showErrorMessage(err.message + ". Please check the commandTemplate");
+      }
     }
   };
 
