@@ -1,5 +1,5 @@
 <h1>
-  <a href="https://marketplace.visualstudio.com/items?itemName=Thinker.create-app"><sub><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/ca-logo.png?raw=true" height="40"></sub> Create App</a>
+  <sub><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/ca-logo.png?raw=true" height="40"></sub> Create App
 </h1>
 
 Easily Create any UI App with Official Starter Templates or Boilerplate using CLI.
