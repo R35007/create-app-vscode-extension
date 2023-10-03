@@ -10,7 +10,7 @@ Easily Create any UI App with Official Starter Templates or Boilerplate using CL
 - Bored of interactive form fields, no worries. Try the new `Create App: Quick` command to create a app in seconds using vscode quick pick command pallet.
 - Add our own custom apps and commands that generates interactive form fields and quick picks.
 
-## Supported Apps:
+## Default Apps:
 
 <span><sub><a href="https://angular.io/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/angular.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Angular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://www.djangoproject.com/"><img src="https://github.com/R35007/create-app-support/blob/version_4.1.0/images/django.png?raw=true" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -93,7 +93,7 @@ interface AppProps {
 }
 ```
 
-### `commandTemplate` Variables
+## Command Template Variables
 
 - `commandTemplate` helps to generate the cli command.
 - It takes the variable `fields` and populates its value based on the field name.
@@ -101,7 +101,7 @@ interface AppProps {
 ```json
 {
   "commandTemplate": [
-    "npm install -g @angular/cli ;" // Add semicolon (;) to end the command. This adds the new line after the semicolon.
+    "npm install -g @angular/cli;" // Add semicolon (;) to end the command. This adds the new line after the semicolon.
     "ng new ${fields.appId} ${fields['template']};", // populates the value of the specified field name.
     "ng new ${fields.get('appId', 'template')};", // populates the value of the specified field name using get method.
     "ng new fields.get('*');", // populates all field values.

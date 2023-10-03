@@ -11,7 +11,7 @@ export class Command {
     location: string,
     appType: string,
   ) {
-    this.commands = command.split(';');
+    this.commands = command?.trim().split(';').map(item => item.trim()).filter(Boolean);
     this.location = location;
     this.appType = appType;
   }
