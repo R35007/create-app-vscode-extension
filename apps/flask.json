@@ -1,0 +1,71 @@
+{
+    "appName": "Flask Project",
+    "description": "Create a Flask project with custom settings.",
+    "logoPath": "https://example.com/flask-logo.png",
+    "prerequisites": [
+        {
+            "label": "Python",
+            "description": "Python interpreter (version 3.6+)",
+            "href": "https://www.python.org/downloads/"
+        }
+    ],
+    "commandTemplate": [
+        "${fields.installPrerequisites}",
+        "mkdir ${fields.projectName};",
+        "cd ${fields.projectName};",
+        "python -m venv venv;",
+        "source venv/bin/activate;",
+        "pip install flask;",
+        "${fields.openInVsCode ? `code .;` : ''}"
+    ],
+    "fields": {
+        "projectName": {
+            "label": "Project Name",
+            "type": "textbox",
+            "placeholder": "e.g., my-flask-project",
+            "description": "The name of the Flask project directory.",
+            "required": true
+        },
+        "installPrerequisites": {
+            "label": "Install Prerequisites ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "python -m venv venv;"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        },
+        "openInVsCode": {
+            "label": "Open In VSCode ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        }
+    },
+    "resources": [
+        {
+            "label": "Flask Documentation",
+            "href": "https://flask.palletsprojects.com/"
+        }
+    ],
+    "tags": [
+        "flask",
+        "python",
+        "web"
+    ]
+}

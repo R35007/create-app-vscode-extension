@@ -1,0 +1,87 @@
+{
+    "appName": "FastAPI Project",
+    "description": "Create a FastAPI project with custom settings.",
+    "logoPath": "https://example.com/fastapi-logo.png",
+    "prerequisites": [
+        {
+            "label": "Python",
+            "description": "Python interpreter (version 3.6+)",
+            "href": "https://www.python.org/downloads/"
+        },
+        {
+            "label": "FastAPI",
+            "description": "FastAPI framework",
+            "href": "https://fastapi.tiangolo.com/"
+        },
+        {
+            "label": "uvicorn",
+            "description": "ASGI server",
+            "href": "https://www.uvicorn.org/"
+        }
+    ],
+    "commandTemplate": [
+        "${fields.installPrerequisites}",
+        "mkdir ${fields.projectName};",
+        "cd ${fields.projectName};",
+        "python -m venv venv;",
+        "source venv/bin/activate;",
+        "pip install fastapi uvicorn;",
+        "uvicorn main:app --reload;",
+        "${fields.openInVsCode ? `code .;` : ''}"
+    ],
+    "fields": {
+        "projectName": {
+            "label": "Project Name",
+            "type": "textbox",
+            "placeholder": "e.g., my-fastapi-project",
+            "description": "The name of the FastAPI project directory.",
+            "required": true
+        },
+        "installPrerequisites": {
+            "label": "Install Prerequisites ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "python -m venv venv;"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        },
+        "openInVsCode": {
+            "label": "Open In VSCode ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        }
+    },
+    "resources": [
+        {
+            "label": "FastAPI Documentation",
+            "href": "https://fastapi.tiangolo.com/"
+        },
+        {
+            "label": "Uvicorn",
+            "href": "https://www.uvicorn.org/"
+        }
+    ],
+    "tags": [
+        "fastapi",
+        "python",
+        "web",
+        "api"
+    ]
+}
