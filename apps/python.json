@@ -30,23 +30,16 @@
             "description": "The name of the Python project directory.",
             "required": true
         },
-        "installPrerequisites": {
-            "label": "Install Prerequisites ?",
-            "type": "radio",
-            "value": "",
-            "options": [
-                {
-                    "label": "Yes",
-                    "value": "python -m venv venv;"
-                },
-                {
-                    "label": "No",
-                    "value": ""
-                }
-            ]
+        "dockerImage": {
+            "label": "Docker Image",
+            "type": "textbox",
+            "value": "python-app:latest",
+            "placeholder": "e.g., python-app:latest",
+            "description": "The Docker image to use for running the Python application.",
+            "required": false
         },
-        "useVenv": {
-            "label": "Create a virtual environment (venv) ?",
+        "useDocker": {
+            "label": "Use Docker ?",
             "type": "radio",
             "value": "",
             "options": [
@@ -60,16 +53,8 @@
                 }
             ]
         },
-        "dockerImage": {
-            "label": "Docker Image",
-            "type": "textbox",
-            "value": "python-app:latest",
-            "placeholder": "e.g., python-app:latest",
-            "description": "The Docker image to use for running the Python application.",
-            "required": false
-        },
-        "useDocker": {
-            "label": "Use Docker ?",
+        "useVenv": {
+            "label": "Create a virtual environment (venv) ?",
             "type": "radio",
             "value": "",
             "options": [

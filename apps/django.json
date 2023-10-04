@@ -15,6 +15,7 @@
     }
   ],
   "commandTemplate": [
+    "${fields.useVenv ? `python -m venv venv;` : ''}",
     "${fields.installPrerequisites}",
     "django-admin startproject ${fields.getExcept('installPrerequisites', 'openInVsCode')};",
     "${fields.useDocker ? `docker run -d -p 8000:8000 --name ${fields.projectName}-container -v $(pwd):/app ${fields.dockerImage};` : ''}",
@@ -90,6 +91,21 @@
         {
           "label": "Yes",
           "value": "python -m pip install Django;"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
+    },
+    "useVenv": {
+      "label": "Open In VSCode ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
         },
         {
           "label": "No",

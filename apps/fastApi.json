@@ -47,6 +47,21 @@
                 }
             ]
         },
+        "useVenv": {
+            "label": "Open In VSCode ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        },
         "installPrerequisites": {
             "label": "Install Prerequisites ?",
             "type": "radio",
@@ -54,7 +69,7 @@
             "options": [
                 {
                     "label": "Yes",
-                    "value": "python -m venv venv;"
+                    "value": "python -m pip install uvicorn fastapi;"
                 },
                 {
                     "label": "No",
