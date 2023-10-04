@@ -17,6 +17,7 @@
   "commandTemplate": [
     "${fields.installPrerequisites}",
     "django-admin startproject ${fields.getExcept('installPrerequisites', 'openInVsCode')};",
+    "${fields.useDocker ? `docker run -d -p 8000:8000 --name ${fields.projectName}-container -v $(pwd):/app ${fields.dockerImage};` : ''}",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
@@ -32,6 +33,29 @@
         "required": "App Id is Required.",
         "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
+    },
+    "dockerImage": {
+      "label": "Docker Image",
+      "type": "textbox",
+      "value": "django:latest",
+      "placeholder": "e.g., django-app:latest",
+      "description": "The Docker image to use for running the Django application.",
+      "required": false
+    },
+    "useDocker": {
+      "label": "Use Docker ?",
+      "type": "radio",
+      "value": "",
+      "options": [
+        {
+          "label": "Yes",
+          "value": "yes"
+        },
+        {
+          "label": "No",
+          "value": ""
+        }
+      ]
     },
     "template": {
       "type": "browse",
@@ -120,5 +144,14 @@
       "href": "https://docs.djangoproject.com/en/3.2/intro/tutorial01/"
     }
   ],
-  "tags": ["django", "framework", "frontend", "python", "pythonwebapp", "ui", "web", "webapp"]
+  "tags": [
+    "django",
+    "framework",
+    "frontend",
+    "python",
+    "pythonwebapp",
+    "ui",
+    "web",
+    "webapp"
+  ]
 }

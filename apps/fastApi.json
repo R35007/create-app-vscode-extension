@@ -1,32 +1,19 @@
 {
     "appName": "FastAPI Project",
-    "description": "Create a FastAPI project with custom settings.",
+    "description": "Create a FastAPI project with optional Docker support.",
     "logoPath": "https://example.com/fastapi-logo.png",
     "prerequisites": [
         {
             "label": "Python",
             "description": "Python interpreter (version 3.6+)",
             "href": "https://www.python.org/downloads/"
-        },
-        {
-            "label": "FastAPI",
-            "description": "FastAPI framework",
-            "href": "https://fastapi.tiangolo.com/"
-        },
-        {
-            "label": "uvicorn",
-            "description": "ASGI server",
-            "href": "https://www.uvicorn.org/"
         }
     ],
     "commandTemplate": [
         "${fields.installPrerequisites}",
         "mkdir ${fields.projectName};",
         "cd ${fields.projectName};",
-        "python -m venv venv;",
-        "source venv/bin/activate;",
-        "pip install fastapi uvicorn;",
-        "uvicorn main:app --reload;",
+        "${fields.useDocker ? `docker run -d -p 8000:8000 --name ${fields.projectName}-container -v $(pwd):/app ${fields.dockerImage};` : ''}",
         "${fields.openInVsCode ? `code .;` : ''}"
     ],
     "fields": {
@@ -36,6 +23,29 @@
             "placeholder": "e.g., my-fastapi-project",
             "description": "The name of the FastAPI project directory.",
             "required": true
+        },
+        "dockerImage": {
+            "label": "Docker Image",
+            "type": "textbox",
+            "value": "tiangolo/uvicorn-gunicorn-fastapi:latest",
+            "placeholder": "e.g., fastapi-app:latest",
+            "description": "The Docker image to use for running the FastAPI application.",
+            "required": false
+        },
+        "useDocker": {
+            "label": "Use Docker ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
         },
         "installPrerequisites": {
             "label": "Install Prerequisites ?",
@@ -72,16 +82,11 @@
         {
             "label": "FastAPI Documentation",
             "href": "https://fastapi.tiangolo.com/"
-        },
-        {
-            "label": "Uvicorn",
-            "href": "https://www.uvicorn.org/"
         }
     ],
     "tags": [
         "fastapi",
         "python",
-        "web",
-        "api"
+        "web"
     ]
 }
