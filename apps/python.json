@@ -15,11 +15,11 @@
         }
     ],
     "commandTemplate": [
-        "${fields.installPrerequisites}",
         "mkdir ${fields.projectName};",
         "cd ${fields.projectName};",
         "${fields.useVenv ? `python -m venv venv;` : ''}",
-        "${fields.useDocker ? `docker run -d -p 8000:8000 --name ${fields.projectName}-container -v $(pwd):/app ${fields.dockerImage};` : ''}",
+        "${fields.installPrerequisites}",
+        "${fields.useDocker ? `docker run -d -p 8000:8000 --name ${fields.containerName} -v $(pwd):/app ${fields.dockerImage};` : ''}",
         "${fields.openInVsCode ? `code .;` : ''}"
     ],
     "fields": {
@@ -37,6 +37,13 @@
             "placeholder": "e.g., python-app:latest",
             "description": "The Docker image to use for running the Python application.",
             "required": false
+        },
+        "containerName": {
+            "label": "Container Name",
+            "type": "textbox",
+            "placeholder": "e.g., my-python-project",
+            "description": "The name of the Docker Container.",
+            "required": true
         },
         "useDocker": {
             "label": "Use Docker ?",
