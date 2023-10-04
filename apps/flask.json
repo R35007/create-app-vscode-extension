@@ -21,6 +21,7 @@
         "projectName": {
             "label": "Project Name",
             "type": "textbox",
+            "value": "my-flask-project",
             "placeholder": "e.g., my-flask-project",
             "description": "The name of the Flask project directory.",
             "required": true
@@ -36,6 +37,7 @@
         "containerName": {
             "label": "Container Name",
             "type": "textbox",
+            "value": "my-flask-project",
             "placeholder": "e.g., my-flask-project",
             "description": "The name of the Docker Container.",
             "required": true
