@@ -1,0 +1,118 @@
+{
+    "appName": "Python Project",
+    "description": "Create a Python project with optional Docker support.",
+    "logoPath": "https://example.com/python-logo.png",
+    "prerequisites": [
+        {
+            "label": "Python",
+            "description": "Python interpreter (version 3.6+)",
+            "href": "https://www.python.org/downloads/"
+        },
+        {
+            "label": "Docker",
+            "description": "Docker engine",
+            "href": "https://docs.docker.com/get-docker/"
+        }
+    ],
+    "commandTemplate": [
+        "${fields.installPrerequisites}",
+        "mkdir ${fields.projectName};",
+        "cd ${fields.projectName};",
+        "${fields.useVenv ? `python -m venv venv;` : ''}",
+        "${fields.useDocker ? `docker run -d -p 8000:8000 --name ${fields.projectName}-container -v $(pwd):/app ${fields.dockerImage};` : ''}",
+        "${fields.openInVsCode ? `code .;` : ''}"
+    ],
+    "fields": {
+        "projectName": {
+            "label": "Project Name",
+            "type": "textbox",
+            "placeholder": "e.g., my-python-project",
+            "description": "The name of the Python project directory.",
+            "required": true
+        },
+        "installPrerequisites": {
+            "label": "Install Prerequisites ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "python -m venv venv;"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        },
+        "useVenv": {
+            "label": "Create a virtual environment (venv) ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        },
+        "dockerImage": {
+            "label": "Docker Image",
+            "type": "textbox",
+            "value": "python-app:latest",
+            "placeholder": "e.g., python-app:latest",
+            "description": "The Docker image to use for running the Python application.",
+            "required": false
+        },
+        "useDocker": {
+            "label": "Use Docker ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        },
+        "openInVsCode": {
+            "label": "Open In VSCode ?",
+            "type": "radio",
+            "value": "",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "yes"
+                },
+                {
+                    "label": "No",
+                    "value": ""
+                }
+            ]
+        }
+    },
+    "resources": [
+        {
+            "label": "Python Official Website",
+            "href": "https://www.python.org/"
+        },
+        {
+            "label": "Docker Official Website",
+            "href": "https://www.docker.com/"
+        }
+    ],
+    "tags": [
+        "python",
+        "programming",
+        "development",
+        "docker"
+    ]
+}
