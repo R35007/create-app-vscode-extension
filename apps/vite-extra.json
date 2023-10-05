@@ -10,13 +10,12 @@
     }
   ],
   "commandTemplate": [
-    "npm create vite-extra@latest ${fields.appId} -- ${fields.template} --yes;",
+    "npm create vite-extra@latest ${fields.appId} -- --template=${fields.template} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-) and dot (.)",
       "value": "hello-world",
@@ -32,6 +31,7 @@
       "label": "Vite Extra Template",
       "description": "Check out Awesome Vite for <a href='https://github.com/vitejs/awesome-vite#templates'>community maintained templates</a> that include other tools or target different frameworks",
       "prompt": true,
+      "value": "ssr-vanilla",
       "options": [
         { "label": "SSR Vanilla", "value": "ssr-vanilla" },
         { "label": "SSR Vanilla + Typescript", "value": "ssr-vanilla-ts" },
@@ -62,24 +62,11 @@
         { "label": "Library", "value": "library" },
         { "label": "Library + Typescript", "value": "library-ts" },
         { "label": "SSR transform", "value": "ssr-transform" }
-      ],
-      "prefix": "--template=",
-      "value": "ssr-vanilla"
+      ]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

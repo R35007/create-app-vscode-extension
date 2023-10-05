@@ -1,3 +1,12 @@
+## v4.2.0
+
+- Updated - Default apps cli configuration fields
+- Added - `checkedValue` and `unCheckedValue` for the field type `checkbox`,
+- Added - `hide` for the field props. If tru it will hide the file both in interactive form and in quick pick,
+- Enhanced - Increased the width of the interactive container.
+- Fixed - Selecting the current app name resetting the view issue fixed. Now it will not reset the view on clicking same selected app name.
+- Fixed - If type is not provided the field is not rendering the textbox issue fixed. Now the filed type is defaulted to type `textbox`.
+
 ## v4.1.0
 
 - Moved - `Install Prerequisites ?` moved into the form fields.

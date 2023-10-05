@@ -91,3 +91,21 @@ body > * {
 .about-content {
   font-size: 12px;
 }
+
+.control-checkbox.checked::after{
+  content: "Yes";
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+.control-checkbox:not(.checked)::after{
+  content: "No";
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+@media (min-width: 1400px){
+  .container-lg {
+    max-width: 90%;
+  }
+}

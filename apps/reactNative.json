@@ -10,13 +10,12 @@
     }
   ],
   "commandTemplate": [
-    "expo init ${fields.getExcept('openInVsCode')} --yes;",
+    "npx expo init ${fields.getExcept('openInVsCode')} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -28,7 +27,6 @@
       }
     },
     "appName": {
-      "type": "textbox",
       "label": "App Name",
       "value": "Hello World",
       "required": true,
@@ -43,71 +41,31 @@
       "label": "Template",
       "description": "You can find many grea community templates by searching for <a href='https://www.npmjs.com/search?q=expo-template-*'>expo-template-*</a> on npm.",
       "prompt": true,
-      "options": [
-        {
-          "label": "Blank",
-          "value": ""
-        },
-        {
-          "label": "Blank (Typescript)",
-          "value": "expo-template-blank-typescript"
-        },
-        {
-          "label": "Tabs (Typescript)",
-          "value": "expo-template-tabs"
-        },
-        {
-          "label": "Bare Minimum",
-          "value": "expo-template-bare-minimum"
-        }
-      ],
       "prefix": "--template=",
-      "value": ""
+      "options": [
+        { "label": "Blank" },
+        { "label": "Blank (Typescript)", "value": "expo-template-blank-typescript" },
+        { "label": "Tabs (Typescript)", "value": "expo-template-tabs" },
+        { "label": "Bare Minimum", "value": "expo-template-bare-minimum" }
+      ]
     },
     "packageManager": {
       "type": "radio",
       "label": "Package Manager",
+      "value": "--npm",
       "options": [
-        {
-          "label": "npm",
-          "value": "--npm"
-        },
-        {
-          "label": "yarn",
-          "value": "--yarn"
-        }
-      ],
-      "value": "--npm"
+        { "label": "npm", "value": "--npm" },
+        { "label": "yarn", "value": "--yarn" }
+      ]
     },
     "skipInstall": {
       "type": "radio",
       "label": "Skip Install ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--no-install"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--no-install" }, { "label": "No" }]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [
@@ -119,17 +77,17 @@
     {
       "label": "expo init",
       "description": "Click here to create the react native app using expo cli prompts",
-      "command": "expo init"
+      "command": "npx expo init"
     },
     {
       "label": "check cli version",
       "description": "Click here to check cli version",
-      "command": "expo --version"
+      "command": "npx expo --version"
     },
     {
       "label": "cli help",
       "description": "Click here to know more cli configurations",
-      "command": "expo init --help"
+      "command": "npx expo init --help"
     }
   ],
   "resources": [
@@ -143,7 +101,7 @@
     },
     {
       "label": "Npm Package",
-      "href": "https://www.npmjs.com/package/expo-cli"
+      "href": "https://www.npmjs.com/package/expo"
     },
     {
       "label": "React Native Templates",

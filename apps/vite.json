@@ -10,13 +10,12 @@
     }
   ],
   "commandTemplate": [
-    "npm create vite@latest ${fields.appId} -- ${fields.template} --yes;",
+    "npm create vite@latest ${fields.appId} -- --template=${fields.template} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-) and dot (.)",
       "value": "hello-world",
@@ -32,6 +31,7 @@
       "label": "Vite Template",
       "description": "Check out Awesome Vite for <a href='https://github.com/vitejs/awesome-vite#templates'>community maintained templates</a> that include other tools or target different frameworks",
       "prompt": true,
+      "value": "vanilla",
       "options": [
         { "label": "Vanilla", "value": "vanilla" },
         { "label": "Vanilla + Typescript", "value": "vanilla-ts" },
@@ -49,24 +49,11 @@
         { "label": "Svelte + Typescript", "value": "svelte-ts" },
         { "label": "Solid", "value": "solid" },
         { "label": "Solid + Typescript", "value": "solid-ts" }
-      ],
-      "prefix": "--template=",
-      "value": "vanilla"
+      ]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

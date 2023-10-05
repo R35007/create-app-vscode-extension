@@ -57,13 +57,17 @@ interface Tags {
 }
 
 interface FieldProps {
-  type: "textbox" | "checkbox" | "radio" | "browse" | "dropdown";
   label: string;
+  type?: "textbox" | "checkbox" | "radio" | "browse" | "dropdown";
   prefix?: string; // set prefix of the field value. Ex: "prefix":"--template=\""
   suffix?: string; // set suffix of the field value. Ex: "prefix":"\""
+  checkedValue?: string | boolean; // used only for field type checkbox
+  unCheckedValue?: string | boolean; // used only for field type checkbox
   value?: string | boolean; // The prefix and suffix will be added to the value. Ex: --template="value"
   placeholder?: string;
   description?: string;
+  order?: number; // mention the field render order position
+  hide?: boolean; // If true it will hide hide the field both in interactive form and Quick pick.
   buttonText?: string; // provide button text if the field type is "browse"
   required?: boolean; // By default all required fields will be prompted on command Create App: Quick
   pattern?: string; // Set pattern to validate the value

@@ -4,9 +4,14 @@
   "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/django.png",
   "prerequisites": [
     {
-      "label": "python",
+      "label": "Python",
       "description": "https://www.python.org/",
       "href": "https://www.python.org/"
+    },
+    {
+      "label": "Pip",
+      "description": "https://pip.pypa.io/en/stable/installation/",
+      "href": "https://pip.pypa.io/en/stable/installation/"
     },
     {
       "label": "Django",
@@ -22,7 +27,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -44,49 +48,25 @@
       "placeholder": "Please select any Template files Archive"
     },
     "fileNames": {
-      "type": "textbox",
       "label": "File Name(s)",
       "description": "Please separate multiple file name(s) with comma",
-      "value": "",
       "prefix": "--name=",
       "placeholder": "Please provide the file name(s) to render"
     },
     "fileExtensions": {
-      "type": "textbox",
       "label": "File Extension(s)",
       "prefix": "--extension=",
       "description": "Please separate multiple file extension(s) with comma",
       "value": "py"
     },
     "installPrerequisites": {
+      "type": "checkbox",
       "label": "Install Prerequisites ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "python -m pip install Django;"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "checkedValue": "python -m pip install Django;"
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

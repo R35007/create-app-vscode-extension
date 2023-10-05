@@ -1,6 +1,6 @@
 var vscode = acquireVsCodeApi();
 
-let fieldProps = {};
+let appFields = {};
 let commandTemplate = "${fields['*']}";
 
 const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
@@ -16,7 +16,7 @@ const toSanitizedCommand = (str) =>
 
 const setCommand = () => {
   const fields = Object.fromEntries(
-    Object.entries(fieldProps).map(([key, props]) => [key, getCommand(props.prefix, props.value, props.suffix)])
+    Object.entries(appFields).map(([key, props]) => [key, getCommand(props.prefix, props.value, props.suffix)])
   );
   return vscode.postMessage({
     action: "get-command-template",
@@ -39,7 +39,7 @@ function init(selectedApp) {
     const message = event.data; // The json data that the extension sent
     switch (message.action) {
       case "set-location":
-        fieldProps[message.name].value = message.value;
+        appFields[message.name].value = message.value;
         document.querySelector(`[name="${message.name}"]`).value = message.value;
         setCommand();
         break;
@@ -54,36 +54,45 @@ function init(selectedApp) {
 
   // Set Default values
   commandTemplate = [].concat(selectedApp.commandTemplate || "${fields.get('*')}").join(" ");
-  fieldProps = selectedApp.fields || {};
+  appFields = selectedApp.fields || {};
   setCommand();
 
+  // Add event listeners for all textbox, browse, dropdown, radio fields
   document.querySelectorAll("#create-app-form .control").forEach((control) => {
-    function onChangeHandler(e) {
-      const fieldName = e.target.name;
-      const fieldValue = e.target.value;
+    function onChangeHandler() {
+      const fieldName = this.name;
+      const fieldValue = `${this.value ?? ""}`?.trim();
 
       const $errorDiv = document.querySelector(`.${fieldName}-error`);
 
-      if (fieldProps[fieldName].required && !`${fieldValue}`.length) {
+      if (appFields[fieldName].required && !fieldValue.length) {
         $execute.disabled = true;
-        if ($errorDiv) $errorDiv.innerHTML = fieldProps[fieldName].errors.required || "Required.";
+        if ($errorDiv) $errorDiv.innerHTML = appFields[fieldName].errors.required || "Required.";
         return;
       }
 
-      if (`${fieldValue}`.length && fieldProps[fieldName].pattern && !new RegExp(fieldProps[fieldName].pattern).test(fieldValue)) {
+      if (fieldValue.length && appFields[fieldName].pattern && !new RegExp(appFields[fieldName].pattern).test(fieldValue)) {
         $execute.disabled = true;
-        if ($errorDiv) $errorDiv.innerHTML = fieldProps[fieldName].errors.pattern || "Invalid Pattern.";
+        if ($errorDiv) $errorDiv.innerHTML = appFields[fieldName].errors.pattern || "Invalid Pattern.";
         return;
       }
 
       $execute.disabled = false;
       if ($errorDiv) $errorDiv.innerHTML = "";
-      fieldProps[e.target.name].value = fieldValue;
+      appFields[fieldName].value = fieldValue;
       setCommand();
     }
 
     control.addEventListener("input", onChangeHandler);
     control.addEventListener("change", onChangeHandler);
+  });
+
+  // Add event listeners for all checkbox fields
+  document.querySelectorAll("#create-app-form .control-checkbox").forEach((control) => {
+    control.addEventListener("change", function () {
+      appFields[this.name].value = this.checked ? this.dataset.checkedValue ?? true : this.dataset.unCheckedValue ?? "";
+      setCommand();
+    });
   });
 
   // On Browse Button Click

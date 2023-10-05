@@ -68,7 +68,7 @@ export default class CreateApp {
   onDidReceiveMessage = (message: any) => {
     switch (message.action) {
       case 'switch-app': {
-        this.#switchApp(message.appName);
+        if (message.appName !== this.#selectedApp.appName) this.#switchApp(message.appName);
         return;
       }
       case 'get-location': {

@@ -22,7 +22,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -34,8 +33,8 @@
       }
     },
     "presetLocation": {
-      "label": "Custom Preset Location",
       "type": "browse",
+      "label": "Custom Preset Location",
       "prefix": "--preset=\"",
       "suffix": "\"",
       "buttonText": "Browse File",
@@ -44,69 +43,24 @@
       "description": "Please provide local path or GitHub URL to <span class='text-primary'>preset.json</span> file"
     },
     "packageManager": {
-      "label": "Package Manager",
       "type": "radio",
-      "value": "",
+      "label": "Package Manager",
       "prefix": "--packageManager=",
-      "options": [
-        {
-          "label": "npm",
-          "value": ""
-        },
-        {
-          "label": "yarn",
-          "value": "yarn"
-        },
-        {
-          "label": "pnp",
-          "value": "pnp"
-        }
-      ]
+      "options": [{ "label": "npm" }, { "label": "yarn", "value": "yarn" }, { "label": "pnp", "value": "pnp" }]
     },
     "initializeGit": {
-      "label": "Initialize a git repository ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": ""
-        },
-        {
-          "label": "No",
-          "value": "--no-git"
-        }
-      ]
+      "label": "Initialize a git repository ?",
+      "options": [{ "label": "Yes" }, { "label": "No", "value": "--no-git" }]
     },
     "installPrerequisites": {
+      "type": "checkbox",
       "label": "Install Prerequisites ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "npm install -g @vue/cli;"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "checkedValue": "npm install -g @vue/cli;"
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

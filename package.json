@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Easily Create any UI App with Official Starter Templates or Boilerplate using CLI",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
@@ -92,8 +92,12 @@
                 "commandTemplate": "cli prefix ${fields.appId} ${fields.get('appId')} ${fields.getExcept('appId')} ${fields.get('*')} cli suffix",
                 "fields": {
                   "appId": {
-                    "label": "App Id",
                     "type": "textbox",
+                    "label": "App Id",
+                    "description": "field description",
+                    "order": 1,
+                    "unCheckValue": "hello-world",
+                    "checkValue": "hello-world",
                     "placeholder": "placeholder",
                     "value": "hello-world",
                     "required": true,
@@ -155,8 +159,12 @@
                 "commandTemplate": "cli prefix ${fields.appId} ${fields.get('appId')} ${fields.getExcept('appId')} ${fields.get('*')} cli suffix",
                 "fields": {
                   "appId": {
-                    "label": "App Id",
                     "type": "textbox",
+                    "label": "App Id",
+                    "description": "field description",
+                    "order": 1,
+                    "unCheckValue": "hello-world",
+                    "checkValue": "hello-world",
                     "placeholder": "placeholder",
                     "value": "hello-world",
                     "required": true,
@@ -353,12 +361,6 @@
                     }
                   ],
                   "properties": {
-                    "order": {
-                      "type": "number"
-                    },
-                    "label": {
-                      "type": "string"
-                    },
                     "type": {
                       "type": "string",
                       "enum": [
@@ -369,11 +371,35 @@
                         "checkbox"
                       ]
                     },
+                    "label": {
+                      "type": "string"
+                    },
                     "placeholder": {
                       "type": "string"
                     },
-                    "value": {
+                    "description": {
                       "type": "string"
+                    },
+                    "order": {
+                      "type": "number"
+                    },
+                    "unCheckedValue": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ]
+                    },
+                    "checkedValue": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ]
+                    },
+                    "value": {
+                      "type": [
+                        "boolean",
+                        "string"
+                      ]
                     },
                     "required": {
                       "type": "boolean"
@@ -385,6 +411,9 @@
                       "type": "boolean"
                     },
                     "prompt": {
+                      "type": "boolean"
+                    },
+                    "hide": {
                       "type": "boolean"
                     },
                     "pattern": {
@@ -456,7 +485,10 @@
                   "if": {
                     "properties": {
                       "type": {
-                        "const": "dropdown"
+                        "enum": [
+                          "dropdown",
+                          "radio"
+                        ]
                       }
                     }
                   },
@@ -464,6 +496,13 @@
                     "required": [
                       "options"
                     ]
+                  },
+                  "else": {
+                    "not": {
+                      "required": [
+                        "options"
+                      ]
+                    }
                   }
                 }
               },

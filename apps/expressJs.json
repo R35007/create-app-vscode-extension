@@ -16,7 +16,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -31,157 +30,58 @@
       "type": "dropdown",
       "label": "View Type",
       "prompt": true,
-      "options": [
-        {
-          "label": "JADE",
-          "value": ""
-        },
-        {
-          "label": "EJS",
-          "value": "ejs"
-        },
-        {
-          "label": "HBD",
-          "value": "hbd"
-        },
-        {
-          "label": "HJS",
-          "value": "hjs"
-        },
-        {
-          "label": "PUG",
-          "value": "pug"
-        },
-        {
-          "label": "TWIG",
-          "value": "twig"
-        },
-        {
-          "label": "VASH",
-          "value": "vash"
-        }
-      ],
       "prefix": "--view=",
-      "value": ""
+      "options": [
+        { "label": "JADE" },
+        { "label": "EJS", "value": "ejs" },
+        { "label": "HBD", "value": "hbd" },
+        { "label": "HJS", "value": "hjs" },
+        { "label": "PUG", "value": "pug" },
+        { "label": "TWIG", "value": "twig" },
+        { "label": "VASH", "value": "vash" }
+      ]
     },
     "styleSheet": {
       "type": "dropdown",
       "label": "Style sheet Format",
       "prompt": true,
-      "options": [
-        {
-          "label": "CSS",
-          "value": ""
-        },
-        {
-          "label": "LESS",
-          "value": "less"
-        },
-        {
-          "label": "STYLUS",
-          "value": "stylus"
-        },
-        {
-          "label": "COMPASS",
-          "value": "compass"
-        },
-        {
-          "label": "SASS",
-          "value": "sass"
-        }
-      ],
       "prefix": "--css=",
-      "value": ""
+      "options": [
+        { "label": "CSS" },
+        { "label": "LESS", "value": "less" },
+        { "label": "STYLUS", "value": "stylus" },
+        { "label": "COMPASS", "value": "compass" },
+        { "label": "SASS", "value": "sass" }
+      ]
     },
     "addEjs": {
       "type": "radio",
       "label": "Add ejs engine support ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--ejs"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--ejs" }, { "label": "No" }]
     },
     "addHandlebar": {
       "type": "radio",
       "label": "Add handlebar engine support ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--hbs"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--hbs" }, { "label": "No" }]
     },
     "addPug": {
       "type": "radio",
       "label": "Add pug engine support ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--pug"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--pug" }, { "label": "No" }]
     },
     "addHogan": {
       "type": "radio",
       "label": "Add hogan.js engine support ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--hogan"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--hogan" }, { "label": "No" }]
     },
     "noViews": {
       "type": "radio",
       "label": "Create app without views ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--no-view"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--no-view" }, { "label": "No" }]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

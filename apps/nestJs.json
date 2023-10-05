@@ -22,7 +22,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -37,109 +36,41 @@
       "type": "dropdown",
       "label": "Language",
       "prompt": true,
-      "options": [
-        {
-          "label": "Javascript",
-          "value": "javascript"
-        },
-        {
-          "label": "Typescript",
-          "value": "typescript"
-        }
-      ],
       "prefix": "--language=",
-      "value": "javascript"
+      "value": "javascript",
+      "options": [
+        { "label": "Javascript", "value": "javascript" },
+        { "label": "Typescript", "value": "typescript" }
+      ]
     },
     "strict": {
       "type": "radio",
       "label": "Do Strict Type Check ?",
-      "description": "Enables strict mode if language is TypeScript.",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--strict"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--strict" }, { "label": "No" }]
     },
     "packageManager": {
       "type": "radio",
       "label": "Package Manager",
-      "options": [
-        {
-          "label": "yarn",
-          "value": ""
-        },
-        {
-          "label": "npm",
-          "value": "--npm"
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "yarn" }, { "label": "npm", "value": "--npm" }]
     },
     "gitInit": {
       "type": "radio",
       "label": "Initialize Git Repository ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": ""
-        },
-        {
-          "label": "No",
-          "value": "--skip-git"
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes" }, { "label": "No", "value": "--skip-git" }]
     },
     "skipInstall": {
       "type": "radio",
       "label": "Skip Install ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--skip-install"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--skip-install" }, { "label": "No" }]
     },
     "installPrerequisites": {
+      "type": "checkbox",
       "label": "Install Prerequisites ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "npm i -g @nestjs/cli;"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "checkedValue": "npm i -g @nestjs/cli;"
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

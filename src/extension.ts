@@ -26,21 +26,17 @@ export function activate(context: vscode.ExtensionContext) {
 		const selectedApp = appsList.find(app => app.appName === appName);
 		const appFields = selectedApp?.fields || {};
 
-		const fields: Record<string, string | undefined> = {};
-
 		const fieldsToAsk = Object.entries(appFields).filter(([key, fieldProps]) => fieldProps.required || fieldProps.prompt);
 
 		for (let [fieldName, fieldProps] of fieldsToAsk) {
-
 			if ((fieldProps.type === FieldType.DROPDOWN || fieldProps.type === FieldType.RADIO) && fieldProps.options) {
 				const selectedOption = await vscode.window.showQuickPick(
 					fieldProps.options.map(option => ({ label: option.label, value: option.value })),
 					{ placeHolder: fieldProps.label, title: appName }
 				);
-
 				if (!selectedOption) return;
-
-				fields[fieldName] = getCommand(fieldProps.prefix, selectedOption?.value || fieldProps.value as string, fieldProps.suffix);
+				appFields[fieldName].value = selectedOption?.value || fieldProps.value;
+				continue;
 			}
 
 			if (fieldProps.type === FieldType.BROWSE) {
@@ -51,10 +47,9 @@ export function activate(context: vscode.ExtensionContext) {
 					openLabel: fieldProps.label,
 					title: appName
 				});
-
 				if (!savedPathUri) return;
-
-				fields[fieldName] = getCommand(fieldProps.prefix, savedPathUri?.[0].fsPath || fieldProps.value as string, fieldProps.suffix);
+				appFields[fieldName].value = savedPathUri?.[0].fsPath || fieldProps.value;
+				continue;
 			}
 
 			if (fieldProps.type === FieldType.CHECKBOX) {
@@ -62,44 +57,39 @@ export function activate(context: vscode.ExtensionContext) {
 					[{ label: "Yes" }, { label: "No" }],
 					{ placeHolder: fieldProps.label, title: appName }
 				);
-
 				if (!value) return;
-
-				fields[fieldName] = getCommand(fieldProps.prefix, value?.label === "Yes" ? fieldProps.value as string : '', fieldProps.suffix);
+				appFields[fieldName].value = value?.label === "Yes" ? fieldProps.checkedValue as string ?? "true" : fieldProps.unCheckedValue as string;
+				continue;
 			}
 
-			if (fieldProps.type === FieldType.TEXTBOX) {
-				const value = await vscode.window.showInputBox({
-					placeHolder: fieldProps.label,
-					title: appName,
-					value: fieldProps.value as string,
-					validateInput: (value) => {
-						if (fieldProps.required && !`${value}`.length) {
-							return fieldProps.errors?.required || "Required";
-						}
-						if (`${value}`.length && fieldProps.pattern && !new RegExp(fieldProps.pattern).test(value)) {
-							return fieldProps.errors?.pattern || "Invalid Pattern.";
-						}
-						return null;
+			const value = await vscode.window.showInputBox({
+				placeHolder: fieldProps.label,
+				title: appName,
+				value: fieldProps.value as string,
+				validateInput: (value) => {
+					if (fieldProps.required && !`${value}`.length) {
+						return fieldProps.errors?.required || "Required";
 					}
-				});
-
-				if (!value) return;
-
-				fields[fieldName] = getCommand(fieldProps.prefix, value || fieldProps.value as string, fieldProps.suffix);;
-			}
+					if (`${value}`.length && fieldProps.pattern && !new RegExp(fieldProps.pattern).test(value)) {
+						return fieldProps.errors?.pattern || "Invalid Pattern.";
+					}
+					return null;
+				}
+			});
+			if (!value) return;
+			appFields[fieldName].value = value || fieldProps.value;
 		}
 
-		const selectedOption = await vscode.window.showQuickPick(
+		const shouldBrowse = await vscode.window.showQuickPick(
 			[{ label: "No", picked: true }, { label: "Yes" }],
 			{ title: 'Browse Folder to create a app', placeHolder: "Please select No to create app in the active workspace folder" }
 		);
 
-		if (!selectedOption) return;
+		if (!shouldBrowse) return;
 
 		let createAppLocation = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || "./";
 
-		if (selectedOption?.label === 'Yes') {
+		if (shouldBrowse?.label === 'Yes') {
 			const savedPathUri = await vscode.window.showOpenDialog({
 				defaultUri: vscode.workspace.workspaceFolders?.[0]?.uri,
 				canSelectFiles: false,
@@ -114,7 +104,9 @@ export function activate(context: vscode.ExtensionContext) {
 			createAppLocation = savedPathUri?.[0].fsPath || createAppLocation;
 		}
 
-		const commandStr = interpolate({ fields: getInterpolateObject(fields) }, ([] as any).concat(selectedApp?.commandTemplate || "${fields.get('*')}"));
+		const fields = Object.fromEntries(Object.entries(appFields).map(([key, props]) => [key, getCommand(props.prefix, props.value, props.suffix)]));
+
+		const commandStr = interpolate({ fields: getInterpolateObject(fields) }, ([] as any).concat(selectedApp?.commandTemplate || "${fields.get('*')}").join(" "));
 		const command = new Command(toSanitizedCommand(commandStr), createAppLocation, appName);
 		command.executeCommand();
 	}));

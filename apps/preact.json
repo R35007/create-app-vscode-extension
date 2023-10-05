@@ -16,7 +16,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -29,93 +28,37 @@
     },
     "template": {
       "label": "Template",
+      "description": "All official project templates are repos in the <a href='https://github.com/preactjs-templates'>preactjs-templates organization</a>.",
       "type": "dropdown",
       "value": "default",
       "prompt": true,
       "options": [
-        {
-          "label": "Default",
-          "value": "default"
-        },
-        {
-          "label": "Simple",
-          "value": "simple"
-        },
-        {
-          "label": "Netlify",
-          "value": "netlify"
-        },
-        {
-          "label": "Typescript",
-          "value": "typescript"
-        },
-        {
-          "label": "Widget",
-          "value": "widget"
-        }
-      ],
-      "description": "All official project templates are repos in the <a href='https://github.com/preactjs-templates'>preactjs-templates organization</a>."
+        { "label": "Default", "value": "default" },
+        { "label": "Simple", "value": "simple" },
+        { "label": "Netlify", "value": "netlify" },
+        { "label": "Typescript", "value": "typescript" },
+        { "label": "Widget", "value": "widget" }
+      ]
     },
     "packageManager": {
-      "label": "Package Manager",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "npm",
-          "value": ""
-        },
-        {
-          "label": "yarn",
-          "value": "--yarn"
-        }
-      ]
+      "label": "Package Manager",
+      "options": [{ "label": "npm" }, { "label": "yarn", "value": "--yarn" }]
     },
     "initializeGit": {
-      "label": "Initialize Git Repository ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--git"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "label": "Initialize Git Repository ?",
+      "options": [{ "label": "Yes", "value": "--git" }, { "label": "No" }]
     },
     "skipInstall": {
-      "label": "Skip Install ?",
       "type": "radio",
-      "value": "",
+      "label": "Skip Install ?",
       "prefix": "--install=",
-      "options": [
-        {
-          "label": "Yes",
-          "value": ""
-        },
-        {
-          "label": "No",
-          "value": "false"
-        }
-      ]
+      "options": [{ "label": "Yes" }, { "label": "No", "value": "false" }]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [
@@ -151,7 +94,7 @@
     },
     {
       "label": "Npm Package",
-      "href": "https://www.npmjs.com/package/preact"
+      "href": "https://www.npmjs.com/package/preact-cli"
     },
     {
       "label": "Demos and Examples",

@@ -35,5 +35,6 @@
     "VASH",
     "vsceignore",
     "vscodeextension"
-  ]
+  ],
+  "conventionalCommits.scopes": ["Updated App cli configurations"]
 }

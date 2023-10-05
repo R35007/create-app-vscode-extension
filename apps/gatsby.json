@@ -16,7 +16,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -28,25 +27,28 @@
       }
     },
     "template": {
-      "type": "textbox",
       "label": "Starter Template Url",
       "description": "You can get may official starter template <a href=\"https://www.gatsbyjs.com/starters\">here</a>",
       "placeholder": "Please provide a Starter Template GitHub URL here"
     },
-    "openInVsCode": {
-      "label": "Open In VSCode ?",
+    "turnOnVerbose": {
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "label": "Turn on verbose output ?",
+      "options": [{ "label": "Yes", "value": "--verbose" }, { "label": "No" }]
+    },
+    "turnOffColor": {
+      "type": "radio",
+      "label": "Turn off color in output ?",
+      "options": [{ "label": "Yes", "value": "--no-colors" }, { "label": "No" }]
+    },
+    "turnJsonLogger": {
+      "type": "radio",
+      "label": "Turn on the JSON logger ?",
+      "options": [{ "label": "Yes", "value": "--json" }, { "label": "No" }]
+    },
+    "openInVsCode": {
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

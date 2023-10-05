@@ -15,9 +15,17 @@
     "${fields.openInVsCode ? fields.useTypescript ? 'code .' : `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
+    "useSvelteKit": {
+      "type": "radio",
+      "label": "Create app with Svelte Kit ?",
+      "value": "npx degit sveltejs/template",
+      "options": [
+        { "label": "Yes", "value": "npm init svelte@next" },
+        { "label": "No", "value": "npx degit sveltejs/template" }
+      ]
+    },
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -28,51 +36,15 @@
         "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
     },
-    "useSvelteKit": {
-      "type": "radio",
-      "label": "Create app with Svelte Kit ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "npm init svelte@next"
-        },
-        {
-          "label": "No",
-          "value": "npx degit sveltejs/template"
-        }
-      ],
-      "value": "npx degit sveltejs/template"
-    },
     "useTypescript": {
       "type": "radio",
       "label": "Use Typescript ?",
       "description": "This option is not applicable If you create the app with Svelte Kit.",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "yes" }, { "label": "No" }]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

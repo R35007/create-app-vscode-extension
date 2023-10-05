@@ -23,7 +23,6 @@
   "fields": {
     "appId": {
       "label": "Extension Id",
-      "type": "textbox",
       "prefix": "--extensionId=",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
@@ -36,7 +35,6 @@
       }
     },
     "extensionName": {
-      "type": "textbox",
       "label": "Extension Name",
       "prefix": "--extensionDisplayName='",
       "suffix": "'",
@@ -47,134 +45,54 @@
       }
     },
     "extensionDescription": {
-      "type": "textbox",
       "label": "Description",
-      "prefix": "--extensionDescription='",
-      "suffix": "'"
+      "prefix": "--extensionDescription=\"",
+      "suffix": "\""
     },
     "extensionType": {
       "type": "dropdown",
       "label": "Type",
       "prompt": true,
-      "options": [
-        {
-          "label": "Typescript",
-          "value": "ts"
-        },
-        {
-          "label": "Javascript",
-          "value": "js"
-        },
-        {
-          "label": "Color Theme",
-          "value": "colortheme"
-        },
-        {
-          "label": "Language Support",
-          "value": "language"
-        },
-        {
-          "label": "Code Snippets",
-          "value": "snippets"
-        },
-        {
-          "label": "Keymap",
-          "value": "keymap"
-        },
-        {
-          "label": "Extension Pack",
-          "value": "extensionpack"
-        },
-        {
-          "label": "Language Pack (Localization)",
-          "value": "localization"
-        },
-        {
-          "label": "Notebook Renderer (TypeScript)",
-          "value": "notebook"
-        },
-        {
-          "label": "Web",
-          "value": "web"
-        }
-      ],
       "prefix": "--extensionType=",
-      "value": "ts"
+      "value": "ts",
+      "options": [
+        { "label": "Typescript", "value": "ts" },
+        { "label": "Javascript", "value": "js" },
+        { "label": "Color Theme", "value": "colortheme" },
+        { "label": "Language Support", "value": "language" },
+        { "label": "Code Snippets", "value": "snippets" },
+        { "label": "Keymap", "value": "keymap" },
+        { "label": "Extension Pack", "value": "extensionpack" },
+        { "label": "Language Pack (Localization)", "value": "localization" },
+        { "label": "Notebook Renderer (TypeScript)", "value": "notebook" },
+        { "label": "Web", "value": "web" }
+      ]
     },
     "packageManager": {
       "type": "radio",
       "label": "Package Manager",
-      "options": [
-        {
-          "label": "yarn",
-          "value": "--pkgManager=yarn"
-        },
-        {
-          "label": "npm",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "yarn", "value": "--pkgManager=yarn" }, { "label": "npm" }]
     },
     "useWebpack": {
       "type": "radio",
       "label": "Bundle with webpack ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--webpack"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--webpack" }, { "label": "No" }]
     },
     "initializeGit": {
       "type": "radio",
       "label": "Initialize Git Repository ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--gitInit"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
+      "options": [{ "label": "Yes", "value": "--gitInit" }, { "label": "No" }],
       "value": "--gitInit"
     },
     "skipInstall": {
       "type": "radio",
       "label": "Skip Install ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--skip-install"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--skip-install" }, { "label": "No" }]
     },
     "installPrerequisites": {
       "label": "Install Prerequisites ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "npm install -g yo generator-code; npm install -g vsce;"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "checkedValue": "npm install -g yo generator-code; npm install -g vsce;"
     }
   },
   "additionalCommands": [

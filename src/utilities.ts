@@ -64,7 +64,7 @@ export const interpolate = (object: object, format: string) => {
   return new Function(...keys, `return \`${format}\`;`)(...values);
 };
 
-export const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
+export const getCommand = (prefix = "", value: any = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
 
 export const toSanitizedCommand = (str: string) =>
   str

@@ -25,11 +25,12 @@ export const getAppsList = () => {
     const appsList = [...Settings.customApps, ...customAppsList, ...defaultAppsList];
 
     const appNames: string[] = [];
-    const distinctApps = appsList.filter((app) => {
-        if (appNames.includes(app.appName)) return false;
+    const distinctApps = appsList.map((app) => {
+        if (appNames.includes(app.appName)) return;
         appNames.push(app.appName);
-        return true;
-    });
+        app.fields = Object.fromEntries(Object.entries(app.fields || {}).filter(([, fieldProps]) => !fieldProps.hide));
+        return app;
+    }).filter(Boolean) as AppProps[];
 
     return distinctApps.filter(app => !app.hide);
 };

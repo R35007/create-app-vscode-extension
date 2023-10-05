@@ -22,7 +22,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -35,7 +34,6 @@
     },
     "prefix": {
       "label": "Prefix",
-      "type": "textbox",
       "prefix": "--prefix=",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
@@ -45,190 +43,88 @@
       }
     },
     "styleSheet": {
-      "label": "Style sheet Format",
       "type": "dropdown",
-      "value": "",
-      "prompt": true,
+      "label": "Style sheet Format",
       "prefix": "--style=",
+      "prompt": true,
       "options": [
-        {
-          "label": "CSS",
-          "value": ""
-        },
-        {
-          "label": "SCSS",
-          "value": "scss"
-        },
-        {
-          "label": "SASS",
-          "value": "sass"
-        },
-        {
-          "label": "LESS",
-          "value": "less"
-        }
+        { "label": "CSS" },
+        { "label": "SCSS", "value": "scss" },
+        { "label": "SASS", "value": "sass" },
+        { "label": "LESS", "value": "less" }
+      ]
+    },
+    "viewEncapsulation": {
+      "type": "dropdown",
+      "label": "Vew Encapsulation",
+      "prefix": "--view-encapsulation=",
+      "options": [
+        { "label": "Emulated", "value": "Emulated" },
+        { "label": "None", "value": "None" },
+        { "label": "ShadowDom", "value": "ShadowDom" }
       ]
     },
     "routing": {
-      "label": "Include Routing ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--routing"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "label": "Include Routing ?",
+      "options": [{ "label": "Yes", "value": "--routing" }, { "label": "No" }]
     },
     "inlineStyle": {
-      "label": "Include Inline Styles ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--inline-style"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "label": "Include Inline Styles ?",
+      "options": [{ "label": "Yes", "value": "--inline-style" }, { "label": "No" }]
     },
     "inlineTemplate": {
-      "label": "Include Inline Template ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--inline-template"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "label": "Include Inline Template ?",
+      "options": [{ "label": "Yes", "value": "--inline-template" }, { "label": "No" }]
     },
     "purpose": {
-      "label": "For learning purpose only ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--minimal"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "description": "If Yes It creates a workspace without any testing frameworks."
+      "label": "For learning purpose only ?",
+      "description": "If Yes It creates a workspace without any testing frameworks.",
+      "options": [{ "label": "Yes", "value": "--minimal" }, { "label": "No" }]
     },
     "strict": {
-      "label": "Do Strict Type Check ?",
       "type": "radio",
-      "value": "",
+      "label": "Do Strict Type Check ?",
       "prefix": "--strict=",
-      "options": [
-        {
-          "label": "Yes",
-          "value": ""
-        },
-        {
-          "label": "No",
-          "value": "false"
-        }
-      ]
+      "options": [{ "label": "Yes" }, { "label": "No", "value": "false" }]
     },
     "package": {
-      "label": "Package Manager",
       "type": "radio",
-      "value": "",
+      "label": "Package Manager",
       "prefix": "--package-manager=",
       "options": [
-        {
-          "label": "npm",
-          "value": ""
-        },
-        {
-          "label": "yarn",
-          "value": "yarn"
-        },
-        {
-          "label": "pnpm",
-          "value": "pnpm"
-        },
-        {
-          "label": "cnpm",
-          "value": "cnpm"
-        }
+        { "label": "npm" },
+        { "label": "yarn", "value": "yarn" },
+        { "label": "pnpm", "value": "pnpm" },
+        { "label": "cnpm", "value": "cnpm" }
       ]
     },
     "initGit": {
-      "label": "Initialize Git Repository ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": ""
-        },
-        {
-          "label": "No",
-          "value": "--skip-git"
-        }
-      ]
+      "label": "Initialize Git Repository ?",
+      "options": [{ "label": "Yes" }, { "label": "No", "value": "--skip-git" }]
+    },
+    "skipTest": {
+      "type": "radio",
+      "label": "Skip Test ?",
+      "options": [{ "label": "Yes", "value": "--skip-test" }, { "label": "No" }]
     },
     "skipInstall": {
-      "label": "Skip Install ?",
       "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--skip-install"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "label": "Skip Install ?",
+      "options": [{ "label": "Yes", "value": "--skip-install" }, { "label": "No" }]
     },
     "installPrerequisites": {
+      "type": "checkbox",
       "label": "Install Prerequisites ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "npm install -g @angular/cli;"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "checkedValue": "npm install -g @angular/cli;"
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

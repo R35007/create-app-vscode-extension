@@ -30,30 +30,39 @@
     }
   ],
   "commandTemplate": [
-    "${fields.installPrerequisites && fields.type === 'angular' ? 'npm install -g @angular/cli;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'vue' ? 'npm install -g @vue/cli;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'react' ? 'npm install -g create-react-app;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'ionic-angular' ? 'npm install -g @ionic/cli;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'ionic1' ? 'npm install -g @ionic/cli;' : ''}",
-    "ionic start ${fields.appName} --project-id=${fields.appId} --type=${fields.type} ${fields.getExcept('appName', 'appId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
+    "${fields.installPrerequisites && fields.type === 'vue' ? 'npm install -g @vue/cli; npm install -g @ionic/cli;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'angular' ? 'npm install -g @angular/cli; npm install -g @ionic/cli;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'angular-standalone' ? 'npm install -g @angular/cli; npm install -g @ionic/cli;' : ''}",
+    "${fields.installPrerequisites && fields.type === 'react' ? 'npm install -g create-react-app; npm install -g @ionic/cli;' : ''}",
+    "ionic start ${fields.appName} --project-id=${fields.appId} --id=${fields.ionicAppId} --type=${fields.type} ${fields.getExcept('appName', 'appId', 'ionicAppId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
     "appId": {
-      "label": "App Id",
-      "type": "textbox",
+      "label": "Project Id",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
       "required": true,
       "pattern": "^[a-z]+(-[a-z]+)*$",
       "errors": {
-        "required": "App Id is Required.",
+        "required": "Project Id is Required.",
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
+      }
+    },
+    "ionicAppId": {
+      "label": "Ionic App Id",
+      "placeholder": "^[a-z]+(-[a-z]+)*$",
+      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
+      "value": "hello-world",
+      "required": true,
+      "pattern": "^[a-z]+(-[a-z]+)*$",
+      "errors": {
+        "required": "Project Id is Required.",
         "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
     },
     "appName": {
-      "type": "textbox",
       "label": "App Name",
       "value": "Hello World",
       "prefix": "\"",
@@ -67,168 +76,49 @@
       "type": "dropdown",
       "label": "Type",
       "prompt": true,
+      "value": "vue",
       "options": [
-        {
-          "label": "Angular",
-          "value": "angular"
-        },
-        {
-          "label": "Vue",
-          "value": "vue"
-        },
-        {
-          "label": "React",
-          "value": "react"
-        },
-        {
-          "label": "Ionic Angular (older ionic version 3)",
-          "value": "ionic-angular"
-        },
-        {
-          "label": "Ionic One",
-          "value": "ionic1"
-        }
-      ],
-      "value": "angular"
+        { "label": "Vue", "value": "vue" },
+        { "label": "Angular", "value": "angular" },
+        { "label": "Angular Standalone", "value": "angular-standalone" },
+        { "label": "React", "value": "react" }
+      ]
     },
     "template": {
       "type": "dropdown",
       "label": "Template",
       "prompt": true,
+      "value": "tabs",
       "options": [
-        {
-          "label": "Tabs",
-          "value": "tabs"
-        },
-        {
-          "label": "Sidemenu",
-          "value": "sidemenu"
-        },
-        {
-          "label": "Blank",
-          "value": "blank"
-        },
-        {
-          "label": "List",
-          "value": "list"
-        },
-        {
-          "label": "My first app - A sample app that builds a camera with gallery",
-          "value": "my-first-app"
-        },
-        {
-          "label": "Conference - A kitchen-sink app that shows off all Ionic has to offer",
-          "value": "conference"
-        },
-        {
-          "label": "Super",
-          "value": "super"
-        },
-        {
-          "label": "Tutorial",
-          "value": "tutorial"
-        },
-        {
-          "label": "AWS Mobile Hub Starter",
-          "value": "aws"
-        },
-        {
-          "label": "Google Maps and a side menu",
-          "value": "maps"
-        }
-      ],
-      "value": "tabs"
+        { "label": "Tabs - A starting project with a simple tabbed interface", "value": "tabs" },
+        { "label": "Sidemenu - A starting project with a side menu with navigation in the content area", "value": "sidemenu" },
+        { "label": "Blank - A blank starter project", "value": "blank" },
+        { "label": "List - A starting project with a list", "value": "list" },
+        { "label": "My first app - A template for the \"Build Your First App\" tutorial", "value": "my-first-app" }
+      ]
     },
     "includeCapacitor": {
       "type": "radio",
       "label": "Include Capacitor ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--capacitor"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
-    },
-    "includeCordova": {
-      "type": "radio",
-      "label": "Include Cordova ?",
-      "description": "Cordova is deprecated. Please use with caution.",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--cordova"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--capacitor" }, { "label": "No" }]
     },
     "initializeGit": {
       "type": "radio",
       "label": "Initialize Git Repository ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": ""
-        },
-        {
-          "label": "No",
-          "value": "--no-git"
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes" }, { "label": "No", "value": "--no-git" }]
     },
     "skipInstall": {
       "type": "radio",
       "label": "Skip Install ?",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "--no-deps"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+      "options": [{ "label": "Yes", "value": "--no-deps" }, { "label": "No" }]
     },
     "installPrerequisites": {
-      "label": "Install Prerequisites ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Install Prerequisites ?"
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

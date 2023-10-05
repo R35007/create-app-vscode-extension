@@ -16,7 +16,6 @@
   "fields": {
     "appId": {
       "label": "App Id",
-      "type": "textbox",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
       "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
       "value": "hello-world",
@@ -28,56 +27,61 @@
       }
     },
     "example": {
-      "type": "textbox",
       "label": "Example Template Url",
       "prefix": "--example=\"",
       "suffix": "\"",
       "description": "You can use an example name from the <a href=\"https://github.com/vercel/next.js/tree/master/examples\">Next.js repo</a> or a GitHub URL"
     },
-    "useTypescript": {
-      "type": "radio",
-      "label": "Use Typescript ?",
+    "language": {
+      "type": "dropdown",
+      "label": "Language",
+      "prompt": true,
+      "value": "--ts",
       "options": [
-        {
-          "label": "Yes",
-          "value": "--typescript"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+        { "label": "Typescript", "value": "--ts" },
+        { "label": "Javascript", "value": "--js" }
+      ]
+    },
+    "useTailwind": {
+      "type": "radio",
+      "label": "Use Tailwind css ?",
+      "value": "--tailwind",
+      "options": [{ "label": "Yes", "value": "--tailwind" }, { "label": "No" }]
+    },
+    "useEslint": {
+      "type": "radio",
+      "label": "Use Eslint ?",
+      "options": [{ "label": "Yes", "value": "--eslint" }, { "label": "No" }]
+    },
+    "useRouter": {
+      "type": "radio",
+      "label": "Use App Router ?",
+      "options": [{ "label": "Yes", "value": "--app" }, { "label": "No" }]
+    },
+    "initializeSrc": {
+      "type": "radio",
+      "label": "Initialize inside a 'src/' directory ?",
+      "options": [{ "label": "Yes", "value": "--src-dir" }, { "label": "No" }]
+    },
+    "importAlias": {
+      "label": "Specify import alias to use",
+      "prefix": "--import-alias=",
+      "description": "Defaults to '@/*'"
     },
     "packageManager": {
-      "type": "radio",
-      "label": "Use Npm Package Manager ?",
+      "type": "dropdown",
+      "label": "Package Manager",
+      "value": "--npm",
       "options": [
-        {
-          "label": "Yes",
-          "value": "--npm"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ],
-      "value": ""
+        { "label": "npm", "value": "--npm" },
+        { "label": "pnpm", "value": "--use-pnpm" },
+        { "label": "yarn", "value": "--use-yarn" },
+        { "label": "bun", "value": "--use-bun" }
+      ]
     },
     "openInVsCode": {
-      "label": "Open In VSCode ?",
-      "type": "radio",
-      "value": "",
-      "options": [
-        {
-          "label": "Yes",
-          "value": "yes"
-        },
-        {
-          "label": "No",
-          "value": ""
-        }
-      ]
+      "type": "checkbox",
+      "label": "Open In VSCode ?"
     }
   },
   "additionalCommands": [

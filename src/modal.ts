@@ -14,7 +14,7 @@ export enum FieldType {
 
 export interface Options {
   label: string;
-  value: any;
+  value?: any;
 }
 
 export interface Tags {
@@ -25,11 +25,13 @@ export interface Tags {
 }
 
 export interface FieldProps {
-  type: FieldType.TEXTBOX | FieldType.CHECKBOX | FieldType.RADIO | FieldType.DROPDOWN | FieldType.BROWSE;
   label: string;
+  type?: FieldType.TEXTBOX | FieldType.CHECKBOX | FieldType.RADIO | FieldType.DROPDOWN | FieldType.BROWSE;
   order?: number;
   prefix?: string;
   suffix?: string;
+  checkedValue?: string | boolean;
+  unCheckedValue?: string | boolean;
   value?: string | boolean;
   placeholder?: string;
   buttonText?: string;
@@ -38,6 +40,7 @@ export interface FieldProps {
   prompt?: boolean;
   canSelectFile?: boolean;
   canSelectFolder?: boolean;
+  hide?: boolean;
   pattern?: string;
   errors?: { required?: string, pattern?: string };
   options?: Options[];

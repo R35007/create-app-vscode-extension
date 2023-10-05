@@ -4,7 +4,7 @@ const generateFormFields = (fieldProps: Record<string, FieldProps> = {}): string
   if (!Object.entries(fieldProps).length) { return ''; };
   return Object.entries(fieldProps).map(([fieldName, fieldProps], index) => {
     return `
-      <div class="row mb-3 align-items-center" style="order: ${fieldProps.order ?? index}">
+      <div class="row mb-3 align-items-center" style="order: ${fieldProps.order ?? (index + 1)}">
         <div class="col-12 col-lg-4 key mb-1">${fieldProps.label} ${fieldProps.required ? `<span class="text-primary">*</span>` : ''}</div>
         <div class="col-12 col-lg-8 val">
           <div class="mb-1">${fieldSwitch(fieldName, fieldProps)}</div>
@@ -29,15 +29,15 @@ const fieldSwitch = (fieldName: string, fieldProps: FieldProps) => {
     case FieldType.BROWSE:
       return getBrowse(fieldName, fieldProps);
     default:
-      break;
+      return getTextbox(fieldName, fieldProps);
   }
 };
 
 const getTextbox = (fieldName: string, props: FieldProps) => {
   return `<vscode-text-field 
-    placeholder="${props.placeholder || ''}" 
+    placeholder="${props.placeholder ?? ''}" 
     class="d-block control" 
-    value="${props.value || ''}" 
+    value="${props.value ?? ''}" 
     name="${fieldName}" 
     ${props.required ? 'required' : ''}
   ></<vscode-text-field>`;
@@ -50,7 +50,7 @@ const getRadioGroup = (fieldName: string, props: FieldProps) => {
     name="${fieldName}" 
     ${props.required ? 'required' : ''}
   >
-    ${props.options?.map(opt => `<vscode-radio ${props.value === opt.value && 'checked'} value="${opt.value}">${opt.label}</vscode-radio>`).join('')}
+    ${props.options?.map(opt => `<vscode-radio ${(opt.value ?? "") === (props.value ?? "") && 'checked'} value="${opt.value ?? ""}">${opt.label ?? ""}</vscode-radio>`).join('') || ''}
   </vscode-radio-group>
   `;
   return radioGroup;
@@ -63,17 +63,18 @@ const getDropDown = (fieldName: string, props: FieldProps) => {
     name="${fieldName}" 
     ${props.required ? 'required' : ''}
   >
-    ${props.options?.map(opt => `<vscode-option ${opt.value === props.value && 'selected'} value="${opt.value || " "}">${opt.label}</vscode-option>`).join('')}
+    ${props.options?.map(opt => `<vscode-option ${(opt.value ?? "") === (props.value ?? "") && 'selected'} value="${opt.value ?? " "}">${opt.label ?? ""}</vscode-option>`).join('') || ''}
   </vscode-dropdown>
   `;
 };
 
 const getCheckbox = (fieldName: string, props: FieldProps) => {
   return `<vscode-checkbox 
-    class="control" 
-    value="${props.value || ''}" 
+    class="control-checkbox" 
+    data-checked-value="${props.checkedValue ?? 'true'}" 
+    data-un-checked-value="${props.unCheckedValue ?? ''}" 
     name="${fieldName}" 
-    ${props.required ? 'required' : ''}
+    ${`${props.value ?? ''}`.trim() !== (`${props.unCheckedValue ?? ''}`).trim() ? 'checked' : ''}
     ></<vscode-checkbox>`;
 };
 
@@ -82,6 +83,7 @@ const getBrowse = (fieldName: string, props: FieldProps) => {
   <div class="d-flex">
     <vscode-text-field 
       name="${fieldName}" 
+      value="${props.value ?? ''}"
       class="d-block w-100 flex-1 control" 
       placeholder="${props.placeholder || 'Please select any folder'}" 
       ${props.required ? 'required' : ''}
