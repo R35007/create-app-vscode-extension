@@ -1,6 +1,7 @@
 var vscode = acquireVsCodeApi();
 
 let appFields = {};
+let filterValue = "";
 let commandTemplate = "${fields['*']}";
 
 const getCommand = (prefix = "", value = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
@@ -25,7 +26,7 @@ const setCommand = () => {
   });
 };
 
-function init(selectedApp) {
+function init(selectedApp, filterValue) {
   const $command = document.getElementById("command");
   const $copyCommand = document.getElementById("copy-command");
   const $execute = document.getElementById("execute");
@@ -55,6 +56,7 @@ function init(selectedApp) {
   // Set Default values
   commandTemplate = [].concat(selectedApp.commandTemplate || "${fields.get('*')}").join(" ");
   appFields = selectedApp.fields || {};
+  filterValue = filterValue || "";
   setCommand();
 
   // Add event listeners for all textbox, browse, dropdown, radio fields
@@ -102,11 +104,6 @@ function init(selectedApp) {
     });
   });
 
-  // On Copy config button click
-  $copyConfigBtn.addEventListener("click", function () {
-    vscode.postMessage({ action: "copy-config" });
-  });
-
   // On App location browse button click
   $appFolderLocationBtn.addEventListener("click", function () {
     vscode.postMessage({ action: "get-location", isAppLocation: true });
@@ -120,6 +117,11 @@ function init(selectedApp) {
         command: this.dataset.command,
       });
     });
+  });
+
+  // On Copy config button click
+  $copyConfigBtn.addEventListener("click", function () {
+    vscode.postMessage({ action: "copy-config" });
   });
 
   // On Click op Copy Button Copy Command
@@ -137,19 +139,19 @@ function init(selectedApp) {
   });
 
   // On App Switch
-  document.querySelectorAll(".app-card").forEach((appCard) => {
+  document.querySelectorAll("[data-switch-app]").forEach((appCard) => {
     appCard.addEventListener("click", function () {
-      vscode.postMessage({ action: "switch-app", appName: this.id });
+      vscode.postMessage({ action: "switch-app", appName: this.dataset.switchApp, groupName: this.dataset.switchGroup, filterValue });
     });
   });
 
   document.getElementById("app-list-dropdown").addEventListener("change", function () {
-    vscode.postMessage({ action: "switch-app", appName: this.value });
+    vscode.postMessage({ action: "switch-app", appName: this.value, groupName: this.dataset.switchGroup, filterValue });
   });
 
   // On App Filter input
   $appFilterInput.addEventListener("input", () => {
-    const filterValue = $appFilterInput.value.toLowerCase();
+    filterValue = $appFilterInput.value.toLowerCase();
     document.querySelectorAll("#app-list .app-card").forEach((appCard) => {
       const tags = appCard.querySelector(".tags").innerText.split(",");
       appCard.style.display = filterValue && !tags.some((tag) => tag.includes(filterValue)) ? "none" : "flex";

@@ -20,6 +20,8 @@ export default class CreateApp {
 
   _appsList: AppProps[];
   #selectedApp: AppProps;
+  #selectedGroup: string;
+  #filterValue: string;
 
   public static createOrShow(extensionUri: vscode.Uri, appsList: AppProps[]) {
 
@@ -48,6 +50,8 @@ export default class CreateApp {
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, appsList: AppProps[]) {
     this._appsList = appsList;
     this.#selectedApp = this._appsList[0];
+    this.#selectedGroup = this._appsList[0].groupNames[0];
+    this.#filterValue = '';
 
     this.#panel = panel;
     this.#extensionUri = extensionUri;
@@ -68,7 +72,7 @@ export default class CreateApp {
   onDidReceiveMessage = (message: any) => {
     switch (message.action) {
       case 'switch-app': {
-        if (message.appName !== this.#selectedApp.appName) this.#switchApp(message.appName);
+        if (message.appName !== this.#selectedApp.appName) this.#switchApp(message.appName, message.groupName, message.filterValue);
         return;
       }
       case 'get-location': {
@@ -118,13 +122,10 @@ export default class CreateApp {
     vscode.window.showInformationMessage('Command copied  to clipboard 📋');
   };
 
-  #switchApp = (appName: string) => {
-    this._appsList.forEach(app => {
-      if (app.appName === appName) {
-        app.isSelected = true;
-        this.#selectedApp = app;
-      }
-    });
+  #switchApp = (appName: string, groupName: string, filterValue: string) => {
+    this.#selectedGroup = groupName;
+    this.#filterValue = filterValue;
+    this.#selectedApp = this._appsList.find(app => app.appName === appName) || this.#selectedApp;
     this.#update();
   };
 
@@ -181,6 +182,8 @@ export default class CreateApp {
           this.#panel.webview,
           this._appsList,
           this.#selectedApp,
+          this.#selectedGroup,
+          this.#filterValue,
           showLoader
         );
         return;

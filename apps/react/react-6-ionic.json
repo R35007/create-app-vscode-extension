@@ -1,6 +1,7 @@
 {
-  "appName": "Ionic",
-  "relatedAppNames": "React Native",
+  "appName": "React Ionic",
+  "groupNames": "React",
+  "relatedAppNames": "Ionic",
   "description": "Ionic is an HTML5 mobile app development framework targeted at building hybrid mobile apps",
   "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/ionic.png",
   "prerequisites": [
@@ -15,27 +16,14 @@
       "command": "npm install -g @ionic/cli"
     },
     {
-      "label": "@angular/cli",
-      "description": "Click here to install @angular/cli If the the ionic app --type=angular",
-      "command": "npm install -g @angular/cli"
-    },
-    {
-      "label": "@vue/cli",
-      "description": "Click here to install @vue/cli If the the ionic app --type=vue",
-      "command": "npm install -g @vue/cli"
-    },
-    {
       "label": "create-react-app",
       "description": "Click here to install create-react-app If the the ionic app --type=react",
       "command": "npm install -g create-react-app"
     }
   ],
   "commandTemplate": [
-    "${fields.installPrerequisites && fields.type === 'vue' ? 'npm install -g @vue/cli; npm install -g @ionic/cli;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'angular' ? 'npm install -g @angular/cli; npm install -g @ionic/cli;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'angular-standalone' ? 'npm install -g @angular/cli; npm install -g @ionic/cli;' : ''}",
-    "${fields.installPrerequisites && fields.type === 'react' ? 'npm install -g create-react-app; npm install -g @ionic/cli;' : ''}",
-    "ionic start ${fields.appName} --project-id=${fields.appId} --id=${fields.ionicAppId} --type=${fields.type} ${fields.getExcept('appName', 'appId', 'ionicAppId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
+    "${fields.installPrerequisites ? 'npm install -g create-react-app; npm install -g @ionic/cli;' : ''}",
+    "ionic start ${fields.appName} --project-id=${fields.appId} --id=${fields.ionicAppId} --type=react ${fields.getExcept('appName', 'appId', 'ionicAppId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
@@ -72,18 +60,6 @@
       "errors": {
         "required": "App Name is Required."
       }
-    },
-    "type": {
-      "type": "dropdown",
-      "label": "Type",
-      "prompt": true,
-      "value": "vue",
-      "options": [
-        { "label": "Vue", "value": "vue" },
-        { "label": "Angular", "value": "angular" },
-        { "label": "Angular Standalone", "value": "angular-standalone" },
-        { "label": "React", "value": "react" }
-      ]
     },
     "template": {
       "type": "dropdown",
@@ -171,5 +147,5 @@
       "href": "https://ionicframework.com/docs/components"
     }
   ],
-  "tags": ["framework", "frontend", "hybrid", "hybridapp", "ionic", "mobile", "mobileapp", "phone", "ui", "web"]
+  "tags": ["framework", "frontend", "hybrid", "hybridapp", "ionic", "react", "mobile", "mobileapp", "phone", "ui", "web"]
 }

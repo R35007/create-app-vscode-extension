@@ -17,17 +17,13 @@ body {
   height: 100vh;
 }
 
-body > * {
+body>* {
   margin-block-start: var(--input-margin-vertical);
   margin-block-end: var(--input-margin-vertical);
 }
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.app-list {
-  height: calc(100% - 5rem);
 }
 
 .app-card:hover {
@@ -84,27 +80,27 @@ body > * {
   right: 0;
 }
 
-.configuration-container {
-  height: calc(100% - 15rem);
-}
-
 .about-content {
   font-size: 12px;
 }
 
-.control-checkbox.checked::after{
+.control-checkbox.checked::after {
   content: "Yes";
   margin-left: 1rem;
   cursor: pointer;
 }
 
-.control-checkbox:not(.checked)::after{
+.control-checkbox:not(.checked)::after {
   content: "No";
   margin-left: 1rem;
   cursor: pointer;
 }
 
-@media (min-width: 1400px){
+.additional-details-container>div:first-child h5 {
+  margin-top: 0 !important;
+}
+
+@media (min-width: 1400px) {
   .container-lg {
     max-width: 90%;
   }

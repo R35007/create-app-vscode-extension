@@ -1,7 +1,8 @@
 {
   "appName": "Angular",
+  "groupNames": "Angular",
   "description": "Angular is a platform and framework for building single-page client applications using HTML and TypeScript.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/angular.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/angular.png",
   "prerequisites": [
     {
       "label": "node",
@@ -158,5 +159,5 @@
       "href": "https://www.npmjs.com/package/@angular/cli"
     }
   ],
-  "tags": ["angular", "framework", "frontend", "ui", "web", "webapp"]
+  "tags": ["angular", "framework", "frontend", "ui", "web"]
 }

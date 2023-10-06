@@ -27,17 +27,28 @@ export const getNonce = () => {
   return text;
 };
 
-export const generateAppList = (appsList: AppProps[], selectedAppName?: string): string => {
-  return appsList.map((app, index) => {
+export const generateGroupList = (appsList: AppProps[], selectedGroup?: string, filterValue: string = ''): string => {
+  const groupNames: string[] = [...new Set(appsList.map(app => app.groupNames).flat())];
+  return groupNames.map((groupName) => {
+    const app = appsList.find(app => app.groupNames.includes(groupName)) as AppProps;
+    const isSelected = groupName === selectedGroup;
+    const groupTags = appsList.filter(app => app.groupNames.includes(groupName)).map(app => app.tags || []).flat();
+    const isHidden = filterValue && !groupTags?.some((tag) => tag.includes(filterValue));
+
     return `
-      <li id="${app.appName}" style="order: ${app.order || index + 1}" title="${app.description}" role="button" class="row g-0 app-card ${app.appName === selectedAppName ? 'selected' : ''}">
+      <li 
+        data-switch-group="${groupName}" 
+        data-switch-app="${app.appName}" 
+        title="${app.description}" 
+        role="button" 
+        class="row g-0 app-card ${isSelected ? 'selected' : ''}"
+        style="order: ${app.order}; display: ${isHidden ? "none" : "flex"};" 
+      >
         <div class="col-3 text-center thumbnail p-2">
-          <img src="${app.logoPath || "https://raw.githubusercontent.com/R35007/create-app-support/master/images/ca-logo.png"}" />
+          <img src="${app.logoPath || "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/ca-logo.png"}" />
         </div>
-        <div class="tags d-none">
-          ${app.tags?.join(',')}
-        </div>
-        <div class="col app-title p-2">${app.appName}</div>
+        <div class="tags d-none">${groupTags?.join(',')}</div>
+        <div class="col app-title p-2">${groupName}</div>
       </li>
     `;
   }).join('');

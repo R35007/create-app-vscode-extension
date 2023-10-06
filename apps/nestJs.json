@@ -1,7 +1,7 @@
 {
   "appName": "NestJs",
   "description": "NestJS is a framework for building efficient, scalable Node.js web applications",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/nestJs.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/nestJs.png",
   "prerequisites": [
     {
       "label": "node",

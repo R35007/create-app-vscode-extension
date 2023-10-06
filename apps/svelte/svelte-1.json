@@ -1,7 +1,8 @@
 {
   "appName": "Svelte",
+  "groupNames": "Svelte",
   "description": "Svelte is a radical new approach to building user interfaces using compiler. In Short Svelte is a complier and not a library",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/svelte.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/svelte.png",
   "prerequisites": [
     {
       "label": "node",
@@ -9,21 +10,8 @@
       "href": "https://nodejs.org/en/"
     }
   ],
-  "commandTemplate": [
-    "${fields.useSvelteKit} ${fields.appId};",
-    "${fields.useTypescript ? `cd ${fields.appId}; node scripts/setupTypeScript.js;` : ''}",
-    "${fields.openInVsCode ? fields.useTypescript ? 'code .' : `code ${fields.get('appId')};` : ''}"
-  ],
+  "commandTemplate": ["npm create svelte@latest ${fields.appId} --yes;", "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"],
   "fields": {
-    "useSvelteKit": {
-      "type": "radio",
-      "label": "Create app with Svelte Kit ?",
-      "value": "npx degit sveltejs/template",
-      "options": [
-        { "label": "Yes", "value": "npm init svelte@next" },
-        { "label": "No", "value": "npx degit sveltejs/template" }
-      ]
-    },
     "appId": {
       "label": "App Id",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
@@ -36,12 +24,6 @@
         "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
     },
-    "useTypescript": {
-      "type": "radio",
-      "label": "Use Typescript ?",
-      "description": "This option is not applicable If you create the app with Svelte Kit.",
-      "options": [{ "label": "Yes", "value": "yes" }, { "label": "No" }]
-    },
     "openInVsCode": {
       "type": "checkbox",
       "label": "Open In VSCode ?"
@@ -49,19 +31,24 @@
   },
   "additionalCommands": [
     {
-      "label": "install degit",
+      "label": "install svelte",
       "description": "Click here to install degit globally",
-      "command": "npm install -g degit"
+      "command": "npm install -g create-svelte"
     },
     {
-      "label": "create svelte app",
+      "label": "npm create svelte@latest",
       "description": "Click here to create the svelte app using cli prompts",
-      "command": "npx degit sveltejs/template"
+      "command": "npm create svelte@latest"
     },
     {
-      "label": "create svelteKit app",
-      "description": "Click here to create the sveltekit app using cli prompts",
-      "command": "npm init svelte@next"
+      "label": "check cli version",
+      "description": "Click here to check cli version",
+      "command": "npm create svelte@latest --version"
+    },
+    {
+      "label": "cli help",
+      "description": "Click here to know more cli configurations",
+      "command": "npm create svelte@latest --help"
     }
   ],
   "resources": [

@@ -1,7 +1,8 @@
 {
   "appName": "React",
+  "groupNames": "React",
   "description": "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/react.png",
   "prerequisites": [
     {
       "label": "node",
@@ -90,5 +91,5 @@
       "href": "https://www.npmjs.com/search?q=cra-template-*"
     }
   ],
-  "tags": ["react", "ui", "frontend", "library", "webapp", "web"]
+  "tags": ["react", "ui", "frontend", "library", "web"]
 }

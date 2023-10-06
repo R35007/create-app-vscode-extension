@@ -1,12 +1,18 @@
 {
   "appName": "Vite Extra",
+  "groupNames": "Vite",
   "description": "Vite is a frontend tool for building web applications quickly, created by Evan You, the creator of the Vue.js framework, that provides a fast dev server, bundling and a great developer experience.",
-  "logoPath": "https://vitejs.dev/logo.svg",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vite.png",
   "prerequisites": [
     {
       "label": "node",
       "description": "https://nodejs.org/en/",
       "href": "https://nodejs.org/en/"
+    },
+    {
+      "label": "Vite",
+      "description": "https://vitejs.dev/",
+      "href": "https://vitejs.dev/"
     }
   ],
   "commandTemplate": [
@@ -76,6 +82,11 @@
       "command": "npm install -g create-vite-extra"
     },
     {
+      "label": "npm create vite-extra@latest",
+      "description": "Click here to create the vite extra app using cli prompts",
+      "command": "npm create vite-extra@latest"
+    },
+    {
       "label": "cli help",
       "description": "Click here to know more cli configurations",
       "command": "npm create vite-extra@latest --yes --help"
@@ -92,7 +103,7 @@
     },
     {
       "label": "Npm Package",
-      "href": "https://www.npmjs.com/package/create-vite"
+      "href": "https://www.npmjs.com/package/create-vite-extra"
     },
     {
       "label": "Templates",
@@ -103,6 +114,8 @@
     "vite",
     "vite-extra",
     "extra",
+    "ssr",
+    "deno",
     "vue",
     "react",
     "preact",

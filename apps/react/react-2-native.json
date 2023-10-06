@@ -1,7 +1,9 @@
 {
   "appName": "React Native",
+  "groupNames": "React",
+  "relatedAppNames": "Ionic",
   "description": "React Native is a popular JavaScript-based mobile app framework that allows you to build natively-rendered mobile apps for iOS and Android.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/react.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/react.png",
   "prerequisites": [
     {
       "label": "node",

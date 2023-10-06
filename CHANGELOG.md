@@ -1,3 +1,11 @@
+## v5.0.0
+
+- New✨ - Added `groupNames` - Helps to group multiple apps in a single tabbed view.
+- Added - `relatedAppNames` - Helps to navigate to other apps.
+- Added - multiple app groups.
+- Enhanced - Now able to retain the filtered apps on switching apps
+- Enhanced - user interface - Now able to resize the command area. Introducing Apps groups view.
+
 ## v4.2.0
 
 - Updated - Default apps cli configuration fields
@@ -32,8 +40,6 @@
 - Added - `copy config` button ont he top right corner of the command text area. Helps to copy the app configurations and override the default configs.
 - Removed - `Open in vscode` config from all app configs.
 - Fixed - Keeps on reloading on view switching the tabs issue fixed.
-- [Create App: Interactive Preview](https://github.com/R35007/create-app-support/blob/version_4/images/preview_interactive.gif?raw=true)
-- [Create App: Quick Preview](https://github.com/R35007/create-app-support/blob/version_4/images/preview_quick.gif?raw=true)
 
 ## v3.1.0
 
@@ -52,15 +58,15 @@
 ## v3.0.0
 
 - Added Gatsby App
-- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/master/images/previews/preview_v3.0.0.gif)
+- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/previews/preview_v3.0.0.gif)
 
 ## v2.0.0, v2.0.1, v2.0.2, v2.0.3
 
 - Added more Apps to Create
 - Implemented New UI Layout
-- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/master/images/previews/preview_v2.0.0.gif)
+- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/previews/preview_v2.0.0.gif)
 
 ## v1.0.0
 
 - Initial release
-- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/master/images/previews/preview_v1.0.0.gif)
+- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/previews/preview_v1.0.0.gif)

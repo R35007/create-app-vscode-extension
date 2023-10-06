@@ -1,7 +1,7 @@
 {
   "appName": "Django",
   "description": "Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/django.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/django.png",
   "prerequisites": [
     {
       "label": "Python",

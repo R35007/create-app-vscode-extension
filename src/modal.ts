@@ -48,6 +48,8 @@ export interface FieldProps {
 
 export interface AppProps {
   appName: string;
+  groupNames: string[];
+  relatedAppNames?: string[];
   commandTemplate: string | string[];
   hide?: boolean;
   fields?: Record<string, FieldProps>;
@@ -57,7 +59,6 @@ export interface AppProps {
   additionalCommands?: Tags[];
   resources?: Tags[];
   tags?: string[];
-  isSelected?: boolean;
   order?: number;
 }
 

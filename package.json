@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Easily Create any UI App with Official Starter Templates or Boilerplate using CLI",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
@@ -69,141 +69,23 @@
         "create-app.settings.customApps": {
           "type": "array",
           "description": "Provide the list of custom app details. please restart the vscode to take effect.",
-          "examples": [
-            [],
-            [
-              {
-                "appName": "App Name",
-                "order": 1,
-                "description": "App Description",
-                "logoPath": "https://app-logo.png",
-                "prerequisites": [
-                  {
-                    "label": "label",
-                    "description": "description",
-                    "href": "https://link/to/site"
-                  },
-                  {
-                    "label": "label",
-                    "description": "description",
-                    "command": "cli command"
-                  }
-                ],
-                "commandTemplate": "cli prefix ${fields.appId} ${fields.get('appId')} ${fields.getExcept('appId')} ${fields.get('*')} cli suffix",
-                "fields": {
-                  "appId": {
-                    "type": "textbox",
-                    "label": "App Id",
-                    "description": "field description",
-                    "order": 1,
-                    "unCheckValue": "hello-world",
-                    "checkValue": "hello-world",
-                    "placeholder": "placeholder",
-                    "value": "hello-world",
-                    "required": true,
-                    "pattern": "^[a-z]+(-[a-z]+)*$",
-                    "prefix": "",
-                    "suffix": "",
-                    "errors": {
-                      "required": "App Id is Required.",
-                      "pattern": "Invalid Id. No spaces or special chars are allowed."
-                    },
-                    "options": [
-                      {
-                        "label": "provide options only for type dropdown",
-                        "value": "--init"
-                      }
-                    ]
-                  }
-                },
-                "additionalCommands": [
-                  {
-                    "label": "label",
-                    "description": "description",
-                    "command": "cli command"
-                  }
-                ],
-                "resources": [
-                  "<a href='https://home-page/'>Home Page</a>"
-                ],
-                "tags": [
-                  "tags",
-                  "to",
-                  "filter",
-                  "app"
-                ]
-              }
-            ]
-          ],
           "items": {
             "type": "object",
-            "examples": [
-              {},
-              {
-                "appName": "App Name",
-                "order": 1,
-                "description": "App Description",
-                "logoPath": "https://app-logo.png",
-                "prerequisites": [
-                  {
-                    "label": "label",
-                    "description": "description",
-                    "href": "https://link/to/site"
-                  },
-                  {
-                    "label": "label",
-                    "description": "description",
-                    "command": "cli command"
-                  }
-                ],
-                "commandTemplate": "cli prefix ${fields.appId} ${fields.get('appId')} ${fields.getExcept('appId')} ${fields.get('*')} cli suffix",
-                "fields": {
-                  "appId": {
-                    "type": "textbox",
-                    "label": "App Id",
-                    "description": "field description",
-                    "order": 1,
-                    "unCheckValue": "hello-world",
-                    "checkValue": "hello-world",
-                    "placeholder": "placeholder",
-                    "value": "hello-world",
-                    "required": true,
-                    "pattern": "^[a-z]+(-[a-z]+)*$",
-                    "prefix": "",
-                    "suffix": "",
-                    "errors": {
-                      "required": "App Id is Required.",
-                      "pattern": "Invalid Id. No spaces or special chars are allowed."
-                    },
-                    "options": [
-                      {
-                        "label": "provide options only for type dropdown",
-                        "value": "--init"
-                      }
-                    ]
-                  }
-                },
-                "additionalCommands": [
-                  {
-                    "label": "label",
-                    "description": "description",
-                    "command": "cli command"
-                  }
-                ],
-                "resources": [
-                  "<a href='https://home-page/'>Home Page</a>"
-                ],
-                "tags": [
-                  "tags",
-                  "to",
-                  "filter",
-                  "app"
-                ]
-              }
-            ],
             "properties": {
               "appName": {
                 "type": "string"
+              },
+              "groupNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "relatedAppNames": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "hide": {
                 "type": "boolean"
@@ -219,36 +101,8 @@
               },
               "prerequisites": {
                 "type": "array",
-                "examples": [
-                  [],
-                  [
-                    {
-                      "label": "label",
-                      "description": "description",
-                      "href": "https://link/to/site"
-                    },
-                    {
-                      "label": "label",
-                      "description": "description",
-                      "command": "cli command"
-                    }
-                  ]
-                ],
                 "items": {
                   "type": "object",
-                  "examples": [
-                    {},
-                    {
-                      "label": "label",
-                      "description": "description",
-                      "href": "https://link/to/site"
-                    },
-                    {
-                      "label": "label",
-                      "description": "description",
-                      "command": "cli command"
-                    }
-                  ],
                   "oneOf": [
                     {
                       "properties": {
@@ -304,62 +158,8 @@
               },
               "fields": {
                 "type": "object",
-                "examples": [
-                  {},
-                  {
-                    "appId": {
-                      "order": 1,
-                      "label": "App Id",
-                      "type": "textbox",
-                      "placeholder": "placeholder",
-                      "value": "hello-world",
-                      "required": true,
-                      "prompt": true,
-                      "pattern": "^[a-z]+(-[a-z]+)*$",
-                      "prefix": "",
-                      "suffix": "",
-                      "errors": {
-                        "required": "App Id is Required.",
-                        "pattern": "Invalid Id. No spaces or special chars are allowed."
-                      },
-                      "options": [
-                        {
-                          "label": "provide options only for type dropdown",
-                          "value": "--init"
-                        }
-                      ]
-                    }
-                  }
-                ],
                 "additionalProperties": {
                   "type": "object",
-                  "examples": [
-                    {},
-                    {
-                      "appId": {
-                        "order": 1,
-                        "label": "App Id",
-                        "type": "textbox",
-                        "placeholder": "placeholder",
-                        "value": "hello-world",
-                        "required": true,
-                        "prompt": true,
-                        "pattern": "^[a-z]+(-[a-z]+)*$",
-                        "prefix": "",
-                        "suffix": "",
-                        "errors": {
-                          "required": "App Id is Required.",
-                          "pattern": "Invalid Id. No spaces or special chars are allowed."
-                        },
-                        "options": [
-                          {
-                            "label": "provide options only for type dropdown",
-                            "value": "--init"
-                          }
-                        ]
-                      }
-                    }
-                  ],
                   "properties": {
                     "type": {
                       "type": "string",
@@ -508,26 +308,8 @@
               },
               "additionalCommands": {
                 "type": "array",
-                "examples": [
-                  [],
-                  [
-                    {
-                      "label": "label",
-                      "description": "description",
-                      "command": "cli command"
-                    }
-                  ]
-                ],
                 "items": {
                   "type": "object",
-                  "examples": [
-                    {},
-                    {
-                      "label": "label",
-                      "description": "description",
-                      "command": "cli command"
-                    }
-                  ],
                   "properties": {
                     "label": {
                       "type": "string"
@@ -548,27 +330,12 @@
               },
               "resources": {
                 "type": "array",
-                "examples": [
-                  [],
-                  [
-                    "<a href='https://home-page/'>Home Page</a>"
-                  ]
-                ],
                 "items": {
                   "type": "string"
                 }
               },
               "tags": {
                 "type": "array",
-                "examples": [
-                  [],
-                  [
-                    "tags",
-                    "to",
-                    "filter",
-                    "app"
-                  ]
-                ],
                 "items": {
                   "type": "string"
                 }
@@ -594,7 +361,7 @@
     "@types/webpack": "^5.28.0",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
     "@typescript-eslint/parser": "^4.31.1",
-    "@vscode/webview-ui-toolkit": "^0.8.2",
+    "@vscode/webview-ui-toolkit": "^0.8.5",
     "bootstrap": "^5.1.3",
     "copy-webpack-plugin": "^11.0.0",
     "eslint": "^7.32.0",

@@ -1,7 +1,8 @@
 {
   "appName": "NextJs",
+  "relatedAppNames": "Vite Extra",
   "description": "NextJs is a React Framework used for front-end development",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/master/images/nextJs.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/nextJs.png",
   "prerequisites": [
     {
       "label": "node",

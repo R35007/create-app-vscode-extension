@@ -4,7 +4,7 @@ const generateFormFields = (fieldProps: Record<string, FieldProps> = {}): string
   if (!Object.entries(fieldProps).length) { return ''; };
   return Object.entries(fieldProps).map(([fieldName, fieldProps], index) => {
     return `
-      <div class="row mb-3 align-items-center" style="order: ${fieldProps.order ?? (index + 1)}">
+      <div class="field-row row mb-3 align-items-center" style="order: ${fieldProps.order}">
         <div class="col-12 col-lg-4 key mb-1">${fieldProps.label} ${fieldProps.required ? `<span class="text-primary">*</span>` : ''}</div>
         <div class="col-12 col-lg-8 val">
           <div class="mb-1">${fieldSwitch(fieldName, fieldProps)}</div>
@@ -48,7 +48,6 @@ const getRadioGroup = (fieldName: string, props: FieldProps) => {
   <vscode-radio-group 
     class="control" 
     name="${fieldName}" 
-    ${props.required ? 'required' : ''}
   >
     ${props.options?.map(opt => `<vscode-radio ${(opt.value ?? "") === (props.value ?? "") && 'checked'} value="${opt.value ?? ""}">${opt.label ?? ""}</vscode-radio>`).join('') || ''}
   </vscode-radio-group>

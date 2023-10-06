@@ -25,12 +25,26 @@ export const getAppsList = () => {
     const appsList = [...Settings.customApps, ...customAppsList, ...defaultAppsList];
 
     const appNames: string[] = [];
-    const distinctApps = appsList.map((app) => {
+    const distinctApps = appsList.map((app, index) => {
         if (appNames.includes(app.appName)) return;
         appNames.push(app.appName);
-        app.fields = Object.fromEntries(Object.entries(app.fields || {}).filter(([, fieldProps]) => !fieldProps.hide));
+
+        app.tags = app.tags || [];
+        app.order = app.order ?? (index + 1);
+
+        app.groupNames = [...new Set(([] as string[]).concat(app.groupNames || app.appName))].filter(Boolean);
+        app.relatedAppNames = [...new Set(([] as string[]).concat(app.relatedAppNames || []))].filter(Boolean);
+
+        app.fields = Object.fromEntries(
+            Object.entries(app.fields || {})
+                .filter(([, fieldProps]) => !fieldProps.hide)
+                .map(([key, fieldProps], index) => [key, { ...fieldProps, order: fieldProps.order ?? (index + 1) }])
+        );
+
         return app;
-    }).filter(Boolean) as AppProps[];
+    })
+        .filter(Boolean)
+        .sort((a, b) => a!.order! > b!.order! ? 1 : -1) as AppProps[];
 
     return distinctApps.filter(app => !app.hide);
 };
