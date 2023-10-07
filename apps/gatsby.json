@@ -1,7 +1,7 @@
 {
   "appName": "Gatsby",
   "description": "Gatsby helps to build a powerful websites using a React-based framework and innovative data layer that makes integrating different APIs, and services into one web experience incredibly simple.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/gatsby.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/gatsby.png",
   "prerequisites": [
     {
       "label": "node",

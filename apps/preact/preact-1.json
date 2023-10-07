@@ -2,7 +2,7 @@
   "appName": "Preact",
   "groupNames": "Preact",
   "description": "Preact is alternative to  React with the same modern API, claiming to be a “fast 3kB”.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/preact.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/preact.png",
   "prerequisites": [
     {
       "label": "node",

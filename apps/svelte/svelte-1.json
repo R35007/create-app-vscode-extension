@@ -2,7 +2,7 @@
   "appName": "Svelte",
   "groupNames": "Svelte",
   "description": "Svelte is a radical new approach to building user interfaces using compiler. In Short Svelte is a complier and not a library",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/svelte.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/svelte.png",
   "prerequisites": [
     {
       "label": "node",

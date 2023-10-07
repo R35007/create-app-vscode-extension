@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { Settings } from '../Settings';
-import { getFilesList } from '../getFiles';
-import { AppProps } from '../modal';
+import { AppProps, FieldType } from '../modal';
+import { getFilesList } from './getFiles';
 
 const getAppsListFromPath = (appPath: string) => {
     const files = getFilesList(appPath);
@@ -38,7 +38,11 @@ export const getAppsList = () => {
         app.fields = Object.fromEntries(
             Object.entries(app.fields || {})
                 .filter(([, fieldProps]) => !fieldProps.hide)
-                .map(([key, fieldProps], index) => [key, { ...fieldProps, order: fieldProps.order ?? (index + 1) }])
+                .map(([key, fieldProps], index) => [key, {
+                    ...fieldProps,
+                    order: fieldProps.order ?? (index + 1),
+                    type: fieldProps.type || FieldType.TEXTBOX
+                }])
         );
 
         return app;

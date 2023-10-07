@@ -3,7 +3,7 @@
   "groupNames": "Vue",
   "relatedAppNames": "Ionic",
   "description": "Ionic is an HTML5 mobile app development framework targeted at building hybrid mobile apps",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/ionic.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/ionic.png",
   "prerequisites": [
     {
       "label": "node",
@@ -23,26 +23,14 @@
   ],
   "commandTemplate": [
     "${fields.installPrerequisites ? 'npm install -g @vue/cli; npm install -g @ionic/cli;' : ''}",
-    "ionic start ${fields.appName} --project-id=${fields.appId} --id=${fields.ionicAppId} --type=vue ${fields.getExcept('appName', 'appId', 'ionicAppId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
+    "ionic start ${fields.appName} --project-id=${fields.appId} --type=vue ${fields.getExcept('appName', 'appId', 'type', 'installPrerequisites', 'openInVsCode')} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
     "appId": {
       "label": "Project Id",
       "placeholder": "^[a-z]+(-[a-z]+)*$",
-      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
-      "value": "hello-world",
-      "required": true,
-      "pattern": "^[a-z]+(-[a-z]+)*$",
-      "errors": {
-        "required": "Project Id is Required.",
-        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
-      }
-    },
-    "ionicAppId": {
-      "label": "Ionic App Id",
-      "placeholder": "^[a-z]+(-[a-z]+)*$",
-      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
+      "description": "Specify a slug for your app (used for the directory name and package name).",
       "value": "hello-world",
       "required": true,
       "pattern": "^[a-z]+(-[a-z]+)*$",
@@ -54,6 +42,7 @@
     "appName": {
       "label": "App Name",
       "value": "Hello World",
+      "description": "The name of your new project.",
       "prefix": "\"",
       "suffix": "\"",
       "required": true,
@@ -70,8 +59,7 @@
         { "label": "Tabs - A starting project with a simple tabbed interface", "value": "tabs" },
         { "label": "Sidemenu - A starting project with a side menu with navigation in the content area", "value": "sidemenu" },
         { "label": "Blank - A blank starter project", "value": "blank" },
-        { "label": "List - A starting project with a list", "value": "list" },
-        { "label": "My first app - A template for the \"Build Your First App\" tutorial", "value": "my-first-app" }
+        { "label": "List - A starting project with a list", "value": "list" }
       ]
     },
     "includeCapacitor": {

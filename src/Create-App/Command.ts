@@ -12,7 +12,7 @@ export class Command {
     appType: string,
   ) {
     this.commands = command?.trim().split(';').map(item => item.trim()).filter(Boolean);
-    this.location = location;
+    this.location = location || "";
     this.appType = appType;
   }
 

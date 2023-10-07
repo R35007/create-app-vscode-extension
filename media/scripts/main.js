@@ -15,17 +15,6 @@ const toSanitizedCommand = (str) =>
     .replace(/\n+/g, "\n")
     .trim();
 
-const setCommand = () => {
-  const fields = Object.fromEntries(
-    Object.entries(appFields).map(([key, props]) => [key, getCommand(props.prefix, props.value, props.suffix)])
-  );
-  return vscode.postMessage({
-    action: "get-command-template",
-    fields,
-    commandTemplate,
-  });
-};
-
 function init(selectedApp, filterValue) {
   const $command = document.getElementById("command");
   const $copyCommand = document.getElementById("copy-command");
@@ -34,6 +23,17 @@ function init(selectedApp, filterValue) {
   const $appFolderLocationBtn = document.getElementById("app-folder-location-btn");
   const $appFolderLocation = document.getElementById("app-folder-location");
   const $copyConfigBtn = document.getElementById("copy-config");
+
+  const setCommand = () => {
+    const fields = Object.fromEntries(
+      Object.entries(appFields).map(([key, props]) => [key, getCommand(props.prefix, props.value, props.suffix)])
+    );
+    return vscode.postMessage({
+      action: "get-command-template",
+      object: { fields, execPath: $appFolderLocation.value },
+      commandTemplate,
+    });
+  };
 
   // Handle messages sent from the extension to the webview
   window.addEventListener("message", (event) => {
@@ -46,6 +46,7 @@ function init(selectedApp, filterValue) {
         break;
       case "set-app-location":
         $appFolderLocation.value = message.value;
+        setCommand();
         break;
       case "set-command-template":
         $command.value = toSanitizedCommand(message.value);
@@ -107,6 +108,11 @@ function init(selectedApp, filterValue) {
   // On App location browse button click
   $appFolderLocationBtn.addEventListener("click", function () {
     vscode.postMessage({ action: "get-location", isAppLocation: true });
+  });
+
+  // On App location change
+  $appFolderLocation.addEventListener("input", function () {
+    setCommand();
   });
 
   // On Click of additional Commands

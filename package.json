@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Easily Create any UI App with Official Starter Templates or Boilerplate using CLI",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
@@ -23,27 +23,26 @@
   ],
   "keywords": [
     "Create App",
-    "Create Vite App",
-    "Create UI App",
-    "Create Angular App",
-    "Create Vue App",
-    "Create React App",
-    "Create Preact App",
-    "Create Svelte App",
-    "Create NextJs App",
-    "Create Django App",
-    "Create Gatsby App",
-    "Create Express App",
-    "Create NestJs App",
-    "Create Node App",
-    "Create Ionic App",
-    "Create React Native App",
-    "Create Vs Code Extension App",
+    "Angular",
+    "Express",
+    "Electron",
+    "Vite",
+    "Vue",
+    "React",
+    "Preact",
+    "Svelte",
+    "NextJs",
+    "Django",
+    "Gatsby",
+    "NestJs",
+    "Node",
+    "Ionic",
+    "React Native",
+    "Vs Code Extension",
     "Create Project"
   ],
   "activationEvents": [
-    "onCommand:create.app",
-    "onWebviewPanel:create.app"
+    "onStartupFinished"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -62,6 +61,31 @@
     "configuration": {
       "title": "Create App",
       "properties": {
+        "create-app.settings.quick.promptType": {
+          "type": "string",
+          "enum": [
+            "Default",
+            "Required",
+            "None"
+          ],
+          "enumDescriptions": [
+            "Prompt field config that required or prompt flag is set to true",
+            "Prompt only required field config",
+            "Don't prompt any field configs"
+          ],
+          "default": "Default",
+          "description": "Set the Create App: Quick command prompt type."
+        },
+        "create-app.settings.quick.promptCommandString": {
+          "type": "boolean",
+          "default": true,
+          "description": "Prompt for command string change in quick command pallet before executing in terminal."
+        },
+        "create-app.settings.quick.promptExecutionPath": {
+          "type": "boolean",
+          "default": true,
+          "description": "If false it always executes in the active workspace folder location."
+        },
         "create-app.settings.customAppPath": {
           "type": "string",
           "description": "Set custom file or folder path of the custom app json. please restart the vscode to take effect."

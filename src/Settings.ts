@@ -17,4 +17,13 @@ export class Settings {
     static get customApps() {
         return Settings.getSettings('customApps') as Array<AppProps> || [];
     }
+    static get promptType() {
+        return Settings.getSettings('quick.promptType') as "Default" | "Required" | "None";
+    }
+    static get shouldPromptCommandString() {
+        return Settings.getSettings('quick.promptCommandString') as boolean;
+    }
+    static get shouldPromptLocation() {
+        return Settings.getSettings('quick.promptExecutionPath') as boolean;
+    }
 }

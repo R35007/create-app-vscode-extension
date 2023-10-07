@@ -1,7 +1,7 @@
 {
   "appName": "VS Code Extension",
   "description": "VS Code extensions let you add languages, debuggers, and tools to your installation to support your development workflow.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vscode.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vscode.png",
   "prerequisites": [
     {
       "label": "node",

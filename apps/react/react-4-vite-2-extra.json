@@ -3,7 +3,7 @@
   "groupNames": "React",
   "relatedAppNames": "Vite Extra",
   "description": "Vite is a frontend tool for building web applications quickly, created by Evan You, the creator of the Vue.js framework, that provides a fast dev server, bundling and a great developer experience.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vite.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vite.png",
   "prerequisites": [
     {
       "label": "node",

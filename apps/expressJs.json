@@ -1,7 +1,7 @@
 {
   "appName": "ExpressJS",
   "description": "ExpressJS is a web application framework that provides you with a simple API to build websites, web apps and back ends",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/expressJs.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/expressJs.png",
   "prerequisites": [
     {
       "label": "node",

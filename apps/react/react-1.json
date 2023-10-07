@@ -2,7 +2,7 @@
   "appName": "React",
   "groupNames": "React",
   "description": "React is a declarative, efficient, and flexible JavaScript library for building user interfaces.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/react.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/react.png",
   "prerequisites": [
     {
       "label": "node",

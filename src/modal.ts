@@ -25,7 +25,7 @@ export interface Tags {
 }
 
 export interface FieldProps {
-  label: string;
+  label?: string;
   type?: FieldType.TEXTBOX | FieldType.CHECKBOX | FieldType.RADIO | FieldType.DROPDOWN | FieldType.BROWSE;
   order?: number;
   prefix?: string;

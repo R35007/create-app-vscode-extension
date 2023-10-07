@@ -1,7 +1,16 @@
+## v5.1.0
+
+- Added - `create-app.settings.quick.promptType` setting - Set `Create App: Quick` command prompt type.
+- Added - `create-app.settings.quick.promptCommandString` - If true it shows the quick command input box before executing in terminal.
+- Added - `create-app.settings.quick.promptExecutionPath` - If true it opens up the dialog to browse the folder for the app. If false it creates the app in the active workspace folder.
+- Enhanced - `Create App: Quick` command now shows the number of steps to complete to create the app in the title of the command pallet.
+- Modified - Code refactored.
+
 ## v5.0.0
 
 - New✨ - Added `groupNames` - Helps to group multiple apps in a single tabbed view.
 - Added - `relatedAppNames` - Helps to navigate to other apps.
+- Added - Electron app configurations.
 - Added - multiple app groups.
 - Enhanced - Now able to retain the filtered apps on switching apps
 - Enhanced - user interface - Now able to resize the command area. Introducing Apps groups view.
@@ -58,15 +67,15 @@
 ## v3.0.0
 
 - Added Gatsby App
-- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/previews/preview_v3.0.0.gif)
+- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/previews/preview_v3.0.0.gif)
 
 ## v2.0.0, v2.0.1, v2.0.2, v2.0.3
 
 - Added more Apps to Create
 - Implemented New UI Layout
-- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/previews/preview_v2.0.0.gif)
+- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/previews/preview_v2.0.0.gif)
 
 ## v1.0.0
 
 - Initial release
-- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/previews/preview_v1.0.0.gif)
+- [Preview here](https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/previews/preview_v1.0.0.gif)

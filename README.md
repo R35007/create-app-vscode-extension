@@ -1,5 +1,5 @@
 <h1>
-  <sub><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/ca-logo.png" height="40"></sub> Create App
+  <sub><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/ca-logo.png" height="40"></sub> Create App
 </h1>
 
 Easily Create any UI App with Official Starter Templates or Boilerplate using CLI.
@@ -12,35 +12,35 @@ Easily Create any UI App with Official Starter Templates or Boilerplate using CL
 
 ## Default Apps:
 
-<span><sub><a href="https://angular.io/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/angular.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Angular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://www.djangoproject.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/django.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://www.electronjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/electron.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Electron</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://expressjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/expressJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;ExpressJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://www.gatsbyjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/gatsby.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Gatsby</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://ionicframework.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/ionic.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Ionic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<span><sub><a href="https://nestjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/nestJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NestJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/nextJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NextJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://preactjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/preact.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Preact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://reactnative.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React Native</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://svelte.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/svelte.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Svelte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
-<span><sub><a href="https://vitejs.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vite.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Vite</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://code.visualstudio.com/api"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vscode.png" alt="" width="20"></a></sub>&nbsp;&nbsp;VS Code Extension</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://vuejs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vue.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Vue</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://angular.io/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/angular.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Angular</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://www.djangoproject.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/django.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Django</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://www.electronjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/electron.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Electron</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://expressjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/expressJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;ExpressJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://www.gatsbyjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/gatsby.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Gatsby</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://ionicframework.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/ionic.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Ionic</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<span><sub><a href="https://nestjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/nestJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NestJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/nextJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NextJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://preactjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/preact.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Preact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://reactnative.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React Native</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://svelte.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/svelte.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Svelte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<span><sub><a href="https://vitejs.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vite.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Vite</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://code.visualstudio.com/api"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vscode.png" alt="" width="20"></a></sub>&nbsp;&nbsp;VS Code Extension</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span><sub><a href="https://vuejs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vue.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Vue</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 ## Create App: Interactive
 
 - Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create App: Interactive` to open the Create App view.
 - This opens an interactive ui that prompts you tp pick the app name and provide configurations to create the app.
 
-![Create App: Interactive Preview](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/preview_interactive.gif?raw=true)
+![Create App: Interactive Preview](https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/preview_interactive.gif?raw=true)
 
 ## Create App: Quick
 
 - Give `Ctrl/Cmd+Shift+P` to open the command pallet and type `Create App: Quick` to open the Create App quick prompt.
 - This provides you the quick command pallet and prompt you the pick the app and its required minimal configurations to create the app.
 
-![Create App: Quick Preview](https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/preview_quick.gif?raw=true)
+![Create App: Quick Preview](https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/preview_quick.gif?raw=true)
 
 ## Custom App Config interface
 
@@ -58,7 +58,7 @@ interface Tags {
 }
 
 interface FieldProps {
-  label: string;
+  label?: string;
   type?: "textbox" | "checkbox" | "radio" | "browse" | "dropdown";
   prefix?: string; // set prefix of the field value. Ex: "prefix":"--template=\"".
   suffix?: string; // set suffix of the field value. Ex: "prefix":"\"".
@@ -100,10 +100,18 @@ interface AppProps {
 }
 ```
 
-## Command Template Variables
+## Substitution tokens
 
-- `commandTemplate` helps to generate the cli command.
-- It takes the variable `fields` and populates its value based on the field name.
+`commandTemplate` helps to generate the cli command. You can use the following substitution tokens in `commandTemplate` strings:
+
+- `${fields}` - get the field values.
+- `${workspaceFolder}` alias `${ced}` - get the current working directory or a current workspace folder.
+- `${workspaceFolderBasename}` - get the current workspace folder base name.
+- `${execPath}` - get the command execution folder path.
+- `${execPathBasename}` - get the command execution folder path base name.
+- `${env}` - get the object of `process.env`. Ex: `"${env.NODE_ENV}"`
+
+### fields token
 
 ```json
 {

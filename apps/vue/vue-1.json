@@ -2,7 +2,7 @@
   "appName": "Vue",
   "groupNames": "Vue",
   "description": "Vue is a progressive javascript framework for building user interfaces.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/vue.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vue.png",
   "prerequisites": [
     {
       "label": "node",

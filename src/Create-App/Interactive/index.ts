@@ -1,29 +1,24 @@
 
 import * as vscode from 'vscode';
-import { AppProps, Commands } from '../modal';
-import { getInterpolateObject, getWebviewOptions, interpolate } from '../utilities';
-import { Command } from './Command';
-import getHtmlForWebview from './Html-For-Webview';
+import { AppProps, Commands } from '../../modal';
+import { getInterpolateObject, getWebviewOptions, interpolate } from '../../utilities';
+import { getAppsList } from '../../utilities/getAppsList';
+import { Command } from '../Command';
+import getWebview from './WebView';
 
-/**
- * Manages Create React App Panel
- */
 export default class CreateApp {
-  /**
-   * Track the currently panel. Only allow a single panel to exist at a time.
-   */
   public static currentPanel: CreateApp | undefined;
 
   readonly #panel: vscode.WebviewPanel;
   readonly #extensionUri: vscode.Uri;
   #disposables: vscode.Disposable[] = [];
 
-  _appsList: AppProps[];
-  #selectedApp: AppProps;
-  #selectedGroup: string;
-  #filterValue: string;
+  _appsList: AppProps[] = getAppsList();
+  #selectedApp: AppProps = this._appsList[0];
+  #selectedGroup: string = this._appsList[0].groupNames[0];
+  #filterValue: string = '';
 
-  public static createOrShow(extensionUri: vscode.Uri, appsList: AppProps[]) {
+  public static createOrShow(extensionUri: vscode.Uri) {
 
     const column = vscode.window.activeTextEditor
       ? vscode.window.activeTextEditor.viewColumn
@@ -44,15 +39,10 @@ export default class CreateApp {
     );
 
 
-    CreateApp.currentPanel = new CreateApp(panel, extensionUri, appsList);
+    CreateApp.currentPanel = new CreateApp(panel, extensionUri);
   }
 
-  private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri, appsList: AppProps[]) {
-    this._appsList = appsList;
-    this.#selectedApp = this._appsList[0];
-    this.#selectedGroup = this._appsList[0].groupNames[0];
-    this.#filterValue = '';
-
+  private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
     this.#panel = panel;
     this.#extensionUri = extensionUri;
 
@@ -80,7 +70,7 @@ export default class CreateApp {
         return;
       }
       case 'get-command-template': {
-        this.#setCommandTemplate(message.fields, message.commandTemplate);
+        this.#setCommandTemplate(message.object, message.commandTemplate);
         return;
       }
       case 'execute-command': {
@@ -143,9 +133,11 @@ export default class CreateApp {
     }
   };
 
-  #setCommandTemplate = (fieldProps: any, commandTemplate: string) => {
+  #setCommandTemplate = (object: any, commandTemplate: string) => {
     try {
-      this.#panel.webview.postMessage({ action: 'set-command-template', value: interpolate({ fields: getInterpolateObject(fieldProps) }, commandTemplate) });
+      this.#panel.webview.postMessage({
+        action: 'set-command-template', value: interpolate(getInterpolateObject(object.fields, object.execPath), commandTemplate)
+      });
     } catch (err: any) {
       if (err.message.includes('no defined')) {
         vscode.window.showErrorMessage(err.message + ". Please use ${fields.get('yourFieldName')} in the commandTemplate");
@@ -154,6 +146,26 @@ export default class CreateApp {
       }
     }
   };
+
+  #update(showLoader: boolean = false) {
+    // Vary the webview's content based on where it is located in the editor.
+    switch (this.#panel.viewColumn) {
+      case vscode.ViewColumn.Two:
+      case vscode.ViewColumn.Three:
+      case vscode.ViewColumn.One:
+      default:
+        this.#panel.webview.html = getWebview(
+          this.#extensionUri,
+          this.#panel.webview,
+          this._appsList,
+          this.#selectedApp,
+          this.#selectedGroup,
+          this.#filterValue,
+          showLoader
+        );
+        return;
+    }
+  }
 
   public dispose() {
     CreateApp.currentPanel = undefined;
@@ -169,24 +181,4 @@ export default class CreateApp {
     }
   }
 
-  #update(showLoader: boolean = false) {
-    // Vary the webview's content based on where it is located in the editor.
-
-    switch (this.#panel.viewColumn) {
-      case vscode.ViewColumn.Two:
-      case vscode.ViewColumn.Three:
-      case vscode.ViewColumn.One:
-      default:
-        this.#panel.webview.html = getHtmlForWebview(
-          this.#extensionUri,
-          this.#panel.webview,
-          this._appsList,
-          this.#selectedApp,
-          this.#selectedGroup,
-          this.#filterValue,
-          showLoader
-        );
-        return;
-    }
-  }
 }

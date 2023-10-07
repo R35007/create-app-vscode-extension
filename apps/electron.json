@@ -3,7 +3,7 @@
   "groupNames": "Electron",
   "relatedAppNames": "Vite Electron",
   "description": "Electron is designed to create desktop applications using web technologies that are rendered using a version of the Chromium browser engine and a back end using the Node.js runtime environment.",
-  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.0.0/images/electron.png",
+  "logoPath": "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/electron.png",
   "prerequisites": [
     {
       "label": "node",
