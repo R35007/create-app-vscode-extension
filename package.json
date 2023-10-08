@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Generates an interactive form and quick pick for any CLI to Create an APP.",
-  "version": "5.2.0",
+  "version": "5.2.1",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
