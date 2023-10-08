@@ -1,8 +1,8 @@
 {
   "name": "create-app",
   "displayName": "Create App",
-  "description": "Easily Create any UI App with Official Starter Templates or Boilerplate using CLI",
-  "version": "5.1.0",
+  "description": "Generates nn interactive form and quick pick for any CLI to Create an APP.",
+  "version": "5.2.0",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
@@ -23,23 +23,22 @@
   ],
   "keywords": [
     "Create App",
+    "Create Project",
     "Angular",
-    "Express",
-    "Electron",
-    "Vite",
-    "Vue",
-    "React",
-    "Preact",
-    "Svelte",
-    "NextJs",
     "Django",
+    "Electron",
+    "Express",
     "Gatsby",
-    "NestJs",
-    "Node",
     "Ionic",
+    "NestJs",
+    "NextJs",
+    "Preact",
+    "React",
     "React Native",
+    "Svelte",
+    "Vite",
     "Vs Code Extension",
-    "Create Project"
+    "Vue"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -85,6 +84,11 @@
           "type": "boolean",
           "default": true,
           "description": "If false it always executes in the active workspace folder location."
+        },
+        "create-app.settings.interactive.showAppIcons": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set to false to hide the app icons. Hiding icons will improve the rendering performance."
         },
         "create-app.settings.customAppPath": {
           "type": "string",

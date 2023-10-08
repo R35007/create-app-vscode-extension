@@ -1,19 +1,25 @@
+import { Settings } from '../Settings';
 import { AppProps } from '../modal';
 
 export const generateGroupList = (appsList: AppProps[], selectedGroup?: string, filterValue: string = ""): string => {
-    const groupNames: string[] = [...new Set(appsList.map((app) => app.groupNames).flat())];
+  const groupNames: string[] = [...new Set(appsList.map((app) => app.groupNames).flat())];
 
-    return groupNames
-        .map((groupName) => {
-            const app = appsList.find((app) => app.groupNames.includes(groupName)) as AppProps;
-            const isSelected = groupName === selectedGroup;
-            const groupTags = appsList
-                .filter((app) => app.groupNames.includes(groupName))
-                .map((app) => app.tags || [])
-                .flat();
-            const isHidden = filterValue && !groupTags?.some((tag) => tag.includes(filterValue));
+  return groupNames
+    .map((groupName) => {
+      const app = appsList.find((app) => app.groupNames.includes(groupName)) as AppProps;
+      const isSelected = groupName === selectedGroup;
+      const groupTags = appsList
+        .filter((app) => app.groupNames.includes(groupName))
+        .map((app) => app.tags || [])
+        .flat();
+      const isHidden = filterValue && !groupTags?.some((tag) => tag.includes(filterValue));
 
-            return `
+      const icon = Settings.shouldShowAppIcons ? `
+    <div class="col-3 text-center thumbnail p-2">
+      <img src="${app.logoPath || "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/ca-logo.png"}" />
+    </div>` : '';
+
+      return `
       <li 
         data-switch-group="${groupName}" 
         data-switch-app="${app.appName}" 
@@ -22,19 +28,16 @@ export const generateGroupList = (appsList: AppProps[], selectedGroup?: string, 
         class="row g-0 app-card ${isSelected ? "selected" : ""}"
         style="order: ${app.order}; display: ${isHidden ? "none" : "flex"};" 
       >
-        <div class="col-3 text-center thumbnail p-2">
-          <img src="${app.logoPath || "https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/ca-logo.png"}" />
-        </div>
+        ${icon}
         <div class="tags d-none">${groupTags?.join(",")}</div>
         <div class="col app-title p-2">${groupName}</div>
       </li>
     `;
-        }).join("");
+    }).join("");
 };
 
-
 export const generateGroupButtons = (appsList: AppProps[], selectedApp: AppProps, selectedGroup: string) =>
-    appsList.filter(app => app.groupNames.includes(selectedGroup)).map((app) => `
+  appsList.filter(app => app.groupNames.includes(selectedGroup)).map((app) => `
 <vscode-button 
   style="order: ${app.order}" 
   data-switch-app="${app.appName}"
@@ -45,26 +48,26 @@ export const generateGroupButtons = (appsList: AppProps[], selectedApp: AppProps
 </vscode-button>`).join("");
 
 export const generateAppListDropdown = (appsList: AppProps[], selectedApp: AppProps) =>
-    appsList.map(app => `
+  appsList.map(app => `
     <vscode-option 
       data-switch-group=${selectedApp.groupNames[0]} 
       ${app.appName === selectedApp.appName && 'selected'} 
       value="${app.appName || ''}">${app.appName}</vscode-option>`
-    ).join('') || "";
+  ).join('') || "";
 
 
 export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppProps, selectedGroup: string) => {
-    const prerequisites = selectedApp.prerequisites?.map(p => {
-        if (p.href) return `<a title="${p.description}" href="${p.href}" class="tag anchor-tag">${p.label}</a>`;
-        return `<span title="${p.description}" data-command="${p.command}" class="tag command-tag">${p.label}</span>`;
-    }).join('') || "";
+  const prerequisites = selectedApp.prerequisites?.map(p => {
+    if (p.href) return `<a title="${p.description}" href="${p.href}" class="tag anchor-tag">${p.label}</a>`;
+    return `<span title="${p.description}" data-command="${p.command}" class="tag command-tag">${p.label}</span>`;
+  }).join('') || "";
 
-    const additionalCommands = selectedApp.additionalCommands?.map(ac =>
-        `<span title="${ac.description}" data-command="${ac.command}" class="tag command-tag">${ac.label}</span>`
-    ).join('') || "";
+  const additionalCommands = selectedApp.additionalCommands?.map(ac =>
+    `<span title="${ac.description}" data-command="${ac.command}" class="tag command-tag">${ac.label}</span>`
+  ).join('') || "";
 
-    const relatedApps = selectedApp.relatedAppNames?.filter((relativeAppName: string) => appsList.some(app => app.appName === relativeAppName))
-        .map((relativeApp: string) => `
+  const relatedApps = selectedApp.relatedAppNames?.filter((relativeAppName: string) => appsList.some(app => app.appName === relativeAppName))
+    .map((relativeApp: string) => `
     <span 
         data-switch-app="${relativeApp}"
         data-switch-group="${appsList.find(app => app.appName === relativeApp)?.groupNames[0]}"
@@ -72,11 +75,11 @@ export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppPro
         class="tag"
     >${relativeApp}</span>`).join("") || "";
 
-    const resources = selectedApp.resources?.map(resource =>
-        `<div><a href='${resource.href}' title='${resource.description || resource.href}'>${resource.label}</a></div>`
-    ).join('') || "";
+  const resources = selectedApp.resources?.map(resource =>
+    `<div><a href='${resource.href}' title='${resource.description || resource.href}'>${resource.label}</a></div>`
+  ).join('') || "";
 
-    const aboutSection = selectedApp.description?.length ? `
+  const aboutSection = selectedApp.description?.length ? `
     <div class="about-container">
         <h5 class="my-3">About</h5>
         <div class="about-content my-3">
@@ -84,7 +87,7 @@ export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppPro
         </div>
     </div>` : '';
 
-    const prerequisitesSection = selectedApp.prerequisites?.length ? `
+  const prerequisitesSection = selectedApp.prerequisites?.length ? `
     <div class="prerequisites-container">
         <h5 class="my-3">Prerequisites</h5>
         <div class="prerequisites-content my-3">
@@ -92,7 +95,7 @@ export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppPro
         </div>
     </div>` : '';
 
-    const additionCommandsSection = selectedApp.additionalCommands?.length ? `
+  const additionCommandsSection = selectedApp.additionalCommands?.length ? `
     <div class="additional-commands-container">
         <h5 class="my-3">Additional Commands</h5>
         <div class="additional-commands-content my-3">
@@ -100,7 +103,7 @@ export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppPro
         </div>
     </div>` : '';
 
-    const relatedAppsSection = relatedApps?.length ? `
+  const relatedAppsSection = relatedApps?.length ? `
     <div class="additional-commands-container">
         <h5 class="my-3">Related Apps</h5>
         <div class="additional-commands-content my-3">
@@ -108,7 +111,7 @@ export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppPro
         </div>
     </div>` : '';
 
-    const resourcesSection = selectedApp.resources?.length ? `
+  const resourcesSection = selectedApp.resources?.length ? `
     <div class="resources-container">
         <h5 class="my-3">Resources</h5>
         <div class="resources-content my-3">
@@ -116,10 +119,10 @@ export const generateInfoContainers = (appsList: AppProps[], selectedApp: AppPro
         </div>
     </div>` : '';
 
-    const infoContainers = [aboutSection, prerequisitesSection, additionCommandsSection, relatedAppsSection, resourcesSection]
-        .filter(Boolean).join('<vscode-divider></vscode-divider>');
+  const infoContainers = [aboutSection, prerequisitesSection, additionCommandsSection, relatedAppsSection, resourcesSection]
+    .filter(Boolean).join('<vscode-divider></vscode-divider>');
 
-    return infoContainers;
+  return infoContainers;
 };
 
 export const getLoaderStyle = (nonce: string) => `<style nonce="${nonce}">

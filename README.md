@@ -2,7 +2,8 @@
   <sub><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/ca-logo.png" height="40"></sub> Create App
 </h1>
 
-Easily Create any UI App with Official Starter Templates or Boilerplate using CLI.
+Generates an interactive form and quick pick for any CLI to create an app.
+Easily Create ab App with Official Starter Templates or Boilerplate using CLI.
 
 ## Features
 

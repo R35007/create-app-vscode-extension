@@ -1,3 +1,8 @@
+## v5.2.0
+
+- Added - `create-app.settings.interactive.showAppIcons` setting - if false it hides the app icons to improve the rendering speed. Defaults to true.
+- Added - `Open in interactive mode` button in `Create App: Quick` command pallet. On click it opens the `Create App: Interactive` window.
+
 ## v5.1.0
 
 - Added - `create-app.settings.quick.promptType` setting - Set `Create App: Quick` command prompt type.

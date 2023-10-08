@@ -26,4 +26,7 @@ export class Settings {
     static get shouldPromptLocation() {
         return Settings.getSettings('quick.promptExecutionPath') as boolean;
     }
+    static get shouldShowAppIcons() {
+        return Settings.getSettings('interactive.showAppIcons') as boolean;
+    }
 }

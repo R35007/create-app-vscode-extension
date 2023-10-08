@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { Settings } from '../Settings';
-import { FieldProps, FieldType } from '../modal';
+import { Commands, FieldProps, FieldType } from '../modal';
 import { getCommand, getInterpolateObject, interpolate, toSanitizedCommand } from '../utilities';
 import { getAppsList } from '../utilities/getAppsList';
 import { Command } from './Command';
@@ -22,14 +22,58 @@ export default class Quick {
 
     constructor() {
         this.createApp();
-
     }
 
-    pickAppName() {
-        return vscode.window.showQuickPick(this.appsList.map(app => app.appName), {
-            placeHolder: "Please Select a App",
-            title: "Create App"
+    async pickApp() {
+        const disposables: vscode.Disposable[] = [];
+
+        const openInInteractiveBtn = {
+            iconPath: new vscode.ThemeIcon("link-external"),
+            tooltip: "Open in interactive mode",
+        };
+
+        const pick = await new Promise((resolve) => {
+            let isResolved = false;
+            const quickPick = vscode.window.createQuickPick();
+            quickPick.title = "Create App";
+            quickPick.placeholder = "Please Select a App";
+            quickPick.items = this.appsList.map(app => ({ label: app.appName }));
+            quickPick.buttons = [openInInteractiveBtn];
+            quickPick.matchOnDescription = false;
+            quickPick.canSelectMany = false;
+            quickPick.matchOnDetail = false;
+
+            disposables.push(
+                quickPick.onDidAccept(() => {
+                    const selection = quickPick.activeItems[0];
+                    if (!isResolved) {
+                        resolve(selection);
+                        isResolved = true;
+                    }
+                    quickPick.dispose();
+                }),
+                quickPick.onDidHide(() => {
+                    if (!isResolved) {
+                        resolve(undefined);
+                        isResolved = true;
+                    }
+                    quickPick.dispose();
+                }),
+                quickPick.onDidTriggerButton((item) => {
+                    // resolve(quickPick.activeItems[0].label); // resolve selected app name
+                    vscode.commands.executeCommand(Commands.CREATE_APP_INTERACTIVE);
+                    resolve(undefined);
+                    isResolved = true;
+                    quickPick.dispose();
+                })
+            );
+
+            quickPick.show();
         });
+
+        disposables.forEach((d) => d.dispose());
+
+        return pick as vscode.QuickPickItem | undefined;
     }
 
     async pickOptions([fieldName, fieldProps]: [string, FieldProps]) {
@@ -109,9 +153,10 @@ export default class Quick {
 
     async createApp() {
         try {
-            const appName = await this.pickAppName();
-            if (!appName) return;
-            this.appName = appName;
+            const app = await this.pickApp();
+            if (!app) return;
+            console.log(app);
+            this.appName = app.label;
             const selectedApp = this.appsList.find(app => app.appName === this.appName);
             this.appFields = selectedApp?.fields || {};
 
@@ -164,7 +209,7 @@ export default class Quick {
                 this.command = value;
             }
 
-            const command = new Command(toSanitizedCommand(this.command), this.exePath?.fsPath || '', appName);
+            const command = new Command(toSanitizedCommand(this.command), this.exePath?.fsPath || '', this.appName);
             command.executeCommand();
         } catch (err: any) {
             if (err.message === "return") return;

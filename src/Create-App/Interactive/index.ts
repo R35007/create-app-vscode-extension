@@ -13,9 +13,9 @@ export default class CreateApp {
   readonly #extensionUri: vscode.Uri;
   #disposables: vscode.Disposable[] = [];
 
-  _appsList: AppProps[] = getAppsList();
-  #selectedApp: AppProps = this._appsList[0];
-  #selectedGroup: string = this._appsList[0].groupNames[0];
+  #appsList: AppProps[] = getAppsList();
+  #selectedApp: AppProps = this.#appsList[0];
+  #selectedGroup: string = this.#appsList[0].groupNames[0];
   #filterValue: string = '';
 
   public static createOrShow(extensionUri: vscode.Uri) {
@@ -115,7 +115,7 @@ export default class CreateApp {
   #switchApp = (appName: string, groupName: string, filterValue: string) => {
     this.#selectedGroup = groupName;
     this.#filterValue = filterValue;
-    this.#selectedApp = this._appsList.find(app => app.appName === appName) || this.#selectedApp;
+    this.#selectedApp = this.#appsList.find(app => app.appName === appName) || this.#selectedApp;
     this.#update();
   };
 
@@ -157,7 +157,7 @@ export default class CreateApp {
         this.#panel.webview.html = getWebview(
           this.#extensionUri,
           this.#panel.webview,
-          this._appsList,
+          this.#appsList,
           this.#selectedApp,
           this.#selectedGroup,
           this.#filterValue,
