@@ -1,7 +1,7 @@
 {
   "name": "create-app",
   "displayName": "Create App",
-  "description": "Generates nn interactive form and quick pick for any CLI to Create an APP.",
+  "description": "Generates an interactive form and quick pick for any CLI to Create an APP.",
   "version": "5.2.0",
   "publisher": "Thinker",
   "license": "MIT",
