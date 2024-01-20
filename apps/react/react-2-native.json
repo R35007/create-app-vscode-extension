@@ -13,7 +13,7 @@
   ],
   "commandTemplate": [
     "npx create-expo-app ${fields.getExcept('openInVsCode')} --yes;",
-    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+    "${fields.openInVsCode ? `code ${fields.get('appName')};` : ''}"
   ],
   "fields": {
     "appName": {
@@ -29,21 +29,10 @@
       "label": "Template",
       "description": "You can find many grea community templates by searching for <a href='https://www.npmjs.com/search?q=expo-template-*'>expo-template-*</a> on npm.",
       "prompt": true,
-      "prefix": "--template=",
+      "prefix": "-e ",
       "options": [
         { "label": "Blank" },
-        { "label": "Blank (Typescript)", "value": "expo-template-blank-typescript" },
-        { "label": "Tabs (Typescript)", "value": "expo-template-tabs" },
-        { "label": "Bare Minimum", "value": "expo-template-bare-minimum" }
-      ]
-    },
-    "packageManager": {
-      "type": "radio",
-      "label": "Package Manager",
-      "value": "--npm",
-      "options": [
-        { "label": "npm", "value": "--npm" },
-        { "label": "yarn", "value": "--yarn" }
+        { "label": "Tabs", "value": "with-tab-navigation" }
       ]
     },
     "skipInstall": {
