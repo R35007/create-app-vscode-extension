@@ -12,28 +12,14 @@
     }
   ],
   "commandTemplate": [
-    "npx expo init ${fields.getExcept('openInVsCode')} --yes;",
+    "npx create-expo-app ${fields.getExcept('openInVsCode')} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
   ],
   "fields": {
-    "appId": {
-      "label": "App Id",
-      "placeholder": "^[a-z]+(-[a-z]+)*$",
-      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
-      "value": "hello-world",
-      "required": true,
-      "pattern": "^[a-z]+(-[a-z]+)*$",
-      "errors": {
-        "required": "App Id is Required.",
-        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
-      }
-    },
     "appName": {
       "label": "App Name",
       "value": "Hello World",
       "required": true,
-      "prefix": "--name=\"",
-      "suffix": "\"",
       "errors": {
         "required": "App Name is Required."
       }
@@ -72,14 +58,19 @@
   },
   "additionalCommands": [
     {
-      "label": "install expo-cli",
-      "description": "Click here to install expo-cli globally",
-      "command": "npm install -g expo-cli"
+      "label": "build for native",
+      "description": "Click here to build native code",
+      "command": "npx expo prebuild"
     },
     {
-      "label": "expo init",
-      "description": "Click here to create the react native app using expo cli prompts",
-      "command": "npx expo init"
+      "label": "expo start",
+      "description": "Click here to start the react native metro bundler",
+      "command": "npx expo start"
+    },
+    {
+      "label": "login",
+      "description": "Click here to login to expo",
+      "command": "npx expo login"
     },
     {
       "label": "check cli version",
@@ -89,7 +80,7 @@
     {
       "label": "cli help",
       "description": "Click here to know more cli configurations",
-      "command": "npx expo init --help"
+      "command": "npx expo --help"
     }
   ],
   "resources": [
