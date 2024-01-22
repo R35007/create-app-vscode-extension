@@ -12,27 +12,39 @@
     }
   ],
   "commandTemplate": [
-    "npx create-expo-app ${fields.getExcept('openInVsCode')} --yes;",
+    "${fields.useNPM} ${fields.getExcept('openInVsCode', 'useNPM')} --yes;",
     "${fields.openInVsCode ? `code ${fields.get('appName')};` : ''}"
   ],
   "fields": {
+    "useNPM": {
+      "type": "radio",
+      "label": "Use yarn or npm",
+      "value": "yarn create expo-app",
+      "options": [
+        { "label": "yarn", "value": "yarn create expo-app" },
+        { "label": "npm", "value": "npx create-expo-app" }
+      ]
+    },
     "appName": {
       "label": "App Name",
-      "value": "Hello World",
+      "value": "Hello-World",
+      "pattern": "^[a-z]+(-[a-z]+)*$",
       "required": true,
       "errors": {
-        "required": "App Name is Required."
+        "required": "App Name is Required.",
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
       }
     },
     "template": {
       "type": "dropdown",
       "label": "Template",
-      "description": "You can find many grea community templates by searching for <a href='https://www.npmjs.com/search?q=expo-template-*'>expo-template-*</a> on npm.",
+      "description": "You can find many great community templates by searching for <a href='https://www.npmjs.com/search?q=expo-template-*'>expo-template-*</a> on npm.",
       "prompt": true,
-      "prefix": "-e ",
+      "prefix": "--template ",
       "options": [
         { "label": "Blank" },
-        { "label": "Tabs", "value": "with-tab-navigation" }
+        { "label": "Tabs", "value": "tabs" },
+        { "label": "Bare minimum", "value": "bare-minimum" }
       ]
     },
     "skipInstall": {
@@ -49,27 +61,27 @@
     {
       "label": "build for native",
       "description": "Click here to build native code",
-      "command": "npx expo prebuild"
+      "command": "yarn expo prebuild"
     },
     {
       "label": "expo start",
       "description": "Click here to start the react native metro bundler",
-      "command": "npx expo start"
+      "command": "yarn expo start"
     },
     {
       "label": "login",
       "description": "Click here to login to expo",
-      "command": "npx expo login"
+      "command": "yarn expo login"
     },
     {
       "label": "check cli version",
       "description": "Click here to check cli version",
-      "command": "npx expo --version"
+      "command": "yarn expo --version"
     },
     {
       "label": "cli help",
       "description": "Click here to know more cli configurations",
-      "command": "npx expo --help"
+      "command": "yarn create expo-app --help"
     }
   ],
   "resources": [
