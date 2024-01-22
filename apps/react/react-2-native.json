@@ -12,52 +12,37 @@
     }
   ],
   "commandTemplate": [
-    "npx expo init ${fields.getExcept('openInVsCode')} --yes;",
-    "${fields.openInVsCode ? `code ${fields.get('appId')};` : ''}"
+    "${fields.packageManager} ${fields.getExcept('openInVsCode', 'packageManager')} --yes;",
+    "${fields.openInVsCode ? `code ${fields.get('appName')};` : ''}"
   ],
   "fields": {
-    "appId": {
-      "label": "App Id",
-      "placeholder": "^[a-z]+(-[a-z]+)*$",
-      "description": "Must be in lowercase alphabets. No spaces or special chars are allowed except hyphen (-).",
-      "value": "hello-world",
-      "required": true,
-      "pattern": "^[a-z]+(-[a-z]+)*$",
-      "errors": {
-        "required": "App Id is Required.",
-        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-z]+(-[a-z]+)*$"
-      }
-    },
     "appName": {
       "label": "App Name",
-      "value": "Hello World",
+      "placeholder": "^[a-zA-Z]+(-[a-zA-Z]+)*$",
+      "description": "No spaces or special chars are allowed except hyphen (-).",
+      "value": "HelloWorld",
       "required": true,
-      "prefix": "--name=\"",
-      "suffix": "\"",
+      "pattern": "^[a-zA-Z]+(-[a-zA-Z]+)*$",
       "errors": {
-        "required": "App Name is Required."
+        "required": "App Name is Required.",
+        "pattern": "Invalid pattern. Value must satisfy pattern ^[a-zA-Z]+(-[a-zA-Z]+)*$"
       }
     },
     "template": {
       "type": "dropdown",
       "label": "Template",
-      "description": "You can find many grea community templates by searching for <a href='https://www.npmjs.com/search?q=expo-template-*'>expo-template-*</a> on npm.",
+      "description": "You can find many great community example projects in <a href='https://github.com/expo/examples'>expo/examples</a> on github.",
       "prompt": true,
-      "prefix": "--template=",
-      "options": [
-        { "label": "Blank" },
-        { "label": "Blank (Typescript)", "value": "expo-template-blank-typescript" },
-        { "label": "Tabs (Typescript)", "value": "expo-template-tabs" },
-        { "label": "Bare Minimum", "value": "expo-template-bare-minimum" }
-      ]
+      "prefix": "--template ",
+      "options": [{ "label": "Blank" }, { "label": "Tabs", "value": "tabs" }, { "label": "Bare minimum", "value": "bare-minimum" }]
     },
     "packageManager": {
       "type": "radio",
       "label": "Package Manager",
-      "value": "--npm",
+      "value": "npx create-expo-app",
       "options": [
-        { "label": "npm", "value": "--npm" },
-        { "label": "yarn", "value": "--yarn" }
+        { "label": "npm", "value": "npx create-expo-app" },
+        { "label": "yarn", "value": "yarn create expo-app" }
       ]
     },
     "skipInstall": {
@@ -72,14 +57,19 @@
   },
   "additionalCommands": [
     {
-      "label": "install expo-cli",
-      "description": "Click here to install expo-cli globally",
-      "command": "npm install -g expo-cli"
+      "label": "build for native",
+      "description": "Click here to build native code",
+      "command": "npx expo prebuild"
     },
     {
-      "label": "expo init",
-      "description": "Click here to create the react native app using expo cli prompts",
-      "command": "npx expo init"
+      "label": "expo start",
+      "description": "Click here to start the react native metro bundler",
+      "command": "npx expo start"
+    },
+    {
+      "label": "login",
+      "description": "Click here to login to expo",
+      "command": "npx expo login"
     },
     {
       "label": "check cli version",
@@ -89,7 +79,7 @@
     {
       "label": "cli help",
       "description": "Click here to know more cli configurations",
-      "command": "npx expo init --help"
+      "command": "npx create-expo-app --help"
     }
   ],
   "resources": [
@@ -103,11 +93,15 @@
     },
     {
       "label": "Npm Package",
-      "href": "https://www.npmjs.com/package/expo"
+      "href": "https://www.npmjs.com/package/create-expo-app"
     },
     {
       "label": "React Native Templates",
       "href": "https://www.npmjs.com/search?q=expo-template-*"
+    },
+    {
+      "label": "React Native Examples",
+      "href": "https://github.com/expo/examples"
     }
   ],
   "tags": ["frontend", "library", "mobile", "mobileapp", "native", "phone", "react", "react-native", "reactnative", "ui"]

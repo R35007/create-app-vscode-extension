@@ -1,3 +1,7 @@
+## v5.3.0
+
+- Updated - `React native App` cli options.
+
 ## v5.2.0
 
 - Added - `create-app.settings.interactive.showAppIcons` setting - if false it hides the app icons to improve the rendering speed. Defaults to true.
