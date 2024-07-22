@@ -17,12 +17,21 @@ export const getInterpolateObject = (fieldProps: object = {}, execPath: string =
   const fields = {
     ...fieldProps,
     '*': Object.values(fieldProps).join(' ').trim(),
+    _: Object.values(fieldProps).join(' ').trim(),
     get(...args: string[]) {
       return args.map((arg) => (this as never)[arg]).join(' ');
     },
     getExcept(...args: string[]) {
+      const fieldNames = args.flat();
       return Object.entries(fieldProps)
-        .filter(([key]) => !args.includes(key))
+        .filter(([key]) => !fieldNames.includes(key))
+        .map(([, value]) => value)
+        .join(' ');
+    },
+    except(...args: string[]) {
+      const fieldNames = args.flat();
+      return Object.entries(fieldProps)
+        .filter(([key]) => !fieldNames.includes(key))
         .map(([, value]) => value)
         .join(' ');
     }
@@ -33,6 +42,7 @@ export const getInterpolateObject = (fieldProps: object = {}, execPath: string =
   const interpolateObject = {
     fields,
     cwd: workspaceFolder,
+    pwd: workspaceFolder,
     workspaceFolder,
     workspaceFolderBasename: workspaceFolder ? path.basename(workspaceFolder) : '',
     execPath,

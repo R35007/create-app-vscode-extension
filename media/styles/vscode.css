@@ -34,6 +34,11 @@ body>* {
   font-size: 1.2rem;
 }
 
+li.app-card:focus-visible {
+  border: 1px solid var(--badge-background);
+  outline: none;
+}
+
 .app-card:not(.selected):hover {
   background: var(--vscode-list-dropBackground);
 }

@@ -23,7 +23,6 @@ Easily Create ab App with Official Starter Templates or Boilerplate using CLI.
 <span><sub><a href="https://nextjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/nextJs.png" alt="" width="20"></a></sub>&nbsp;&nbsp;NextJs</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://preactjs.com/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/preact.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Preact</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span><sub><a href="https://reactnative.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/react.png" alt="" width="20"></a></sub>&nbsp;&nbsp;React Native</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://svelte.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/svelte.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Svelte</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
 <span><sub><a href="https://vitejs.dev/"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vite.png" alt="" width="20"></a></sub>&nbsp;&nbsp;Vite</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span><sub><a href="https://code.visualstudio.com/api"><img src="https://raw.githubusercontent.com/R35007/create-app-support/version_5.1.0/images/vscode.png" alt="" width="20"></a></sub>&nbsp;&nbsp;VS Code Extension</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -65,6 +64,8 @@ interface FieldProps {
   suffix?: string; // set suffix of the field value. Ex: "prefix":"\"".
   checkedValue?: string | boolean; // used only for field type checkbox.
   unCheckedValue?: string | boolean; // used only for field type checkbox.
+  checkedLabel?: string; // used only for field type checkbox.
+  unCheckedLabel?: string; // used only for field type checkbox.
   value?: string | boolean; // The prefix and suffix will be added to the value. Ex: --template="value".
   placeholder?: string;
   description?: string;
@@ -106,7 +107,7 @@ interface AppProps {
 `commandTemplate` helps to generate the cli command. You can use the following substitution tokens in `commandTemplate` strings:
 
 - `${fields}` - get the field values.
-- `${workspaceFolder}` alias `${ced}` - get the current working directory or a current workspace folder.
+- `${workspaceFolder}` alias `${cwd}`, `${pwd}` - get the current working directory or a current workspace folder.
 - `${workspaceFolderBasename}` - get the current workspace folder base name.
 - `${execPath}` - get the command execution folder path.
 - `${execPathBasename}` - get the command execution folder path base name.
@@ -121,7 +122,9 @@ interface AppProps {
     "ng new ${fields.appId} ${fields['template']};", // populates the value of the specified field name.
     "ng new ${fields.get('appId', 'template')};", // populates the value of the specified field name using get method.
     "ng new fields.get('*');", // populates all field values.
+    "ng new fields._;", // populates all field values.
     "ng new ${fields.getExcept('appId', 'template')};", // populates all the field values except the given field names.
+    "ng new ${fields.except('appId', 'template')};", // populates all the field values except the given field names.
     "${fields.openInVsCode ? `code ${fields.appId};` : ''}" // conditionally updated the command based on other field values.
   ]
 }

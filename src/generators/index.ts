@@ -4,7 +4,7 @@ import { AppProps } from '../modal';
 export const generateAppNameListItems = (appsList: AppProps[], selectedApp?: AppProps, filterValue: string = ''): string[] => {
   return appsList.map((app) => {
     const isSelected = app.appName === selectedApp?.appName;
-    const isHidden = filterValue && !app.tags?.some((tag) => tag.includes(filterValue));
+    const isHidden = !!filterValue && !app.tags?.some((tag) => tag.includes(filterValue));
 
     const icon = Settings.shouldShowAppIcons
       ? /* html */ `
@@ -20,6 +20,7 @@ export const generateAppNameListItems = (appsList: AppProps[], selectedApp?: App
           title="${app.description}" 
           role="${isSelected ? '' : 'button'}" 
           class="row g-0 app-card ${isSelected ? 'selected' : ''}"
+          tabindex="0"
           style="order: ${app.order}; display: ${isHidden ? 'none' : 'flex'};" 
         >
           ${icon}
@@ -60,6 +61,7 @@ export const generateGroupNameListItems = (
           title="${groupName} - ${appsByGroup.length}" 
           role="${!isSelected ? 'button' : ''}" 
           class="row g-0 app-card ${isSelected ? 'selected' : ''}"
+          tabindex="0"
           style="order: ${app.order}; display: ${isHidden ? 'none' : 'flex'};"
         >
           ${icon}

@@ -151,6 +151,11 @@ function init(selectedApp, filterValue) {
     appCard.addEventListener('click', function () {
       vscode.postMessage({ action: 'switch-app', appName: this.dataset.switchApp, groupName: this.dataset.switchGroup, filterValue });
     });
+    appCard.addEventListener('keydown', function (event) {
+      const isEnterOrSpace = event.code === 'Enter' || event.code === 'Space';
+      if (!isEnterOrSpace) return;
+      vscode.postMessage({ action: 'switch-app', appName: this.dataset.switchApp, groupName: this.dataset.switchGroup, filterValue });
+    });
   });
 
   document.getElementById('app-list-dropdown').addEventListener('change', function () {
