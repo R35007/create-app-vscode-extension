@@ -26,7 +26,15 @@ body>* {
   overflow-y: auto;
 }
 
-.app-card:hover {
+#app-list-filter-input::part(control) {
+  padding-right: 4rem;
+}
+
+#command::part(control) {
+  font-size: 1.2rem;
+}
+
+.app-card:not(.selected):hover {
   background: var(--vscode-list-dropBackground);
 }
 
@@ -85,13 +93,13 @@ body>* {
 }
 
 .control-checkbox.checked::after {
-  content: "Yes";
+  content: attr(data-checked-label);
   margin-left: 1rem;
   cursor: pointer;
 }
 
 .control-checkbox:not(.checked)::after {
-  content: "No";
+  content: attr(data-unchecked-label);
   margin-left: 1rem;
   cursor: pointer;
 }

@@ -1,14 +1,14 @@
 export enum NodeModulesKeys {
   bootstrap,
-  uiToolkit,
+  uiToolkit
 }
 
-export interface NodeModulesValue {
+export type NodeModulesValue = {
   sourcePath: string[];
   destinationPath: string[];
   fileName: string;
   includeFolder?: boolean;
-}
+};
 
 export class NodeModulesAccessor {
   static readonly outputPath = 'dist';
@@ -19,8 +19,8 @@ export class NodeModulesAccessor {
       {
         sourcePath: ['node_modules', 'bootstrap', 'dist', 'css'],
         destinationPath: ['libs', 'bootstrap', 'dist', 'css'],
-        fileName: 'bootstrap.min.css',
-      },
+        fileName: 'bootstrap.min.css'
+      }
     ],
     [
       NodeModulesKeys.uiToolkit,
@@ -28,8 +28,8 @@ export class NodeModulesAccessor {
         sourcePath: ['node_modules', '@vscode', 'webview-ui-toolkit', 'dist'],
         destinationPath: ['libs', '@vscode', 'webview-ui-toolkit', 'dist'],
         fileName: 'toolkit.js',
-        includeFolder: true,
-      },
+        includeFolder: true
+      }
     ]
   ]);
 

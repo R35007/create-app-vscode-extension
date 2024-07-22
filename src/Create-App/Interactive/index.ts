@@ -1,28 +1,25 @@
-
 import * as vscode from 'vscode';
-import { AppProps, Commands } from '../../modal';
+import { Actions, AppProps, BrowseProps, Commands, Message } from '../../modal';
 import { getInterpolateObject, getWebviewOptions, interpolate } from '../../utilities';
-import { getAppsList } from '../../utilities/getAppsList';
+import { getAppsAndGroups } from '../../utilities/getAppsList';
 import { Command } from '../Command';
 import getWebview from './WebView';
 
 export default class CreateApp {
-  public static currentPanel: CreateApp | undefined;
+  static currentPanel: CreateApp | undefined;
 
   readonly #panel: vscode.WebviewPanel;
   readonly #extensionUri: vscode.Uri;
   #disposables: vscode.Disposable[] = [];
 
-  #appsList: AppProps[] = getAppsList();
-  #selectedApp: AppProps = this.#appsList[0];
-  #selectedGroup: string = this.#appsList[0].groupNames[0];
+  #appsList: AppProps[];
+  #selectedApp: AppProps;
+  #groupNames: string[];
+  #selectedGroup: string;
   #filterValue: string = '';
 
-  public static createOrShow(extensionUri: vscode.Uri) {
-
-    const column = vscode.window.activeTextEditor
-      ? vscode.window.activeTextEditor.viewColumn
-      : undefined;
+  static createOrShow(extensionUri: vscode.Uri) {
+    const column = vscode.window.activeTextEditor ? vscode.window.activeTextEditor.viewColumn : undefined;
 
     // If we already have a panel, show it.
     if (CreateApp.currentPanel) {
@@ -35,9 +32,8 @@ export default class CreateApp {
       Commands.CREATE_APP_INTERACTIVE,
       'Create App',
       column || vscode.ViewColumn.One,
-      getWebviewOptions(extensionUri),
+      getWebviewOptions(extensionUri)
     );
-
 
     CreateApp.currentPanel = new CreateApp(panel, extensionUri);
   }
@@ -46,7 +42,14 @@ export default class CreateApp {
     this.#panel = panel;
     this.#extensionUri = extensionUri;
 
-    this.#panel.iconPath = vscode.Uri.joinPath(extensionUri, "media", "images", "ca-logo-sm.png");
+    const { appsList, groupNames } = getAppsAndGroups();
+
+    this.#appsList = appsList;
+    this.#groupNames = groupNames;
+    this.#selectedApp = this.#appsList[0];
+    this.#selectedGroup = groupNames[0];
+
+    this.#panel.iconPath = vscode.Uri.joinPath(extensionUri, 'media', 'images', 'ca-logo-sm.png');
 
     // Set the webview's initial html content
     this.#update(true);
@@ -59,43 +62,35 @@ export default class CreateApp {
     this.#panel.webview.onDidReceiveMessage(this.onDidReceiveMessage, null, this.#disposables);
   }
 
-  onDidReceiveMessage = (message: any) => {
+  onDidReceiveMessage = (message: Message) => {
     switch (message.action) {
-      case 'switch-app': {
-        if (message.appName !== this.#selectedApp.appName) this.#switchApp(message.appName, message.groupName, message.filterValue);
+      case Actions.SWITCH_APP: {
+        this.#switchApp(message.appName, message.groupName, message.filterValue);
         return;
       }
-      case 'get-location': {
+      case Actions.GET_LOCATION: {
         this.#getFolderLocation(message);
         return;
       }
-      case 'get-command-template': {
+      case Actions.GET_COMMAND_TEMPLATE: {
         this.#setCommandTemplate(message.object, message.commandTemplate);
         return;
       }
-      case 'execute-command': {
-        const command = new Command(
-          message.command,
-          message.location,
-          this.#selectedApp.appName
-        );
+      case Actions.EXECUTE_COMMAND: {
+        const command = new Command(message.command, message.location, this.#selectedApp.appName);
         command.executeCommand();
         return;
       }
-      case 'copy-command': {
+      case Actions.COPY_COMMAND: {
         this.#copyCommand(message.command);
         return;
       }
-      case 'copy-config': {
+      case Actions.COPY_CONFIG: {
         this.#copyConfig();
         return;
       }
-      case 'execute-create-command': {
-        const command = new Command(
-          message.command,
-          message.location,
-          this.#selectedApp.appName
-        );
+      case Actions.EXECUTE_CREATE_COMMAND: {
+        const command = new Command(message.command, message.location, this.#selectedApp.appName);
         command.executeCreateCommand();
         return;
       }
@@ -103,7 +98,7 @@ export default class CreateApp {
   };
 
   #copyConfig = () => {
-    vscode.env.clipboard.writeText(JSON.stringify(this.#selectedApp, null, vscode.window.activeTextEditor?.options.tabSize || "\t"));
+    vscode.env.clipboard.writeText(JSON.stringify(this.#selectedApp, null, vscode.window.activeTextEditor?.options.tabSize || '\t'));
     vscode.window.showInformationMessage(`${this.#selectedApp.appName} App config is copied to clipboard 📋`);
   };
 
@@ -113,36 +108,43 @@ export default class CreateApp {
   };
 
   #switchApp = (appName: string, groupName: string, filterValue: string) => {
+    if (!appName && !groupName) return;
     this.#selectedGroup = groupName;
     this.#filterValue = filterValue;
-    this.#selectedApp = this.#appsList.find(app => app.appName === appName) || this.#selectedApp;
+    this.#selectedApp = this.#appsList.find((app) => app.appName === appName) || this.#selectedApp;
     this.#update();
   };
 
-  #getFolderLocation = async (props: any) => {
+  #getFolderLocation = async (props: Message) => {
     const folderLocations = await vscode.window.showOpenDialog({
       defaultUri: vscode.workspace.workspaceFolders?.[0]?.uri,
-      canSelectFolders: props.isAppLocation ? true : this.#selectedApp.fields?.[props.name]?.canSelectFolder ?? true,
-      canSelectFiles: props.isAppLocation ? false : this.#selectedApp.fields?.[props.name]?.canSelectFolder ?? true,
+      canSelectFolders: props.isAppLocation ? true : ((this.#selectedApp.fields?.[props.name] as BrowseProps)?.canSelectFolder ?? true),
+      canSelectFiles: props.isAppLocation ? false : ((this.#selectedApp.fields?.[props.name] as BrowseProps)?.canSelectFolder ?? true),
       canSelectMany: false,
       ...props
     });
 
     if (folderLocations?.length) {
-      this.#panel.webview.postMessage({ action: props.isAppLocation ? 'set-app-location' : 'set-location', value: folderLocations[0].fsPath, name: props.name });
+      this.#panel.webview.postMessage({
+        action: props.isAppLocation ? 'set-app-location' : 'set-location',
+        value: folderLocations[0].fsPath,
+        name: props.name
+      });
     }
   };
 
-  #setCommandTemplate = (object: any, commandTemplate: string) => {
+  #setCommandTemplate = (object: Message['object'], commandTemplate: string) => {
     try {
       this.#panel.webview.postMessage({
-        action: 'set-command-template', value: interpolate(getInterpolateObject(object.fields, object.execPath), commandTemplate)
+        action: 'set-command-template',
+        value: interpolate(getInterpolateObject(object.fields, object.execPath), commandTemplate)
       });
-    } catch (err: any) {
+    } catch (err) {
+      if (!(err instanceof Error)) return;
       if (err.message.includes('no defined')) {
         vscode.window.showErrorMessage(err.message + ". Please use ${fields.get('yourFieldName')} in the commandTemplate");
       } else {
-        vscode.window.showErrorMessage(err.message + ". Please check the commandTemplate");
+        vscode.window.showErrorMessage(err.message + '. Please check the commandTemplate');
       }
     }
   };
@@ -158,6 +160,7 @@ export default class CreateApp {
           this.#extensionUri,
           this.#panel.webview,
           this.#appsList,
+          this.#groupNames,
           this.#selectedApp,
           this.#selectedGroup,
           this.#filterValue,
@@ -167,7 +170,7 @@ export default class CreateApp {
     }
   }
 
-  public dispose() {
+  dispose() {
     CreateApp.currentPanel = undefined;
 
     // Clean up our resources
@@ -180,5 +183,4 @@ export default class CreateApp {
       }
     }
   }
-
 }

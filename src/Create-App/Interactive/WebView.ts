@@ -1,28 +1,40 @@
 import * as vscode from 'vscode';
-import { generateAppListDropdown, generateGroupButtons, generateGroupList, generateInfoContainers, getLoaderStyle } from '../../generators';
+import {
+  generateAppButtonsByGroupName,
+  generateAppListDropdown,
+  generateAppNameListItems,
+  generateGroupNameListItems,
+  generateInfoContainers,
+  getLoaderStyle
+} from '../../generators';
 import { generateFormFields } from '../../generators/formFields';
 import { AppProps } from '../../modal';
+import { Settings } from '../../Settings';
 import { getNonce, getUris } from '../../utilities';
 
 export default (
-    extensionUri: vscode.Uri,
-    webview: vscode.Webview,
-    appsList: AppProps[],
-    selectedApp: AppProps,
-    selectedGroup: string,
-    filterValue: string,
-    showLoader: boolean) => {
-    const formFields = generateFormFields(selectedApp.fields, selectedApp);
-    const groupNamesList = generateGroupList(appsList, selectedGroup, filterValue);
-    const appGroupButtons = generateGroupButtons(appsList, selectedApp, selectedGroup);
-    const appsListOptions = generateAppListDropdown(appsList, selectedApp);
-    const infoContainers = generateInfoContainers(appsList, selectedApp, selectedGroup);
+  extensionUri: vscode.Uri,
+  webview: vscode.Webview,
+  appsList: AppProps[],
+  groupNames: string[],
+  selectedApp: AppProps,
+  selectedGroup: string,
+  filterValue: string,
+  showLoader: boolean
+) => {
+  const $formFields = generateFormFields(selectedApp.fields, selectedApp);
+  const $searchListItems = Settings.shouldGroupApps
+    ? generateGroupNameListItems(appsList, groupNames, selectedGroup, filterValue)
+    : generateAppNameListItems(appsList, selectedApp, filterValue);
+  const $appGroupButtons = generateAppButtonsByGroupName(appsList, selectedApp, selectedGroup);
+  const $appsListOptions = generateAppListDropdown(appsList, selectedApp);
+  const $infoContainers = generateInfoContainers(appsList, selectedApp, selectedGroup);
 
-    const nonce = getNonce(); // Use a nonce to only allow specific scripts to be run
-    const uri = getUris(extensionUri, webview);
-    const loaderStyles = getLoaderStyle(nonce);
+  const nonce = getNonce(); // Use a nonce to only allow specific scripts to be run
+  const uri = getUris(extensionUri, webview);
+  const loaderStyles = getLoaderStyle(nonce);
 
-    return `<!DOCTYPE html>
+  return /* html */ `<!DOCTYPE html>
   <html lang="en">
   
   <head>
@@ -47,22 +59,23 @@ export default (
       <div class="container-lg my-0 h-100">
           <div class="row pt-4 h-100">
               <aside class="col-3 col-lg-2 d-none d-md-block app-list-container h-100 pe-0 overflow-y-auto" style="scrollbar-gutter: stable;">
-                  <div class="searchbox-wrapper position-sticky top-0">
+                  <div class="searchbox-wrapper position-sticky top-0 position-relative">
                       <vscode-text-field id="app-list-filter-input" class="search-box d-block mb-2" placeholder="Search apps here" value="${filterValue}"></vscode-text-field>
+                      <span id="count" class="position-absolute" style="top: 5px; right: 11px;">${$searchListItems.length}</span>
                   </div>
                   <ul id="app-list" class="list-group app-list overflow-y-auto mb-3 rounded-0">
-                      ${groupNamesList}
+                      ${$searchListItems.join('')}
                   </ul>
               </aside>
               <section class="col h-100 overflow-y-auto d-flex flex-column" style="scrollbar-gutter: stable;">
                   <section class="position-sticky top-0 z-1" style="background: var(--vscode-editor-background);">
                       <header class="d-flex align-items-center justify-content-between mb-2">
                           <div class="d-none d-md-inline-flex gap-1 flex-wrap">
-                              ${appGroupButtons}
+                              ${$appGroupButtons.join('')}
                           </div>
                           <vscode-dropdown id="app-list-dropdown" class="d-inline-block d-md-none"
                               style="min-width: 12rem;">
-                              ${appsListOptions}
+                              ${$appsListOptions.join('')}
                           </vscode-dropdown>
                           <div class="d-inline-flex gap-1 flex-wrap justify-content-end">
                               <vscode-button appearance="secondary" id="copy-config" title="copy the app config">Copy App Config</vscode-button>
@@ -76,10 +89,12 @@ export default (
                   </section>
                   <section class="configuration-container row flex-grow">
                       <div id="create-app-form" class="col d-flex flex-column app-config-container overflow-y-auto h-100">
-                          ${formFields}
+                          ${$formFields}
                       </div>
-                      <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto d-none d-lg-block ${infoContainers?.length ? '' : 'd-lg-none'}">
-                          ${infoContainers}
+                      <div class="col-4 col-lg-3 additional-details-container h-100 overflow-y-auto d-none d-lg-block ${
+                        $infoContainers?.length ? '' : 'd-lg-none'
+                      }">
+                          ${$infoContainers}
                       </div>
                   </section>
               </section>

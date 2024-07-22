@@ -1,13 +1,10 @@
-//@ts-check
-
 'use strict';
 
 import * as path from 'path';
-import { NodeModulesAccessor, NodeModulesKeys } from './src/NodeModuleAccessor';
 import { Configuration } from 'webpack';
+import { NodeModulesAccessor, NodeModulesKeys } from './src/NodeModuleAccessor';
 import CopyPlugin = require('copy-webpack-plugin');
 
-//@ts-check
 /** @typedef {import('webpack').Configuration} WebpackConfig **/
 
 function copyNodeModulesFiles(): CopyPlugin {
@@ -27,19 +24,18 @@ function copyNodeModulesFiles(): CopyPlugin {
     }
     return {
       from: sourcePath,
-      to: destinationPath,
+      to: destinationPath
     };
   });
   return new CopyPlugin({
-    patterns: copies,
+    patterns: copies
   });
 }
-
 
 /** @type WebpackConfig */
 const extensionConfig: Configuration = {
   target: 'node', // vscode extensions run in a Node.js-context 📖 -> https://webpack.js.org/configuration/node/
-	mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
+  mode: 'none', // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
 
   entry: './src/extension.ts', // the entry point of this extension, 📖 -> https://webpack.js.org/configuration/entry-context/
   output: {
@@ -69,7 +65,7 @@ const extensionConfig: Configuration = {
       }
     ]
   },
-  plugins:[copyNodeModulesFiles()],
+  plugins: [copyNodeModulesFiles()],
   devtool: 'nosources-source-map'
 };
-module.exports = [ extensionConfig ];
+module.exports = [extensionConfig];

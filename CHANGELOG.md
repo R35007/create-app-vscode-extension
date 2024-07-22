@@ -1,3 +1,13 @@
+## v6.0.0
+
+- Renamed - `create-app.settings.customAppPath` to `create-app.settings.customAppPaths`. Now we can provide multiple app paths.
+- Updated - `create-app.settings.customApps` schema.
+- Added - `create-app.settings.interactive.groupApps` setting - Helps to Groups the apps by `groupNames`. Set to false to show all the apps in the sidebar. Defaults to `true`.
+- Added - `create-app.settings.hiddenApps` setting. Provide list of app names to hide the app from interactive view.
+- Added - `create-app.settings.hiddenGroups` setting. Provide list of group names to hide all the apps for the given groups from interactive view.
+- Updated - Show number of shown apps and filtered apps count int he search field.
+- Added - `checkedLabel` and `unCheckedLabel` to the checkbox fields object
+
 ## v5.3.0
 
 - Updated - `React native App` cli options.

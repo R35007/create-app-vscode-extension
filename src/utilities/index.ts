@@ -8,21 +8,24 @@ export const getWebviewOptions = (extensionUri: vscode.Uri): vscode.WebviewOptio
     enableScripts: true,
     localResourceRoots: [
       vscode.Uri.joinPath(extensionUri, NodeModulesAccessor.outputPath, 'libs'), // <--- Important
-      vscode.Uri.joinPath(extensionUri, 'media'),
-    ],
+      vscode.Uri.joinPath(extensionUri, 'media')
+    ]
   };
 };
 
 export const getInterpolateObject = (fieldProps: object = {}, execPath: string = '') => {
   const fields = {
     ...fieldProps,
-    "*": Object.values(fieldProps).join(" ").trim(),
+    '*': Object.values(fieldProps).join(' ').trim(),
     get(...args: string[]) {
-      return args.map((arg) => (this as any)[arg]).join(" ");
+      return args.map((arg) => (this as never)[arg]).join(' ');
     },
     getExcept(...args: string[]) {
-      return Object.entries(fieldProps).filter(([key]) => !args.includes(key)).map(([, value]) => value).join(" ");
-    },
+      return Object.entries(fieldProps)
+        .filter(([key]) => !args.includes(key))
+        .map(([, value]) => value)
+        .join(' ');
+    }
   };
 
   const workspaceFolder = vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
@@ -46,15 +49,16 @@ export const interpolate = (object: object, format: string) => {
   return new Function(...keys, `return \`${format}\`;`)(...values);
 };
 
-export const getCommand = (prefix = "", value: any = "", suffix = "") => (`${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value);
+export const getCommand = (prefix = '', value: unknown = '', suffix = '') =>
+  `${value}`.trim().length > 0 ? `${prefix}${value}${suffix}` : value;
 
 export const toSanitizedCommand = (str: string) =>
   str
-    .replace(/ +(?= )/g, "")
-    .replace(/;/g, ";\n")
-    .replace(/\n\s+/g, "\n")
-    .replace(/\s*;\s*/g, ";\n")
-    .replace(/\n+/g, "\n")
+    .replace(/ +(?= )/g, '')
+    .replace(/;/g, ';\n')
+    .replace(/\n\s+/g, '\n')
+    .replace(/\s*;\s*/g, ';\n')
+    .replace(/\n+/g, '\n')
     .trim();
 
 export const getNonce = () => {
@@ -73,7 +77,6 @@ export const getUriFromPath = (extensionUri: vscode.Uri, webview: vscode.Webview
 
 // Webview Uri for script and style to run in the webview
 export const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview) => {
-
   const stylesResetUri = getUriFromPath(extensionUri, webview, 'media', 'styles', 'reset.css');
   const stylesMainUri = getUriFromPath(extensionUri, webview, 'media', 'styles', 'vscode.css');
   const scriptMainUri = getUriFromPath(extensionUri, webview, 'media', 'scripts', 'main.js');
@@ -86,6 +89,6 @@ export const getUris = (extensionUri: vscode.Uri, webview: vscode.Webview) => {
     stylesMainUri,
     scriptMainUri,
     toolkitUri,
-    bootstrapUri,
+    bootstrapUri
   };
 };

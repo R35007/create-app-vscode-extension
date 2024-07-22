@@ -2,7 +2,7 @@
   "name": "create-app",
   "displayName": "Create App",
   "description": "Generates an interactive form and quick pick for any CLI to Create an APP.",
-  "version": "5.3.0",
+  "version": "6.0.0",
   "publisher": "Thinker",
   "license": "MIT",
   "icon": "media/images/ca-logo.png",
@@ -90,9 +90,34 @@
           "default": true,
           "description": "Set to false to hide the app icons. Hiding icons will improve the rendering performance."
         },
-        "create-app.settings.customAppPath": {
-          "type": "string",
-          "description": "Set custom file or folder path of the custom app json. please restart the vscode to take effect."
+        "create-app.settings.interactive.groupApps": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set to false to list all the apps in aside without group names"
+        },
+        "create-app.settings.hiddenApps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Prove list of app names to hide"
+        },
+        "create-app.settings.hiddenGroups": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Prove list of group names to hide"
+        },
+        "create-app.settings.customAppPaths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Set custom file or folder paths of the custom app json. please restart the vscode to take effect."
         },
         "create-app.settings.customApps": {
           "type": "array",
@@ -115,64 +140,8 @@
                   "type": "string"
                 }
               },
-              "hide": {
-                "type": "boolean"
-              },
-              "order": {
-                "type": "number"
-              },
-              "description": {
-                "type": "string"
-              },
-              "logoPath": {
-                "type": "string"
-              },
-              "prerequisites": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "oneOf": [
-                    {
-                      "properties": {
-                        "label": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "href": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "label",
-                        "description",
-                        "href"
-                      ]
-                    },
-                    {
-                      "properties": {
-                        "label": {
-                          "type": "string"
-                        },
-                        "description": {
-                          "type": "string"
-                        },
-                        "command": {
-                          "type": "string"
-                        }
-                      },
-                      "required": [
-                        "label",
-                        "description",
-                        "command"
-                      ]
-                    }
-                  ]
-                }
-              },
               "commandTemplate": {
-                "oneOf": [
+                "anyOf": [
                   {
                     "type": "string"
                   },
@@ -184,154 +153,317 @@
                   }
                 ]
               },
+              "hide": {
+                "type": "boolean"
+              },
               "fields": {
                 "type": "object",
                 "additionalProperties": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": [
-                        "textbox",
-                        "dropdown",
-                        "radio",
-                        "browse",
-                        "checkbox"
+                  "anyOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "order": {
+                          "type": "number"
+                        },
+                        "prefix": {
+                          "type": "string"
+                        },
+                        "suffix": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "prompt": {
+                          "type": "boolean"
+                        },
+                        "hide": {
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "textbox"
+                        },
+                        "placeholder": {
+                          "type": "string"
+                        },
+                        "pattern": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "errors": {
+                          "type": "object",
+                          "properties": {
+                            "required": {
+                              "type": "string"
+                            },
+                            "pattern": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "type"
                       ]
                     },
-                    "label": {
-                      "type": "string"
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "order": {
+                          "type": "number"
+                        },
+                        "prefix": {
+                          "type": "string"
+                        },
+                        "suffix": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "prompt": {
+                          "type": "boolean"
+                        },
+                        "hide": {
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "type": "string",
+                          "enum": [
+                            "radio",
+                            "dropdown"
+                          ]
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "errors": {
+                          "type": "object",
+                          "properties": {
+                            "required": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        },
+                        "options": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string"
+                              },
+                              "value": {}
+                            },
+                            "required": [
+                              "label"
+                            ],
+                            "additionalProperties": false
+                          }
+                        }
+                      },
+                      "required": [
+                        "options",
+                        "type"
+                      ]
                     },
-                    "placeholder": {
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "order": {
+                          "type": "number"
+                        },
+                        "prefix": {
+                          "type": "string"
+                        },
+                        "suffix": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "prompt": {
+                          "type": "boolean"
+                        },
+                        "hide": {
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "checkbox"
+                        },
+                        "checkedValue": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "unCheckedValue": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "checkedLabel": {
+                          "type": "string"
+                        },
+                        "unCheckedLabel": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "errors": {
+                          "type": "object",
+                          "properties": {
+                            "required": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "properties": {
+                        "label": {
+                          "type": "string"
+                        },
+                        "order": {
+                          "type": "number"
+                        },
+                        "prefix": {
+                          "type": "string"
+                        },
+                        "suffix": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": [
+                            "string",
+                            "boolean"
+                          ]
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "prompt": {
+                          "type": "boolean"
+                        },
+                        "hide": {
+                          "type": "boolean"
+                        },
+                        "type": {
+                          "type": "string",
+                          "const": "browse"
+                        },
+                        "placeholder": {
+                          "type": "string"
+                        },
+                        "buttonText": {
+                          "type": "string"
+                        },
+                        "required": {
+                          "type": "boolean"
+                        },
+                        "canSelectFile": {
+                          "type": "boolean"
+                        },
+                        "canSelectFolder": {
+                          "type": "boolean"
+                        },
+                        "pattern": {
+                          "type": "string"
+                        },
+                        "errors": {
+                          "type": "object",
+                          "properties": {
+                            "required": {
+                              "type": "string"
+                            },
+                            "pattern": {
+                              "type": "string"
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "type"
+                      ]
+                    }
+                  ]
+                }
+              },
+              "description": {
+                "type": "string"
+              },
+              "logoPath": {
+                "type": "string"
+              },
+              "prerequisites": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
                       "type": "string"
                     },
                     "description": {
                       "type": "string"
                     },
-                    "order": {
-                      "type": "number"
-                    },
-                    "unCheckedValue": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ]
-                    },
-                    "checkedValue": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ]
-                    },
-                    "value": {
-                      "type": [
-                        "boolean",
-                        "string"
-                      ]
-                    },
-                    "required": {
-                      "type": "boolean"
-                    },
-                    "canSelectFile": {
-                      "type": "boolean"
-                    },
-                    "canSelectFolder": {
-                      "type": "boolean"
-                    },
-                    "prompt": {
-                      "type": "boolean"
-                    },
-                    "hide": {
-                      "type": "boolean"
-                    },
-                    "pattern": {
+                    "command": {
                       "type": "string"
                     },
-                    "prefix": {
+                    "href": {
                       "type": "string"
-                    },
-                    "suffix": {
-                      "type": "string"
-                    },
-                    "errors": {
-                      "type": "object",
-                      "examples": [
-                        {},
-                        {
-                          "required": "App Id is Required.",
-                          "pattern": "Invalid Id. No spaces or special chars are allowed."
-                        }
-                      ],
-                      "properties": {
-                        "required": {
-                          "type": "string"
-                        },
-                        "pattern": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "options": {
-                      "type": "array",
-                      "examples": [
-                        [],
-                        [
-                          {
-                            "label": "provide options only for type dropdown",
-                            "value": "--init"
-                          }
-                        ]
-                      ],
-                      "items": {
-                        "type": "object",
-                        "examples": [
-                          {},
-                          {
-                            "label": "provide options only for type dropdown",
-                            "value": "--init"
-                          }
-                        ],
-                        "properties": {
-                          "label": {
-                            "type": "string"
-                          },
-                          "value": {
-                            "type": "string"
-                          }
-                        },
-                        "required": [
-                          "label",
-                          "value"
-                        ]
-                      }
                     }
                   },
                   "required": [
-                    "label",
-                    "type"
+                    "label"
                   ],
-                  "if": {
-                    "properties": {
-                      "type": {
-                        "enum": [
-                          "dropdown",
-                          "radio"
-                        ]
-                      }
-                    }
-                  },
-                  "then": {
-                    "required": [
-                      "options"
-                    ]
-                  },
-                  "else": {
-                    "not": {
-                      "required": [
-                        "options"
-                      ]
-                    }
-                  }
+                  "additionalProperties": false
                 }
               },
               "additionalCommands": {
@@ -347,19 +479,39 @@
                     },
                     "command": {
                       "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "label",
-                    "description",
-                    "command"
-                  ]
+                    "label"
+                  ],
+                  "additionalProperties": false
                 }
               },
               "resources": {
                 "type": "array",
                 "items": {
-                  "type": "string"
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "command": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "label"
+                  ],
+                  "additionalProperties": false
                 }
               },
               "tags": {
@@ -367,11 +519,15 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "order": {
+                "type": "number"
               }
             },
             "required": [
               "appName"
-            ]
+            ],
+            "additionalProperties": false
           }
         }
       }
@@ -384,18 +540,24 @@
     "package": "webpack --mode production --devtool hidden-source-map"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "@types/json-schema": "^7.0.15",
     "@types/node": "14.x",
     "@types/vscode": "^1.50.0",
     "@types/webpack": "^5.28.0",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
     "@vscode/webview-ui-toolkit": "^0.8.5",
+    "ajv": "^8.17.1",
     "bootstrap": "^5.1.3",
     "copy-webpack-plugin": "^11.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^9.7.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.8.0",
+    "prettier": "3.3.3",
     "ts-loader": "^9.2.5",
     "ts-node": "^10.9.1",
-    "typescript": "^4.4.3",
+    "typescript": "^5.5.3",
+    "typescript-eslint": "^7.16.1",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0"
   }

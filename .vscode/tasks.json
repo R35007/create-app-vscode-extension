@@ -18,6 +18,14 @@
       },
       "label": "watch",
       "detail": "webpack"
+    },
+    {
+      "type": "npm",
+      "script": "compile",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: compile",
+      "detail": "webpack"
     }
   ]
 }

@@ -1,7 +1,7 @@
-import { AppProps, FieldProps, FieldType } from '../modal';
+import { AppProps, BrowseProps, CheckboxProps, CommonProps, FieldProps, FieldType, OptionProps, TextBoxProps } from '../modal';
 
-const getTextbox = (fieldName: string, props: FieldProps) => {
-  return `<vscode-text-field 
+const getTextbox = (fieldName: string, props: TextBoxProps & CommonProps) => {
+  return /* html */ `<vscode-text-field 
     placeholder="${props.placeholder ?? ''}" 
     class="d-block control" 
     value="${props.value ?? ''}" 
@@ -10,42 +10,62 @@ const getTextbox = (fieldName: string, props: FieldProps) => {
   ></<vscode-text-field>`;
 };
 
-const getRadioGroup = (fieldName: string, props: FieldProps) => {
-  const radioGroup = `
+const getRadioGroup = (fieldName: string, props: OptionProps & CommonProps) => {
+  const options =
+    props.options
+      ?.map((opt) => {
+        const isChecked = `${props.value ?? ''}`.trim() === `${opt.value ?? ''}`.trim();
+        return /* html */ `<vscode-radio ${isChecked ? 'checked' : ''} value="${opt.value ?? ''}">${opt.label ?? ''}</vscode-radio>`;
+      })
+      .join('') || '';
+
+  const radioGroup = /* html */ `
   <vscode-radio-group 
     class="control" 
     name="${fieldName}" 
   >
-    ${props.options?.map(opt => `<vscode-radio ${(opt.value ?? "") === (props.value ?? "") && 'checked'} value="${opt.value ?? ""}">${opt.label ?? ""}</vscode-radio>`).join('') || ''}
+    ${options}
   </vscode-radio-group>
   `;
   return radioGroup;
 };
 
-const getDropDown = (fieldName: string, props: FieldProps) => {
-  return `
+const getDropDown = (fieldName: string, props: OptionProps & CommonProps) => {
+  return /* html */ `
   <vscode-dropdown 
     class="d-block w-100 control"
     name="${fieldName}" 
     ${props.required ? 'required' : ''}
   >
-    ${props.options?.map(opt => `<vscode-option ${(opt.value ?? "") === (props.value ?? "") && 'selected'} value="${opt.value ?? " "}">${opt.label ?? ""}</vscode-option>`).join('') || ''}
+    ${
+      props.options
+        ?.map(
+          (opt) =>
+            /* html */ `<vscode-option ${(opt.value ?? '') === (props.value ?? '') && 'selected'} value="${opt.value ?? ' '}">${
+              opt.label ?? ''
+            }</vscode-option>`
+        )
+        .join('') || ''
+    }
   </vscode-dropdown>
   `;
 };
 
-const getCheckbox = (fieldName: string, props: FieldProps) => {
-  return `<vscode-checkbox 
+const getCheckbox = (fieldName: string, props: CheckboxProps & CommonProps) => {
+  const isChecked = `${props.value ?? ''}`.trim() !== `${props.unCheckedValue ?? ''}`.trim();
+  return /* html */ `<vscode-checkbox 
     class="control-checkbox" 
     data-checked-value="${props.checkedValue ?? 'true'}" 
-    data-un-checked-value="${props.unCheckedValue ?? ''}" 
+    data-un-checked-value="${props.unCheckedValue ?? ''}"
+    data-checked-label="${props.checkedLabel ?? 'Yes'}" 
+    data-unchecked-label="${props.unCheckedLabel ?? props.checkedLabel ?? 'Yes'}" 
     name="${fieldName}" 
-    ${`${props.value ?? ''}`.trim() !== (`${props.unCheckedValue ?? ''}`).trim() ? 'checked' : ''}
+    ${isChecked ? 'checked' : ''}
     ></<vscode-checkbox>`;
 };
 
-const getBrowse = (fieldName: string, props: FieldProps) => {
-  return `
+const getBrowse = (fieldName: string, props: BrowseProps & CommonProps) => {
+  return /* html */ `
   <div class="d-flex">
     <vscode-text-field 
       name="${fieldName}" 
@@ -74,12 +94,12 @@ const fieldSwitch = (fieldName: string, fieldProps: FieldProps) => {
     case FieldType.BROWSE:
       return getBrowse(fieldName, fieldProps);
     default:
-      return getTextbox(fieldName, fieldProps);
+      return getTextbox(fieldName, fieldProps as never);
   }
 };
 
 export const generateFormFields = (fieldProps: Record<string, FieldProps> = {}, selectedApp: AppProps): string => {
-  const browseAppLocation = `
+  const browseAppLocation = /* html */ `
   <div class="row mb-3 align-items-center" style="order: ${Object.keys(selectedApp.fields || {}).length + 1}">
     <div class="col-12 val">
       <div class="d-flex mb-1">
@@ -92,10 +112,13 @@ export const generateFormFields = (fieldProps: Record<string, FieldProps> = {}, 
 
   if (!Object.entries(fieldProps).length) return browseAppLocation;
 
-  const formFields = Object.entries(fieldProps).map(([fieldName, fieldProps]) => {
-    return `
+  const formFields = Object.entries(fieldProps)
+    .map(([fieldName, fieldProps]) => {
+      return /* html */ `
       <div class="field-row row mb-3 align-items-center" style="order: ${fieldProps.order}">
-        <div class="col-12 col-lg-4 key mb-1 ${fieldProps.label?.trim().length ? '' : 'd-none'}">${fieldProps.label} ${fieldProps.required ? `<span class="text-primary">*</span>` : ''}</div>
+        <div class="col-12 col-lg-4 key mb-1 ${fieldProps.label?.trim().length ? '' : 'd-none'}">${fieldProps.label} ${
+          fieldProps.required ? `<span class="text-primary">*</span>` : ''
+        }</div>
         <div class="col val">
           <div class="mb-1">${fieldSwitch(fieldName, fieldProps)}</div>
           <div class="error ${fieldName}-error text-danger"></div>
@@ -103,7 +126,8 @@ export const generateFormFields = (fieldProps: Record<string, FieldProps> = {}, 
         </div>
       </div>
     `;
-  }).join('');
+    })
+    .join('');
 
   return formFields + browseAppLocation;
 };
