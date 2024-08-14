@@ -1,3 +1,7 @@
+## v6.0.1
+
+- Readme update
+
 ## v6.0.0
 
 - Renamed - `create-app.settings.customAppPath` to `create-app.settings.customAppPaths`. Now we can provide multiple app paths.
